@@ -1,5 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
+import Footer from './components/footer/footer';
 import Header from './components/header/Header';
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
   return (
     <div className="app">
       <Header setRender={setRender} />
+      <Footer />
     </div>
   );
 }

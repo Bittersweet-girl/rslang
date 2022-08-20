@@ -1,14 +1,16 @@
 @import '../../sass components/normalize';
 @import '../../sass components/variables';
 @import '../../sass components/buttons';
+@import '../../sass components/mixins';
 
 .header{
     max-width: 1900px;
-    display: flex;
-    justify-content: space-between;
     padding-top: 20px;
+    &-content{
+        @include flex-columns;
+    }
     &__logo_btn{
-        background-image: url('../../assets/logo.svg');
+        background-image: url('../../../public/assets/logo.svg');
         background-repeat: no-repeat;
         background-size: cover;
         width: 253px;

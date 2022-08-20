@@ -1,0 +1,12 @@
+@mixin flex-columns {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+// @mixin bgImage($url, $width, $height) {
+//     background-image: url($url);
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     width: $width;
+//     height: $height;
+// }
