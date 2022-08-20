@@ -1,16 +1,15 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
-import { Header } from './components/Header';
-import { Main } from './components/Main';
-import { Dictionary } from './components/Dictionary';
-import { Audio } from './components/Audio';
-import { Sprint } from './components/Sprint';
-import { Statistic } from './components/Statistic';
-import { About } from './components/About';
+import Header from './components/Header';
+import Main from './components/Main';
+import Dictionary from './components/Dictionary';
+import Audio from './components/Audio';
+import Sprint from './components/Sprint';
+import Statistic from './components/Statistic';
+import About from './components/About';
 
 function App() {
-  const [render, setRender] = useState('main');
-
+  const [render, setRender] = useState<string>('main');
   return (
     <div className="app">
       <Header setRender={setRender} />

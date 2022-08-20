@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable import/prefer-default-export */
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Product } from './Product';
+import Product from './Product';
 import { IProduct } from './interfaces';
 
-export function Dictionary() {
+export default function Dictionary() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 

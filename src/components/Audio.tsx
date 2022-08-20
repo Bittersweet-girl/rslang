@@ -1,7 +1,6 @@
-/* eslint-disable import/prefer-default-export */
 import React from 'react';
 
-export function Audio() {
+export default function Audio() {
   return (
     <section className="audio-game">
       <h1>AUDIO GAME</h1>
