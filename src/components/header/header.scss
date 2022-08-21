@@ -1,0 +1,52 @@
+@import '../../sass-components/normalize';
+@import '../../sass-components/variables';
+@import '../../sass-components/buttons';
+@import '../../sass-components/mixins';
+
+.header{
+    max-width: 1900px;
+    width: 100%;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    &-content{
+        @include flex-columns;
+    }
+    &__logo_btn{
+        background-image: url('../../../public/assets/logo.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 253px;
+        height: 56px;
+        border: 0px;
+        cursor: pointer;
+    }
+    &-menu{
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid $color-secondary;
+        height: 45px;
+        &__button{
+            width: 100px;
+            &_dict:hover{
+                background-color: $color-orange;
+            }
+            &_audio:hover{
+                background-color: $color-green;
+            }
+            &_sprint:hover{
+                background-color: $color-blue;
+            }
+            &_stat:hover{
+                background-color: $color-pink;
+            }
+            &_about:hover{
+                background-color: $color-magenta;
+            }
+        }
+    }
+    &__user{
+        background-color: $color-red;
+        color: $color-bg;
+        width: 70px;
+    }
+}

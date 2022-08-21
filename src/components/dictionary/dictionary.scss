@@ -1,0 +1,74 @@
+@import '../../sass-components/variables';
+
+.dictionary {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &-menu {
+    height: 45px;
+    display: flex;
+    gap: 25px;
+    &__button {
+      width: 100px;
+      border: 1px solid black;
+      border-radius: 3px;
+      border-left: 4px solid black;
+      &_first {
+        border-color: $color-yellow;
+        &:hover {
+          background-color: $color-yellow;
+        }
+      }
+      &_second {
+        border-color: $color-orange;
+        &:hover {
+          background-color: $color-orange;
+        }
+      }
+      &_third {
+        border-color: $color-green;
+        &:hover {
+          background-color: $color-green;
+        }
+      }
+      &_fourth {
+        border-color: $color-blue;
+        &:hover {
+          background-color: $color-blue;
+        }
+      }
+      &_fifth {
+        border-color: $color-pink;
+        &:hover {
+          background-color: $color-pink;
+        }
+      }
+      &_sixth {
+        border-color: $color-magenta;
+        &:hover {
+          background-color: $color-magenta;
+        }
+      }
+    }
+  }
+  &__cards {
+    width: 660px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  &__card {
+    width: 150px;
+    overflow: hidden;
+  }
+}
+.img {
+  width: 150px;
+  height: 100px;
+}
+audio {
+  width: 150px;
+  height: 30px;
+}

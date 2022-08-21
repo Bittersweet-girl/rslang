@@ -1,0 +1,48 @@
+@import '../../sass-components/normalize';
+@import '../../sass-components/variables';
+@import '../../sass-components/mixins';
+
+.footer{
+    border-top: 1px solid $color-secondary;
+    width: 100%;
+    padding: 10px 0;
+    &-git {
+        display: flex;
+        align-items: center;
+        &__link {
+            margin-right: 10px;
+        }
+    }
+    &-content {
+        @include flex-columns;
+    }
+    &-links{
+        display: inline-block;
+        &__link{
+            width: 90px;
+            text-decoration: none;
+            color: $color-primary;
+            &:hover{
+                color: $color-secondary;
+            }
+        }
+    }
+    &-logo{
+        text-align: center;
+        &__logo{
+            background-image: url('../../../public/assets/logo.svg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 158px;
+            height: 36px;
+        }
+    }
+    &-rs__link_logo{
+        background-image: url('../../../public/assets/rs-logo.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 206px;
+        height: 75px;
+    }
+    
+}

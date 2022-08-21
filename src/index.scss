@@ -1,3 +1,4 @@
+@import './sass-components/variables';
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,80 +12,44 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+li {
+  list-style: none;
+}
 .app {
   width: 1080px;
   margin: 0 auto;
-}
-.header {
-  height: 80px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
 }
-.header__menu {
-  display: flex;
-  gap: 5px;
-}
-.header__menu_button {
-  width: 110px;
-  height: 50px;
-  border: 1px solid black;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 1rem;
-  font-weight: bold;
-  color: white;
-  padding: 0;
-  background-color: rgb(50, 50, 250);
-  cursor: pointer;
-}
-.logo {
-  width: 80px;
-  height: 50px;
-  border: 1px solid black;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-  color: white;
-  padding: 0;
-  background-color: rgb(82, 17, 58);
-  cursor: pointer;
-}
-.dictionaryPage {
-  width: 660px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-.img {
-  width: 150px;
-}
+
 .text-center {
   text-align: center;
 }
-audio {
-  width: 150px;
-  height: 30px;
-}
+
 .main-page {
+  width: 100%;
   height: 700px;
   background: beige;
 }
 .audio-game {
+  width: 100%;
   height: 700px;
-  background: rgb(248, 158, 143);
+  background: $color-green;
 }
 .sprint-game {
+  width: 100%;
   height: 700px;
-  background: rgb(206, 241, 125);
+  background: $color-blue;
 }
 .statistic {
+  width: 100%;
   height: 700px;
-  background: rgb(125, 241, 197);
+  background: $color-pink;
 }
 .about {
+  width: 100%;
   height: 700px;
-  background: rgb(125, 226, 241);
+  background: $color-magenta;
 }
