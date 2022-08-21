@@ -10,11 +10,7 @@
         @include flex-columns;
     }
     &__logo_btn{
-        background-image: url('../../../public/assets/logo.svg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 253px;
-        height: 56px;
+        @include bgImage($url: url('../../../public/assets/logo.svg'), $width: 253px, $height: 56px);
         border: 0px;
         cursor: pointer;
     }

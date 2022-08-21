@@ -19,11 +19,7 @@
             line-height: 36px;
         }
         &-img{
-            background-image: url('../../../public/assets/mainpage.svg');
-            background-repeat: no-repeat;
-            background-size: cover;
-            width: 600px;
-            height: 605px;
+            @include bgImage($url: url('../../../public/assets/mainpage.svg'), $width: 600px, $height: 605px);
         }
     }
     &-cards{

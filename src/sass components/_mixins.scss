@@ -26,10 +26,10 @@
         color: $color-secondary;
     }
 }
-// @mixin bgImage($url, $width, $height) {
-//     background-image: url($url);
-//     background-repeat: no-repeat;
-//     background-size: cover;
-//     width: $width;
-//     height: $height;
-// }
+@mixin bgImage($url, $width, $height) {
+    background-image: $url;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: $width;
+    height: $height;
+}

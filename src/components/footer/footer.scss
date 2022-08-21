@@ -34,11 +34,7 @@
         }
     }
     &-rs__link_logo{
-        background-image: url('../../../public/assets/rs-logo.svg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 206px;
-        height: 75px;
+        @include bgImage($url: url('../../../public/assets/rs-logo.svg'), $width: 206px, $height: 75px);
     }
     
 }
