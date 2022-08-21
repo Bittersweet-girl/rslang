@@ -26,4 +26,17 @@
             height: 605px;
         }
     }
+    &-cards{
+        padding: 20px 0;
+        &-text{
+            text-align: center;
+        }
+        &-cards{
+            @include flex-columns;
+        }
+        &-item{
+            @include card;
+        }
+    }
+    
 }
