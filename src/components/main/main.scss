@@ -1,11 +1,12 @@
-@import '../../sass components/normalize';
-@import '../../sass components/variables';
-@import '../../sass components/mixins';
+@import '../../sass-components/normalize';
+@import '../../sass-components/variables';
+@import '../../sass-components/mixins';
 
 .main{
     max-width: 1900px;
     &-top{
         @include flex-columns;
+        padding: 30px;
         &__title{
             width: 400px;
             font-size: 64px;
