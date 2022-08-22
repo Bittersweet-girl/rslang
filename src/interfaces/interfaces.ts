@@ -1,5 +1,5 @@
 export interface IRender {
-  render: string;
+  render: string,
   setRender: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -18,4 +18,8 @@ export interface IProduct {
   wordTranslate: string,
   textMeaningTranslate: string,
   textExampleTranslate: string
+}
+
+export interface ITest {
+  product: IProduct;
 }

@@ -6,6 +6,7 @@
     max-width: 1900px;
     &-top{
         @include flex-columns;
+        padding: 30px;
         &__title{
             width: 400px;
             font-size: 64px;

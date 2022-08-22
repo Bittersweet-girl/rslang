@@ -1,8 +1,8 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/media-has-caption */
 import React from 'react';
-import { ITest } from './interfaces';
-import './dictionary/dictionary.scss';
+import { ITest } from '../../interfaces/interfaces';
+import '../dictionary/dictionary.scss';
 
 export default function Product(props: ITest) {
   const domen = 'https://rslang-database.herokuapp.com/';

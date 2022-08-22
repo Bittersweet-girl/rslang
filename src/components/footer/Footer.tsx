@@ -8,19 +8,19 @@ export default function Footer() {
         <div className="footer-git">
           <img src="./assets/git.svg" alt="git" className="footer-git__link" />
           <div className="footer-links">
-            <a href="https://github.com/Bittersweet-girl" className="footer-links__link">Bittersweet-girl</a>
+            <a href="https://github.com/Bittersweet-girl" className="footer-links__link" target="_blank" rel="noreferrer">Bittersweet-girl</a>
             <br />
-            <a href="https://github.com/irUdalova" className="footer-links__link">irUdalova</a>
+            <a href="https://github.com/irUdalova" className="footer-links__link" target="_blank" rel="noreferrer">irUdalova</a>
             <br />
-            <a href="https://github.com/gettosun" className="footer-links__link">gettosun</a>
+            <a href="https://github.com/gettosun" className="footer-links__link" target="_blank" rel="noreferrer">gettosun</a>
           </div>
         </div>
         <div className="footer-logo">
-          <div className="footer-logo__logo" />
-          <div className="footer-logo__copyright">C 2022</div>
+          <img src="./assets/logo.svg" alt="git" className="footer-logo__logo" />
+          <p className="footer-logo__copyright">C 2022</p>
         </div>
         <div className="footer-rs">
-          <a href="https://rs.school/js/" className="footer-rs__link">
+          <a href="https://rs.school/js/" className="footer-rs__link" target="_blank" rel="noreferrer">
             <div className="footer-rs__link_logo" />
           </a>
         </div>

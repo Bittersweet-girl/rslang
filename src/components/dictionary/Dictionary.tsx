@@ -1,10 +1,9 @@
-/* eslint-disable react/jsx-closing-bracket-location */
-/* eslint-disable react/jsx-max-props-per-line */
-/* eslint-disable react/jsx-first-prop-new-line */
+/* eslint-disable import/no-cycle */
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Product from '../Product';
+import Product from '../words/Product';
 import { IProduct } from '../../interfaces/interfaces';
+import { COLORS } from '../constants';
 import './dictionary.scss';
 
 export default function Dictionary() {
@@ -28,56 +27,75 @@ export default function Dictionary() {
     sessionStorage.setItem('group', gr.toString());
     getData(gr);
     setGroup(gr);
-    console.log(sessionGroup);
   }
-
-  const colors = [
-    { backgroundColor: '' },
-    { backgroundColor: '#FDE500' },
-    { backgroundColor: '#FE941B' },
-    { backgroundColor: '#4FCB64' },
-    { backgroundColor: '#15C9FE' },
-    { backgroundColor: '#FE95D0' },
-    { backgroundColor: '#CC62A5' },
-  ];
 
   return (
     <div className="dictionary">
       <nav className="dictionary-menu">
-        <button type="button" className="dictionary-menu__button dictionary-menu__button_first btn" onClick={() => {
-          changeGroup(0);
-          sessionStorage.setItem('group', '0');
-        }} style={group === 0 ? colors[1] : colors[0]}>
+        <button
+          type="button"
+          className="dictionary-menu__button dictionary-menu__button_first btn"
+          onClick={() => {
+            changeGroup(0);
+            sessionStorage.setItem('group', '0');
+          }}
+          style={group === 0 ? COLORS[1] : COLORS[0]}
+        >
           Раздел 1
         </button>
-        <button type="button" className="dictionary-menu__button dictionary-menu__button_second btn" onClick={() => {
-          changeGroup(1);
-          sessionStorage.setItem('group', '1');
-        }} style={group === 1 ? colors[2] : colors[0]}>
+        <button
+          type="button"
+          className="dictionary-menu__button dictionary-menu__button_second btn"
+          onClick={() => {
+            changeGroup(1);
+            sessionStorage.setItem('group', '1');
+          }}
+          style={group === 1 ? COLORS[2] : COLORS[0]}
+        >
           Раздел 2
         </button>
-        <button type="button" className="dictionary-menu__button dictionary-menu__button_third btn" onClick={() => {
-          changeGroup(2);
-          sessionStorage.setItem('group', '2');
-        }} style={group === 2 ? colors[3] : colors[0]}>
+        <button
+          type="button"
+          className="dictionary-menu__button dictionary-menu__button_third btn"
+          onClick={() => {
+            changeGroup(2);
+            sessionStorage.setItem('group', '2');
+          }}
+          style={group === 2 ? COLORS[3] : COLORS[0]}
+        >
           Раздел 3
         </button>
-        <button type="button" className="dictionary-menu__button dictionary-menu__button_fourth btn" onClick={() => {
-          changeGroup(3);
-          sessionStorage.setItem('group', '3');
-        }} style={group === 3 ? colors[4] : colors[0]}>
+        <button
+          type="button"
+          className="dictionary-menu__button dictionary-menu__button_fourth btn"
+          onClick={() => {
+            changeGroup(3);
+            sessionStorage.setItem('group', '3');
+          }}
+          style={group === 3 ? COLORS[4] : COLORS[0]}
+        >
           Раздел 4
         </button>
-        <button type="button" className="dictionary-menu__button dictionary-menu__button_fifth btn" onClick={() => {
-          changeGroup(4);
-          sessionStorage.setItem('group', '4');
-        }} style={group === 4 ? colors[5] : colors[0]}>
+        <button
+          type="button"
+          className="dictionary-menu__button dictionary-menu__button_fifth btn"
+          onClick={() => {
+            changeGroup(4);
+            sessionStorage.setItem('group', '4');
+          }}
+          style={group === 4 ? COLORS[5] : COLORS[0]}
+        >
           Раздел 5
         </button>
-        <button type="button" className="dictionary-menu__button dictionary-menu__button_sixth btn" onClick={() => {
-          changeGroup(5);
-          sessionStorage.setItem('group', '5');
-        }} style={group === 5 ? colors[6] : colors[0]}>
+        <button
+          type="button"
+          className="dictionary-menu__button dictionary-menu__button_sixth btn"
+          onClick={() => {
+            changeGroup(5);
+            sessionStorage.setItem('group', '5');
+          }}
+          style={group === 5 ? COLORS[6] : COLORS[0]}
+        >
           Раздел 6
         </button>
       </nav>
