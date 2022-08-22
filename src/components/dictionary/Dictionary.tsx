@@ -101,7 +101,7 @@ export default function Dictionary() {
       </nav>
       { loading && <p className="text-center">Loading...</p>}
       <div className="dictionary__cards">
-        { products.map((product: IProduct) => <Product product={product} />)}
+        { products.map((product: IProduct) => <Product product={product} key={product.id} />)}
       </div>
     </div>
   );
