@@ -1,0 +1,107 @@
+@import '../../sass-components/normalize';
+@import '../../sass-components/variables';
+@import '../../sass-components/buttons';
+@import '../../sass-components/mixins';
+
+.header{
+    max-width: 1900px;
+    padding-top: 20px;
+    &-content{
+        @include flex-columns;
+        align-items: flex-end;
+    }
+    &__logo_btn{
+        background-color: transparent;
+        @include bgImage($url: url('../../../public/assets/logo.svg'), $width: 253px, $height: 56px);
+        border: 0px;
+        cursor: pointer;
+    }
+    &-menu{
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid $color-secondary;
+        height: 45px;
+        gap: 20px;
+        &__button{
+            width: 100px;
+            &_dict:hover{
+                background-color: $color-orange;
+            }
+            &_audio:hover{
+                background-color: $color-green;
+            }
+            &_sprint:hover{
+                background-color: $color-blue;
+            }
+            &_stat:hover{
+                background-color: $color-pink;
+            }
+            &_about:hover{
+                background-color: $color-magenta;
+            }
+        }
+        &-list{
+            position: relative;
+            &-content{
+                display: none;
+                flex-direction: column;
+                border: 1px solid $color-secondary;
+                position: absolute;
+                z-index: 1;
+                top: 45px;
+                background-color: $color-bg;
+                width: 145px;
+            }
+            &__button_one{
+                border-left: 3px solid $color-yellow;
+            }
+            &__button_one:hover{
+                background-color: $color-yellow;
+            }
+            &__button_two{
+                border-left: 3px solid $color-orange;
+            }
+            &__button_two:hover{
+                background-color: $color-orange;
+            }
+            &__button_three{
+                border-left: 3px solid $color-green;
+            }
+            &__button_three:hover{
+                background-color: $color-green;
+            }
+            &__button_four{
+                border-left: 3px solid $color-blue;
+            }
+            &__button_four:hover{
+                background-color: $color-blue;
+            }
+            &__button_five{
+                border-left: 3px solid $color-pink;
+            }
+            &__button_five:hover{
+                background-color: $color-pink;
+            }
+            &__button_six{
+                border-left: 3px solid $color-magenta;
+            }
+            &__button_six:hover{
+                background-color: $color-magenta;
+            }
+            &__button_difficult{
+                border-left: 3px solid $color-dark-blue;
+            }
+            &__button_difficult:hover{
+                background-color: $color-dark-blue;
+            }
+        }
+        &-list:hover .header-menu-list-content {
+            display: flex;
+        }
+    }
+    &__user{
+        background-color: $color-red;
+        color: $color-bg;
+        width: 70px;
+    }
+}
