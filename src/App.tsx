@@ -12,11 +12,13 @@ import Sprint from './components/sprint-game/Sprint';
 import Statistic from './components/statistic/Statistic';
 import About from './components/about/About';
 import Footer from './components/footer/Footer';
+import Login from './components/login/Login';
 
 export default function App() {
   const sessionPageData = sessionStorage.getItem('page');
   const sessionPage = sessionPageData + '';
   const [render, setRender] = useState<string>(sessionPage);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
 
   async function backCall() {
     await axios.get('https://rslang-database.herokuapp.com/words?page=0&group=0');
@@ -24,11 +26,12 @@ export default function App() {
   backCall();
   return (
     <div className="app">
-      <Header render={render} setRender={setRender} />
+      <Header render={render} setRender={setRender} onLoginClick={() => setIsLoginOpen(true)} />
       {render === 'dict' ? <Dictionary /> : render === 'about' ? <About />
         : render === 'audio' ? <Audio /> : render === 'sprint' ? <Sprint />
           : render === 'statistic' ? <Statistic /> : <Main />}
       <Footer />
+      {isLoginOpen && <Login onClose={() => setIsLoginOpen(false)} />}
     </div>
   );
 }

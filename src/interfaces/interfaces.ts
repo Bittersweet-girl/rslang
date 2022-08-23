@@ -1,6 +1,7 @@
 export interface IRender {
   render: string,
   setRender: React.Dispatch<React.SetStateAction<string>>;
+  onLoginClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export interface IProduct {

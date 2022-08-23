@@ -102,6 +102,12 @@
     &__user{
         background-color: $color-red;
         color: $color-bg;
-        width: 70px;
+        width: 100px;
+        &:hover {
+          border: solid 1px $color-red;
+          background-color: transparent;
+          color: $color-red;
+          transition: 0.3s;
+        }
     }
 }

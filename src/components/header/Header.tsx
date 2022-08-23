@@ -85,7 +85,14 @@ export default function Header(props: IRender) {
           <button type="button" className="header-menu__button btn header-menu__button_stat" onClick={() => changePage('statistic')} style={props.render === 'statistic' ? COLORS[5] : COLORS[0]}>Статистика</button>
           <button type="button" className="header-menu__button btn header-menu__button_about" onClick={() => changePage('about')} style={props.render === 'about' ? COLORS[6] : COLORS[0]}>О Команде</button>
         </nav>
-        <button type="button" className="header__user btn">Войти</button>
+        <button
+          type="button"
+          className="header__user btn"
+          onClick={props.onLoginClick}
+        >
+          Войти
+
+        </button>
       </div>
     </header>
   );
