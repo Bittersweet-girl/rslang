@@ -1,0 +1,39 @@
+@import '../../sass-components/normalize';
+@import '../../sass-components/variables';
+@import '../../sass-components/mixins';
+.about{
+    padding: 20px 0;
+        &-text {
+            text-align: center;  
+        }
+        &__title{
+            font-size: 36px;
+            line-height: 80px;
+        }
+        &__text{
+            font-size: 24px;
+            line-height: 36px;
+            color: $color-secondary;
+        }
+        &-cards {
+            @include flex-columns;
+        }
+        &-item {
+            @include card;
+            height: 400px;
+            position: relative;
+            &__img{
+                border-radius: 50%;
+            }
+            &__hello{
+                position: absolute;
+                top: 10px;
+                left: 20px;
+            }
+            &__plant{
+                position: absolute;
+                top: 150px;
+                right: 40px;
+            }
+        }
+}
