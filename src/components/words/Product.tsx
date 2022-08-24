@@ -7,10 +7,10 @@ import '../dictionary/dictionary.scss';
 export default function Product(props: ITest) {
   const domen = 'https://rslang-database.herokuapp.com/';
   const {
-    id, word, transcription, image, audio,
+    word, transcription, image, audio,
   } = props.product;
   return (
-    <li key={id} className="dictionary__card">
+    <li className="dictionary__card">
       <p>
         {word}
         -
