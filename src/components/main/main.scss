@@ -20,7 +20,7 @@
             line-height: 36px;
         }
         &-img{
-            @include bgImage($url: url('../../../public/assets/mainpage.svg'), $width: 600px, $height: 605px);
+            @include bgImage($url: url('../../../public/assets/svg/mainpage.svg'), $width: 600px, $height: 605px);
         }
     }
     &-cards{

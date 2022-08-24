@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-git">
-          <img src="./assets/git.svg" alt="git" className="footer-git__link" />
+          <img src="./assets/svg/git.svg" alt="git" className="footer-git__link" />
           <div className="footer-links">
             <a href="https://github.com/Bittersweet-girl" className="footer-links__link" target="_blank" rel="noreferrer">Bittersweet-girl</a>
             <br />
@@ -16,7 +16,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-logo">
-          <img src="./assets/logo.svg" alt="git" className="footer-logo__logo" />
+          <img src="./assets/svg/logo.svg" alt="git" className="footer-logo__logo" />
           <p className="footer-logo__copyright">C 2022</p>
         </div>
         <div className="footer-rs">

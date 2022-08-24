@@ -25,7 +25,7 @@ export default function Main() {
           </div>
           <div className="main-cards-cards">
             <div className="main-cards-item">
-              <img src="./assets/plant1.svg" alt="number1" className="main-cards-item__img" />
+              <img src="./assets/svg/plant1.svg" alt="number1" className="main-cards-item__img" />
               <h3 className="main-cards-item__title">Узнавай!</h3>
               <p className="main-cards-item__text">
                 Начни с простого, первого раздела учебника и постепенно двигайся вперед,
@@ -33,7 +33,7 @@ export default function Main() {
               </p>
             </div>
             <div className="main-cards-item">
-              <img src="./assets/plant2.svg" alt="number2" className="main-cards-item__img" />
+              <img src="./assets/svg/plant2.svg" alt="number2" className="main-cards-item__img" />
               <h3 className="main-cards-item__title">Играй!</h3>
               <p className="main-cards-item__text">
                 Английский - это весело! Запоминай новые слова играя!
@@ -41,7 +41,7 @@ export default function Main() {
               </p>
             </div>
             <div className="main-cards-item">
-              <img src="./assets/plant3.svg" alt="number3" className="main-cards-item__img" />
+              <img src="./assets/svg/plant3.svg" alt="number3" className="main-cards-item__img" />
               <h3 className="main-cards-item__title">Следи!</h3>
               <p className="main-cards-item__text">
                 Зарегистрируйся и следи за своим ежедневным прогрессом!
