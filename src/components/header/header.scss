@@ -42,7 +42,8 @@
         }
         &-list{
             position: relative;
-            &-content{
+            &-content, 
+            &-content-dict{
                 display: none;
                 flex-direction: column;
                 border: 1px solid $color-secondary;
@@ -97,6 +98,9 @@
         }
         &-list:hover .header-menu-list-content {
             display: flex;
+        }
+        &-list:hover .header-menu-list-content-dict {
+            display: none;
         }
     }
     &__user{
