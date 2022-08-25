@@ -34,7 +34,7 @@
         }
     }
     &-rs__link_logo{
-        @include bgImage($url: url('../../../public/assets/rs-logo.svg'), $width: 206px, $height: 75px);
+        @include bgImage($url: url('../../../public/assets/svg/rs-logo.svg'), $width: 206px, $height: 75px);
     }
     
 }

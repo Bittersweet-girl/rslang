@@ -16,7 +16,7 @@ export default function Header(props: IRender) {
         <nav className="header-menu">
           <div className="header-menu-list">
             <button type="button" className="header-menu__button btn header-menu__button_dict" onClick={() => changePage('dictionary')} style={props.render === 'dict' ? COLORS[2] : COLORS[0]}>Учебник</button>
-            <div className="header-menu-list-content">
+            <div className={props.render === 'dictionary' ? 'header-menu-list-content-dict' : 'header-menu-list-content'}>
               <button
                 type="button"
                 className="header-menu-list__button btn header-menu-list__button_one"
