@@ -1,22 +1,40 @@
 import './login.scss';
 import React, { useState } from 'react';
+import { create, signin, UserSigninResp } from '../../api/user';
 
 type LoginProps = {
-  onClose: (event: React.MouseEvent<HTMLElement>) => void
+  onClose: () => void,
+  setUser: (data: UserSigninResp) => void,
 };
 
-export default function Login({ onClose }: LoginProps): JSX.Element {
+export default function Login({ onClose, setUser }: LoginProps): JSX.Element {
   const [isSignup, setIsSignup] = useState(false);
   const [name, setName] = useState('');
-  // const [nameError, setNameError] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
 
-  function onSubmit(event: React.FormEvent) {
+  async function onSubmit(event: React.FormEvent) {
     event.preventDefault();
     // if (!name) {
     //   setNameError('Введите имя');
     // }
     // TODO validation
+    try {
+      if (isSignup) {
+        await create({ name, email, password });
+      }
+      const { data } = await signin({ email, password });
+      localStorage.setItem('user', JSON.stringify(data));
+      setError('');
+      setUser(data);
+      onClose();
+    } catch (err) {
+      setError(String(err));
+    }
   }
+
   return (
     <>
       <div className="backdrop" onClick={onClose} aria-hidden="true" />
@@ -36,6 +54,7 @@ export default function Login({ onClose }: LoginProps): JSX.Element {
           возможность управлять словарем.
         </p>
         <form className="login-form" onSubmit={onSubmit}>
+          {error && <span className="login-form__error">{error}</span>}
           {isSignup
           && (
           <input
@@ -46,10 +65,29 @@ export default function Login({ onClose }: LoginProps): JSX.Element {
             onChange={(e) => setName(e.target.value)}
           />
           )}
-          {/* {nameError && <span>{nameError}</span>} */}
-          <input type="email" className="login-form__input" placeholder="E-mail" />
-          <input type="password" className="login-form__input" placeholder="Пароль" id="userPassword" />
-          {isSignup && <input type="password" className="login-form__input" placeholder="Подтвердите пароль" id="userPassword" />}
+          <input
+            type="email"
+            className="login-form__input"
+            placeholder="E-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            className="login-form__input"
+            placeholder="Пароль"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {isSignup && (
+          <input
+            type="password"
+            className="login-form__input"
+            placeholder="Подтвердите пароль"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          )}
           <button
             type="submit"
             className={`btn login-form__submit ${isSignup ? 'login-form__submit--green' : ''}`}

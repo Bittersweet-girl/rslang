@@ -110,4 +110,25 @@
           transition: 0.3s;
         }
     }
+    &__user_logout{
+    border-radius: 4px;
+    background-color: transparent;
+    background-image: url('../../../public/assets/logout.svg');
+    background-position: 90%;
+    background-repeat: no-repeat;
+    background-size: auto 25px;
+    border: solid 1px $color-secondary;
+    color: $color-secondary;
+    text-align: right;
+    padding-right: 40px;
+    padding-left: 10px;
+    width: 100px;
+    height: 47px;
+    cursor: pointer;
+    &:hover {
+      color: $color-secondary;
+      background-color: $color-secondary-light;
+      transition: 0.3s;
+    }
+    }
 }

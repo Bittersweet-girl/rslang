@@ -2,11 +2,12 @@
 /* eslint-disable react/jsx-max-props-per-line */
 /* eslint-disable react/jsx-first-prop-new-line */
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Product from '../words/Product';
 import { IProduct } from '../../interfaces/interfaces';
 import { COLORS } from '../constants';
 import './dictionary.scss';
+import { UserContext } from '../../contexts';
 
 export default function Dictionary() {
   const sessionGroupData = sessionStorage.getItem('group');
@@ -14,6 +15,7 @@ export default function Dictionary() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [group, setGroup] = useState<number>(sessionGroup);
+  const user = useContext(UserContext);
 
   async function getData(gr: number) {
     setLoading(true);
@@ -34,7 +36,7 @@ export default function Dictionary() {
 
   return (
     <div className="dictionary">
-      <nav className="dictionary-menu">
+      <nav className="dictionary-menu" style={user ? { backgroundColor: 'red' } : {}}>
         <button type="button" className="dictionary-menu__button dictionary-menu__button_first btn" onClick={() => {
           changeGroup(0);
           sessionStorage.setItem('group', '0');
