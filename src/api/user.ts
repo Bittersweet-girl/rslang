@@ -1,53 +1,38 @@
 import axios from 'axios';
+import { UserData, AxiosResp } from '../interfaces/interfaces';
 
-interface UserData {
-  name: string;
-  email: string;
-  password: string;
-}
+function getErrorMessage(status: number): string {
+  let message = 'Что-то пошло не так, проверьте свои данные!';
 
-// interface UserDataResp {
-//   id: string;
-//   name: string;
-//   email: string;
-// }
-
-export interface UserSigninResp {
-  message: string;
-  token: string;
-  refreshToken: string;
-  userId: string;
-  name: string;
-}
-
-interface AxiosResp {
-  data: UserSigninResp;
-}
-
-function getErrorMessage(data: Pick<AxiosResp, 'data'>): string {
-  let message = 'Something went wrong';
-  if (typeof data === 'string') {
-    message = data;
+  if (status === 404) {
+    message = 'E-mail не найден, может нужно зарегистрироваться?';
   }
-  // @todo declare type for data
-  /* @ts-ignore */
-  if (data?.error?.errors[0]?.message) {
-  /* @ts-ignore */
-    message = data?.error?.errors[0]?.message;
+
+  if (status === 403) {
+    message = 'Неправильный e-mail или пароль!';
   }
+
+  if (status === 417) {
+    message = 'Пользователь с таким e-mail уже существует!';
+  }
+
+  if (status === 422) {
+    message = 'Некорректный e-mail или пароль!';
+  }
+
   return message;
 }
 
 export function create({ name, email, password }: UserData): Promise<AxiosResp> {
   return axios
     .post('https://rslang-database.herokuapp.com/users', { name, email, password })
-    .catch(({ response }) => Promise.reject(getErrorMessage(response.data)));
+    .catch(({ response }) => Promise.reject(getErrorMessage(response.status)));
 }
 
 export function signin({ email, password }:Pick<UserData, 'email' | 'password'>): Promise<AxiosResp> {
   return axios
     .post('https://rslang-database.herokuapp.com/signin', { email, password })
-    .catch(({ response }) => Promise.reject(getErrorMessage(response.data)));
+    .catch(({ response }) => Promise.reject(getErrorMessage(response.status)));
 }
 
 export function getCurrentUser() {

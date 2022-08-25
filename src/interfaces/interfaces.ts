@@ -25,3 +25,29 @@ export interface IProduct {
 export interface ITest {
   product: IProduct;
 }
+
+// --------------------login interfaces---------------------
+
+export interface UserData {
+  name: string;
+  email: string;
+  password: string;
+}
+
+// interface UserDataResp {
+//   id: string;
+//   name: string;
+//   email: string;
+// }
+
+export interface UserSigninResp {
+  message: string;
+  token: string;
+  refreshToken: string;
+  userId: string;
+  name: string;
+}
+
+export interface AxiosResp {
+  data: UserSigninResp;
+}
