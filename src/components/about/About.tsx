@@ -18,10 +18,10 @@ export default function About() {
         <div className="about-item">
           <img src="./assets/img/ava-Nata.jpg" alt="number1" className="about-item__img" />
           <div className="about-item__hello">
-            <img src=".\assets\svg\hello-green.svg" alt="hello" />
+            <img src="./assets/svg/hello-green.svg" alt="hello" />
           </div>
           <div className="about-item__plant">
-            <img src=".\assets\svg\plant-orange.svg" alt="plant" />
+            <img src="./assets/svg/plant-orange.svg" alt="plant" />
           </div>
           <h3 className="about-item__title">Наталья Сахно</h3>
           <p className="about-item__text">
@@ -33,10 +33,10 @@ export default function About() {
         <div className="about-item">
           <img src="./assets/img/ava-Jenya.jpg" alt="number2" className="about-item__img" />
           <div className="about-item__hello">
-            <img src=".\assets\svg\hello-pink.svg" alt="hello" />
+            <img src="./assets/svg/hello-pink.svg" alt="hello" />
           </div>
           <div className="about-item__plant">
-            <img src=".\assets\svg\plant-green.svg" alt="plant" />
+            <img src="./assets/svg/plant-green.svg" alt="plant" />
           </div>
           <h3 className="about-item__title">Евгений Цаприлов</h3>
           <p className="about-item__text">
@@ -46,12 +46,12 @@ export default function About() {
           </p>
         </div>
         <div className="about-item">
-          <img src="./assets//img/ava-Ira.jpg" alt="number3" className="about-item__img" />
+          <img src="./assets/img/ava-Ira.jpg" alt="number3" className="about-item__img" />
           <div className="about-item__hello">
-            <img src=".\assets\svg\hello-orange.svg" alt="hello" />
+            <img src="./assets/svg/hello-orange.svg" alt="hello" />
           </div>
           <div className="about-item__plant">
-            <img src=".\assets\svg\plant-pink.svg" alt="plant" />
+            <img src="./assets/svg/plant-pink.svg" alt="plant" />
           </div>
           <h3 className="about-item__title">Ирина Удалова</h3>
           <p className="about-item__text">
