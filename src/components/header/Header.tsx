@@ -18,13 +18,13 @@ export default function Header(props: IRender) {
         <button type="button" className="header__logo_btn" onClick={() => changePage('main')}> </button>
         <nav className="header-menu">
           <div className="header-menu-list">
-            <button type="button" className="header-menu__button btn header-menu__button_dict" onClick={() => changePage('dict')} style={props.render === 'dict' ? COLORS[2] : COLORS[0]}>Учебник</button>
-            <div className="header-menu-list-content">
+            <button type="button" className="header-menu__button btn header-menu__button_dict" onClick={() => changePage('dictionary')} style={props.render === 'dict' ? COLORS[2] : COLORS[0]}>Учебник</button>
+            <div className={props.render === 'dictionary' ? 'header-menu-list-content-dict' : 'header-menu-list-content'}>
               <button
                 type="button"
                 className="header-menu-list__button btn header-menu-list__button_one"
                 onClick={() => {
-                  changePage('dict');
+                  changePage('dictionary');
                   sessionStorage.setItem('group', '0');
                 }}
               >
@@ -34,7 +34,7 @@ export default function Header(props: IRender) {
                 type="button"
                 className="header-menu-list__button btn header-menu-list__button_two"
                 onClick={() => {
-                  changePage('dict');
+                  changePage('dictionary');
                   sessionStorage.setItem('group', '1');
                 }}
               >
@@ -44,7 +44,7 @@ export default function Header(props: IRender) {
                 type="button"
                 className="header-menu-list__button btn header-menu-list__button_three"
                 onClick={() => {
-                  changePage('dict');
+                  changePage('dictionary');
                   sessionStorage.setItem('group', '2');
                 }}
               >
@@ -54,7 +54,7 @@ export default function Header(props: IRender) {
                 type="button"
                 className="header-menu-list__button btn header-menu-list__button_four"
                 onClick={() => {
-                  changePage('dict');
+                  changePage('dictionary');
                   sessionStorage.setItem('group', '3');
                 }}
               >
@@ -64,7 +64,7 @@ export default function Header(props: IRender) {
                 type="button"
                 className="header-menu-list__button btn header-menu-list__button_five"
                 onClick={() => {
-                  changePage('dict');
+                  changePage('dictionary');
                   sessionStorage.setItem('group', '4');
                 }}
               >
@@ -74,13 +74,19 @@ export default function Header(props: IRender) {
                 type="button"
                 className="header-menu-list__button btn header-menu-list__button_six"
                 onClick={() => {
-                  changePage('dict');
+                  changePage('dictionary');
                   sessionStorage.setItem('group', '5');
                 }}
               >
                 Раздел шестой
               </button>
-              <button type="button" className="header-menu-list__button btn header-menu-list__button_difficult" onClick={() => changePage('dict')}>Сложные слова</button>
+              <button
+                type="button"
+                className="header-menu-list__button btn header-menu-list__button_difficult"
+                onClick={() => changePage('dictionary')}
+              >
+                Сложные слова
+              </button>
             </div>
           </div>
           <button type="button" className="header-menu__button btn header-menu__button_audio" onClick={() => changePage('audio')} style={props.render === 'audio' ? COLORS[3] : COLORS[0]}>Аудиовызов</button>
