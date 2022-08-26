@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { UserData, AxiosResp } from '../interfaces/interfaces';
+import { UserData, AxiosResp } from '../types';
 
 function getErrorMessage(status: number): string {
   let message = 'Что-то пошло не так, проверьте свои данные!';

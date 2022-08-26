@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/media-has-caption */
 import React from 'react';
-import { ITest } from '../../interfaces/interfaces';
+import { ITest } from '../../types';
 import '../dictionary/dictionary.scss';
 
 export default function Product(props: ITest) {

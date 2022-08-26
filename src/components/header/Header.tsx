@@ -1,8 +1,8 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { useContext } from 'react';
 import './header.scss';
-import { IRender } from '../../interfaces/interfaces';
-import { COLORS } from '../constants';
+import { IRender } from '../../types';
+import { COLORS } from '../../constants';
 import { UserContext } from '../../contexts';
 
 export default function Header(props: IRender) {

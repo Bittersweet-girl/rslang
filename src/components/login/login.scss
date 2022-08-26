@@ -1,13 +1,6 @@
 @import '../../sass-components/variables';
 @import '../../sass-components/mixins';
 
-%textStyle {
-  font-size: 14px;
-  line-height: 21px;
-  color: $color-secondary;
-  font-weight: 400;
-}
-
 .backdrop {
   position: fixed;
   background-color: rgba(0,0,0, 0.5);
@@ -43,13 +36,13 @@
   }
 
   &__description {
-    @extend %textStyle;
+    @include loginTextStyle;
     text-align: center;
     margin: 10px 0 20px;
   }
 
   &__footer {
-    @extend %textStyle;
+    @include loginTextStyle;
     width: 100%;
     margin-top: 30px;
     padding-top: 10px;
@@ -78,12 +71,9 @@
     top: 20px;
     right: 20px;
     background-color: transparent;
-    background-image: url('../../../public/assets/close.svg');
+    @include bgImage($url: url('../../../public/assets/svg/close.svg'), $width: 40px, $height: 40px);
     background-position: center;
-    background-repeat: no-repeat;
     background-size: 20px;
-    width: 40px;
-    height: 40px;
     border: 0px;
     cursor: pointer;
     &:hover {

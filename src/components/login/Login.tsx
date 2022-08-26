@@ -1,7 +1,7 @@
 import './login.scss';
 import React, { useState } from 'react';
 import { create, signin } from '../../api/user';
-import { UserSigninResp } from '../../interfaces/interfaces';
+import { UserSigninResp } from '../../types';
 
 type LoginProps = {
   onClose: () => void,

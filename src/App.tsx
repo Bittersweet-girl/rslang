@@ -5,7 +5,7 @@ import Footer from './components/footer/Footer';
 import Login from './components/login/Login';
 import { UserContext } from './contexts';
 import { getCurrentUser } from './api/user';
-import { pages } from './components/constants';
+import { pages } from './constants';
 
 export default function App() {
   const sessionPageData = sessionStorage.getItem('page');

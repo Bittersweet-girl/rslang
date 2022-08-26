@@ -34,12 +34,6 @@ export interface UserData {
   password: string;
 }
 
-// interface UserDataResp {
-//   id: string;
-//   name: string;
-//   email: string;
-// }
-
 export interface UserSigninResp {
   message: string;
   token: string;
