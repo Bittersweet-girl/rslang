@@ -1,3 +1,5 @@
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable react/no-danger */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -22,6 +24,9 @@ export default function Product(props: ITest) {
     e.stopPropagation();
     audioElement.current.play();
   }
+  function createMarkup(str: string) {
+    return { __html: str };
+  }
   return (
     <div className={isActive ? 'card_active' : 'card'} onClick={() => handleClick(id)}>
       <img className="card__image" src={domen + image} alt={word} />
@@ -35,11 +40,12 @@ export default function Product(props: ITest) {
       </div>
       <div className="card__examples">
         <b>Значение</b>
-        <p>{textMeaning}</p>
+        <div dangerouslySetInnerHTML={createMarkup(textMeaning)}></div>
         <span>{textMeaningTranslate}</span>
-        <br />
+      </div>
+      <div className="card__examples">
         <b>Пример</b>
-        <p>{textExample}</p>
+        <div dangerouslySetInnerHTML={createMarkup(textExample)}></div>
         <span>{textExampleTranslate}</span>
       </div>
     </div>
