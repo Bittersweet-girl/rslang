@@ -5,6 +5,7 @@ import Product from '../words/Product';
 import { IProduct } from '../../types';
 import { COLORS } from '../../constants';
 import './dictionary.scss';
+import Loader from '../loader/Loader';
 
 export default function Dictionary() {
   const sessionGroupData = sessionStorage.getItem('group');
@@ -99,7 +100,7 @@ export default function Dictionary() {
           Раздел 6
         </button>
       </nav>
-      { loading && <p className="text-center">Loading...</p>}
+      { loading && <Loader />}
       <div className="dictionary__cards">
         { products.map((product: IProduct) => <Product product={product} key={product.id} />)}
       </div>
