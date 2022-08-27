@@ -1,0 +1,59 @@
+.card {
+  width: 280px;
+  height: 280px;
+  overflow: hidden;
+  background: beige;
+  border-radius: 15px;
+  transition: all 0.3s;
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: 1px 1px 15px 1px rgba(12, 12, 12, .3);
+  }
+  &:hover .img {
+    transform: scale(1.05);
+  }
+  &_active {
+    width: 280px;
+    height: 560px;
+    background: beige;
+    border-radius: 15px;
+    transition: all 0.3s;
+    overflow: hidden;
+  }
+  &__image {
+    width: 100%;
+    aspect-ratio: 1.5 / 1;
+  }
+  &__word {
+    position: absolute;
+    transform: translate(10px, -75px);
+    color: rgb(247, 247, 247);
+    text-shadow: 1px -1px 2px black;
+    font-size: 2rem;
+  }
+  &__word-translate {
+    margin-left: 10px;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  &__transcription {
+    margin-left: 10px;
+    font-size: 1.1rem;
+  }
+  &__audio-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  &__play-btn {
+    background-color: transparent;
+    border: none;
+  }
+  &__play-img {
+    width: 40px;
+  }
+  &__examples {
+    padding-left: 10px;
+    font-size: 16px;
+  }
+}

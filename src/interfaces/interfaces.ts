@@ -22,4 +22,6 @@ export interface IProduct {
 
 export interface ITest {
   product: IProduct;
+  isActive: boolean;
+  handleClick: any
 }

@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable max-len */
 /* eslint-disable import/no-cycle */
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -13,6 +16,7 @@ export default function Dictionary() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [group, setGroup] = useState<number>(sessionGroup);
+  const [selectedCart, setSelectedCart] = useState('');
 
   async function getData(gr: number) {
     setLoading(true);
@@ -29,6 +33,13 @@ export default function Dictionary() {
     getData(gr);
     setGroup(gr);
   }
+  const handleClick = (id: string) => {
+    if (selectedCart === id) {
+      setSelectedCart('');
+    } else {
+      setSelectedCart(id);
+    }
+  };
 
   return (
     <div className="dictionary">
@@ -102,7 +113,7 @@ export default function Dictionary() {
       </nav>
       { loading && <Loader />}
       <div className="dictionary__cards">
-        { products.map((product: IProduct) => <Product product={product} key={product.id} />)}
+        { products.map((product: IProduct) => <Product product={product} key={product.id} isActive={product.id === selectedCart} handleClick={handleClick} />)}
       </div>
     </div>
   );

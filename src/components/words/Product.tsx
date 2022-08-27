@@ -1,24 +1,47 @@
-/* eslint-disable react/destructuring-assignment */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/media-has-caption */
-import React from 'react';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import React, { useRef } from 'react';
 import { ITest } from '../../interfaces/interfaces';
-import '../dictionary/dictionary.scss';
+import './product.scss';
 
 export default function Product(props: ITest) {
   const domen = 'https://rslang-database.herokuapp.com/';
+
+  const { isActive, handleClick, product } = props;
   const {
-    word, transcription, image, audio,
-  } = props.product;
+    id, word, transcription, image, audio, wordTranslate, textMeaning, textExample,
+    textMeaningTranslate, textExampleTranslate,
+  } = product;
+
+  const audioSrc = domen + audio;
+  const audioElement = useRef(new Audio(audioSrc));
+  function play(e: React.MouseEvent) {
+    e.stopPropagation();
+    audioElement.current.play();
+  }
   return (
-    <li className="dictionary__card">
-      <p>
-        {word}
-        -
-        {transcription}
-      </p>
-      <img className="img" src={domen + image} alt={domen + word} />
+    <div className={isActive ? 'card_active' : 'card'} onClick={() => handleClick(id)}>
+      <img className="card__image" src={domen + image} alt={word} />
+      <h2 className="card__word">{word}</h2>
+      <span className="card__word-translate">{wordTranslate}</span>
       <br />
-      <audio src={domen + audio} controls />
-    </li>
+      <div className="card__audio-wrapper">
+        <span className="card__transcription">{transcription}</span>
+        <audio src={domen + audio} />
+        <button type="button" className="card__play-btn" onClick={(e) => play(e)}><img src="./assets/svg/play.svg" alt="play" className="card__play-img" /></button>
+      </div>
+      <div className="card__examples">
+        <b>Значение</b>
+        <p>{textMeaning}</p>
+        <span>{textMeaningTranslate}</span>
+        <br />
+        <b>Пример</b>
+        <p>{textExample}</p>
+        <span>{textExampleTranslate}</span>
+      </div>
+    </div>
   );
 }

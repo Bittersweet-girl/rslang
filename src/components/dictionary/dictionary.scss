@@ -10,6 +10,7 @@
     height: 45px;
     display: flex;
     gap: 25px;
+    margin-bottom: 20px;
     &__button {
       width: 100px;
       border: 1px solid black;
@@ -54,22 +55,12 @@
     }
   }
   &__cards {
-    width: 660px;
+    width: 100%;
     margin: 0 auto;
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    flex-flow: column wrap;
+    max-height: 1779px;
     gap: 20px;
   }
-  &__card {
-    width: 150px;
-    overflow: hidden;
-  }
-}
-.img {
-  width: 150px;
-  height: 100px;
-}
-audio {
-  width: 150px;
-  height: 30px;
 }
