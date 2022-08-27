@@ -6,7 +6,7 @@
     max-width: 1900px;
     &-top{
         @include flex-columns;
-        padding: 30px;
+        padding: 40px 0 0;
         &__title{
             width: 400px;
             font-size: 64px;
@@ -30,6 +30,7 @@
         }
         &-cards{
             @include flex-columns;
+            padding: 40px 0;
         }
         &-item{
             @include card;
