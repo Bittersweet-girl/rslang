@@ -66,22 +66,24 @@ export default function Product(props: ITest) {
         <button type="button" className={diffButtonClassName} onClick={(e) => hardStatus(e)}>+  сложное</button>
         <button type="button" className={learButtonClassName} onClick={(e) => learnStatus(e)}>✓  изучено</button>
       </div>
-      <div className="card__examples">
-        <div dangerouslySetInnerHTML={createMarkup(textMeaning)}></div>
-        <span className="card__examples_translate">{textMeaningTranslate}</span>
-      </div>
-      <div className="card__examples">
-        <div dangerouslySetInnerHTML={createMarkup(textExample)}></div>
-        <span className="card__examples_translate">{textExampleTranslate}</span>
-      </div>
-      <div className="card__button-wrapper">
-        <div className="card__game">
-          <button type="button" className="card__status-btn card__status-btn_audio">аудиовызов</button>
-          <span className="card__game-count">2 из 3</span>
+      <div className="card__extra">
+        <div className="card__examples">
+          <div dangerouslySetInnerHTML={createMarkup(textMeaning)}></div>
+          <span className="card__examples_translate">{textMeaningTranslate}</span>
         </div>
-        <div className="card__game">
-          <button type="button" className="card__status-btn card__status-btn_sprint">спринт</button>
-          <span className="card__game-count">2 из 3</span>
+        <div className="card__examples">
+          <div dangerouslySetInnerHTML={createMarkup(textExample)}></div>
+          <span className="card__examples_translate">{textExampleTranslate}</span>
+        </div>
+        <div className="card__button-wrapper card__button-wrapper-games">
+          <div className="card__game">
+            <button type="button" className="card__status-btn card__status-btn_audio">аудиовызов</button>
+            <span className="card__game-count">2 из 3</span>
+          </div>
+          <div className="card__game">
+            <button type="button" className="card__status-btn card__status-btn_sprint">спринт</button>
+            <span className="card__game-count">2 из 3</span>
+          </div>
         </div>
       </div>
     </div>

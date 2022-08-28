@@ -44,23 +44,27 @@ export default function Dictionary() {
   };
 
   const diffCards = (id: string) => {
-    const cardsArr = diffCard;
+    if (learnedCard.includes(id)) {
+      setLearnedCard(learnedCard.filter((i) => i !== id));
+    }
     const newCardsArr = (): string[] => {
-      if (cardsArr.includes(id)) {
-        return cardsArr.filter((i) => i !== id);
+      if (diffCard.includes(id)) {
+        return diffCard.filter((i) => i !== id);
       }
-      return cardsArr.concat([id]);
+      return diffCard.concat([id]);
     };
     setDiffCard(newCardsArr);
   };
 
   const learnCards = (id: string) => {
-    const cardsArr = learnedCard;
+    if (diffCard.includes(id)) {
+      setDiffCard(diffCard.filter((i) => i !== id));
+    }
     const newCardsArr = (): string[] => {
-      if (cardsArr.includes(id)) {
-        return cardsArr.filter((i) => i !== id);
+      if (learnedCard.includes(id)) {
+        return learnedCard.filter((i) => i !== id);
       }
-      return cardsArr.concat([id]);
+      return learnedCard.concat([id]);
     };
     setLearnedCard(newCardsArr);
   };

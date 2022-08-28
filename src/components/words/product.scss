@@ -5,7 +5,8 @@
   background: #F9F9F9;
   border: 1px solid rgba(165, 165, 165, .5);
   border-radius: 15px;
-  transition: all 0.3s;
+  transition: all 0.6s;
+  box-sizing: border-box;
   &:hover {
     transform: scale(1.01);
     box-shadow: 1px 1px 15px 1px rgba(12, 12, 12, .3);
@@ -19,8 +20,14 @@
     background: #F9F9F9;
     border: 1px solid rgba(165, 165, 165, .5);
     border-radius: 15px;
-    transition: all 0.3s;
+    transition: all 0.6s;
     overflow: hidden;
+  }
+  &__extra {
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   &__image {
     width: 100%;
@@ -140,9 +147,9 @@
 }
 
 .hard {
-  border: 1px solid rgba(255, 42, 42, 0.9);
+  border: 3px solid rgba(255, 42, 42, 0.9);
 }
 
 .learn {
-  border: 2px solid rgba(2, 138, 39, 0.9);
+  border: 3px solid rgba(2, 138, 39, 0.9);
 }
