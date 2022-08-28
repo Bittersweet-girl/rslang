@@ -23,5 +23,9 @@ export interface IProduct {
 export interface ITest {
   product: IProduct;
   isActive: boolean;
-  handleClick: any
+  handleClick: (id: string) => void;
+  isHard: boolean;
+  diffCards: (id: string) => void;
+  isLearn: boolean;
+  learnCards: (id: string) => void;
 }

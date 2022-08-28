@@ -17,6 +17,8 @@ export default function Dictionary() {
   const [loading, setLoading] = useState(false);
   const [group, setGroup] = useState<number>(sessionGroup);
   const [selectedCart, setSelectedCart] = useState('');
+  const [diffCard, setDiffCard] = useState(['']);
+  const [learnedCard, setLearnedCard] = useState(['']);
 
   async function getData(gr: number) {
     setLoading(true);
@@ -39,6 +41,28 @@ export default function Dictionary() {
     } else {
       setSelectedCart(id);
     }
+  };
+
+  const diffCards = (id: string) => {
+    const cardsArr = diffCard;
+    const newCardsArr = (): string[] => {
+      if (cardsArr.includes(id)) {
+        return cardsArr.filter((i) => i !== id);
+      }
+      return cardsArr.concat([id]);
+    };
+    setDiffCard(newCardsArr);
+  };
+
+  const learnCards = (id: string) => {
+    const cardsArr = learnedCard;
+    const newCardsArr = (): string[] => {
+      if (cardsArr.includes(id)) {
+        return cardsArr.filter((i) => i !== id);
+      }
+      return cardsArr.concat([id]);
+    };
+    setLearnedCard(newCardsArr);
   };
 
   return (
@@ -113,7 +137,7 @@ export default function Dictionary() {
       </nav>
       { loading && <Loader />}
       <div className="dictionary__cards">
-        { products.map((product: IProduct) => <Product product={product} key={product.id} isActive={product.id === selectedCart} handleClick={handleClick} />)}
+        { products.map((product: IProduct) => <Product product={product} key={product.id} isActive={product.id === selectedCart} handleClick={handleClick} isHard={!!diffCard.includes(product.id)} diffCards={diffCards} isLearn={!!learnedCard.includes(product.id)} learnCards={learnCards} />)}
       </div>
     </div>
   );
