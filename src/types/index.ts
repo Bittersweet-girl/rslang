@@ -1,6 +1,8 @@
 export interface IRender {
   render: string,
   setRender: React.Dispatch<React.SetStateAction<string>>;
+  onLoginClick: React.MouseEventHandler<HTMLButtonElement>;
+  signout: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export interface IProduct {
@@ -33,4 +35,24 @@ export interface ITest {
 export interface IPaginate {
   itemsPerPage: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
+}
+
+// --------------------login interfaces---------------------
+
+export interface UserData {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export interface UserSigninResp {
+  message: string;
+  token: string;
+  refreshToken: string;
+  userId: string;
+  name: string;
+}
+
+export interface AxiosResp {
+  data: UserSigninResp;
 }

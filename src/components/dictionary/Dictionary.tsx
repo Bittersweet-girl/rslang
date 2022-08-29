@@ -5,8 +5,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Product from '../words/Product';
-import { IProduct } from '../../interfaces/interfaces';
-import { COLORS } from '../constants';
+import { IProduct } from '../../types';
+import { COLORS } from '../../constants';
 import './dictionary.scss';
 import Loader from '../loader/Loader';
 import PaginatedItems from '../pagination/Pagination';

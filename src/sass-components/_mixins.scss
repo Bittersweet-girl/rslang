@@ -30,3 +30,10 @@
     width: $width;
     height: $height;
 }
+
+@mixin loginTextStyle {
+  font-size: 14px;
+  line-height: 21px;
+  color: $color-secondary;
+  font-weight: 400;
+}

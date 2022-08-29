@@ -1,14 +1,17 @@
 /* eslint-disable react/destructuring-assignment */
-import React from 'react';
+import React, { useContext } from 'react';
 import './header.scss';
-import { IRender } from '../../interfaces/interfaces';
-import { COLORS } from '../constants';
+import { IRender } from '../../types';
+import { COLORS } from '../../constants';
+import { UserContext } from '../../contexts';
 
 export default function Header(props: IRender) {
   function changePage(page: string) {
     props.setRender(page);
     sessionStorage.setItem('page', page);
   }
+  const user = useContext(UserContext);
+
   return (
     <header className="header">
       <div className="header-content">
@@ -91,7 +94,25 @@ export default function Header(props: IRender) {
           <button type="button" className="header-menu__button btn header-menu__button_stat" onClick={() => changePage('statistic')} style={props.render === 'statistic' ? COLORS[13] : COLORS[0]}>Статистика</button>
           <button type="button" className="header-menu__button btn header-menu__button_about" onClick={() => changePage('about')} style={props.render === 'about' ? COLORS[14] : COLORS[0]}>О Команде</button>
         </nav>
-        <button type="button" className="header__user btn">Войти</button>
+        {!user && (
+          <button
+            type="button"
+            className="header__user btn"
+            onClick={props.onLoginClick}
+          >
+            Войти
+          </button>
+        )}
+        {user && (
+          <button
+            type="button"
+            className="header__user_logout btn"
+            onClick={props.signout}
+          >
+            Выйти
+          </button>
+        )}
+
       </div>
     </header>
   );

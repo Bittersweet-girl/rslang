@@ -1,0 +1,134 @@
+@import '../../sass-components/variables';
+@import '../../sass-components/mixins';
+
+.backdrop {
+  position: fixed;
+  background-color: rgba(0,0,0, 0.5);
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.login-modal {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: $color-bg;
+  border-radius: 3px;
+  width: 460px;
+  height: auto;
+  padding: 50px;
+  top: 50%;
+  left: 50%;  
+  transform:translate(-50%, -50%);
+
+  &__title {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+  }
+
+  &__description {
+    @include loginTextStyle;
+    text-align: center;
+    margin: 10px 0 20px;
+  }
+
+  &__footer {
+    @include loginTextStyle;
+    width: 100%;
+    margin-top: 30px;
+    padding-top: 10px;
+    border-top: solid 1px $color-secondary;
+    text-align: center;
+  }
+
+  &__footer-btn {
+    background-color: transparent;
+    border: none;
+    font-weight: 600;
+    color: $color-green;
+    &:hover {
+      text-decoration: underline;
+      transition: 0.3s;
+    }
+  }
+
+  &__footer-btn_red {
+    color: $color-red;
+  }
+
+  &__close {
+    position: absolute;
+    border-radius: 50%;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    @include bgImage($url: url('../../../public/assets/svg/close.svg'), $width: 40px, $height: 40px);
+    background-position: center;
+    background-size: 20px;
+    border: 0px;
+    cursor: pointer;
+    &:hover {
+      background-color: $color-secondary-light;
+      transition: 0.3s;
+    }
+  }
+}
+
+.login-modal_error {
+  border: 1px solid $color-red;
+  background-color: #FFEFF1;
+}
+
+.login-form {
+  &__input {
+    box-sizing: border-box;
+    height: 45px;
+    border-radius: 3px;
+    width: 100%;
+    border: 1px solid $color-secondary;
+    color: $color-primary;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    &::placeholder {
+      color: $color-secondary;
+    }
+  }
+  &__input_error{
+    border: 1px solid $color-red;
+    background-color: rgb(100%, 38%, 47%, 0.1);
+  }
+  &__submit {
+    background-color: $color-red;
+    color: $color-bg;
+    width: 100%;
+    &:hover {
+      border: solid 1px $color-red;
+      background-color: transparent;
+      color: $color-red;
+      transition: 0.3s;
+    }
+    &_green {
+      background-color: $color-green;
+      &:hover {
+        border: solid 1px $color-green;
+        background-color: transparent;
+        color: $color-green;
+        transition: 0.3s;
+      }
+    }
+  }
+  &__error {
+    color: $color-red;
+    margin: 0 0 5px;
+  }
+}
+

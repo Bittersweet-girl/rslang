@@ -5,7 +5,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useRef } from 'react';
-import { ITest } from '../../interfaces/interfaces';
+import { ITest } from '../../types';
 import './product.scss';
 
 export default function Product(props: ITest) {

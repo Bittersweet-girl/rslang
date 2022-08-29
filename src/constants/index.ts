@@ -1,11 +1,11 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/prefer-default-export */
-import Main from './main/Main';
-import Dictionary from './dictionary/Dictionary';
-import Audio from './audio-game/Audio';
-import Sprint from './sprint-game/Sprint';
-import Statistic from './statistic/Statistic';
-import About from './about/About';
+import Main from '../components/main/Main';
+import Dictionary from '../components/dictionary/Dictionary';
+import Audio from '../components/audio-game/Audio';
+import Sprint from '../components/sprint-game/Sprint';
+import Statistic from '../components/statistic/Statistic';
+import About from '../components/about/About';
 
 export const COLORS = [
   { backgroundColor: '' },
