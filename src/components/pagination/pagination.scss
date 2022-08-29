@@ -1,7 +1,17 @@
 * {
   list-style: none;
 }
-
+.paginate-wrapper a:focus-within {
+  outline: none;
+}
+.paginate-wrapper a {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+}
 .paginate-wrapper ul {
   width: 600px;
   padding: 0;
@@ -17,12 +27,10 @@
   justify-content: center;
   align-items: center;
   border-radius: 100%;
-  background: rgb(195, 194, 194);
   cursor: pointer;
 }
 .paginate-wrapper li:hover {
   transform: scale(1.1);
-  color: rgb(0, 162, 255);
   font-weight: 900;
 }
 

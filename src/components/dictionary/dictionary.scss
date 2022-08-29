@@ -22,49 +22,70 @@
   &-menu {
     height: 45px;
     display: flex;
-    gap: 25px;
+    gap: 15px;
     margin-bottom: 20px;
     &__button {
-      width: 100px;
-      border: 1px solid black;
+      width: 160px;
+      border: 1px solid $color-secondary-light;
       border-radius: 3px;
-      border-left: 4px solid black;
+      border-left: 45px solid $color-secondary-light;
+      color: #8F95A5;
+      text-align: left;
+      &:hover {
+        color: #000000;
+      }
       &_first {
-        border-color: $color-yellow;
+        border-color: $color-secondary-light;
         &:hover {
-          background-color: $color-yellow;
+          border-color: $color-yellow;
         }
       }
       &_second {
-        border-color: $color-orange;
+        border-color: $color-secondary-light;
         &:hover {
-          background-color: $color-orange;
+          border-color: $color-orange;
         }
       }
       &_third {
-        border-color: $color-green;
+        border-color: $color-secondary-light;
         &:hover {
-          background-color: $color-green;
+          border-color: $color-green;
         }
       }
       &_fourth {
-        border-color: $color-blue;
+        border-color: $color-secondary-light;
         &:hover {
-          background-color: $color-blue;
+          border-color: $color-blue;
         }
       }
       &_fifth {
-        border-color: $color-pink;
+        border-color: $color-secondary-light;
         &:hover {
-          background-color: $color-pink;
+          border-color: $color-pink;
         }
       }
       &_sixth {
-        border-color: $color-magenta;
+        border-color: $color-secondary-light;
         &:hover {
-          background-color: $color-magenta;
+          border-color: $color-magenta;
         }
       }
+      &_seven {
+        border-color: $color-secondary-light;
+        line-height: 16px;
+        text-align: center;
+        &:hover {
+          border-color: #263238;
+        }
+      }
+    }
+  }
+  &__button-sub {
+    display: inline-block;
+    transform: translateX(-38px);
+    &_dot {
+      transform: translate(-44px, 6px);
+      font-size: 20px;
     }
   }
   &__cards {
@@ -77,4 +98,8 @@
     gap: 20px;
     margin-bottom: 30px;
   }
+}
+
+.btn:hover .dictionary__button-sub {
+  color: white;
 }

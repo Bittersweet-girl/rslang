@@ -100,6 +100,7 @@
     height: 45px;
     border: 1px solid #8F95A5;
     border-radius: 5px;
+    padding-bottom: 5px;
     &-count {
       margin-left: 30px;
       color: #8F95A5;
@@ -133,23 +134,18 @@
         background: #15C9FE;
       }
     }
-    &_audio {
-      &:hover {
-        background: #4FCB64;
-      }
-    }
-    &_sprint {
-      &:hover {
-        background: #15C9FE;
-      }
-    }
   }
 }
 
 .hard {
-  border: 3px solid rgba(255, 42, 42, 0.9);
+  border: 3px solid rgba(0, 0, 0, 0.9);
 }
 
 .learn {
-  border: 3px solid rgba(2, 138, 39, 0.9);
+  filter: grayscale(100%);
+  opacity: 60%;
+  &:hover {
+    transform: scale(1);
+    box-shadow: none;
+  }
 }

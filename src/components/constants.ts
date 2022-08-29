@@ -9,7 +9,15 @@ import About from './about/About';
 
 export const COLORS = [
   { backgroundColor: '' },
-  { backgroundColor: '#FDE500' },
+  { borderColor: '#FDE500', color: '#000000' },
+  { borderColor: '#FE941B', color: '#000000' },
+  { borderColor: '#4FCB64', color: '#000000' },
+  { borderColor: '#15C9FE', color: '#000000' },
+  { borderColor: '#FE95D0', color: '#000000' },
+  { borderColor: '#CC62A5', color: '#000000' },
+  { borderColor: '#CC62A5', color: '#000000' },
+  { color: '#ffffff' },
+  { color: '' },
   { backgroundColor: '#FE941B' },
   { backgroundColor: '#4FCB64' },
   { backgroundColor: '#15C9FE' },

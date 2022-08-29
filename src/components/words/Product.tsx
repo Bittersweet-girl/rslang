@@ -77,11 +77,11 @@ export default function Product(props: ITest) {
         </div>
         <div className="card__button-wrapper card__button-wrapper-games">
           <div className="card__game">
-            <button type="button" className="card__status-btn card__status-btn_audio">аудиовызов</button>
+            <div className="card__status-btn">аудиовызов</div>
             <span className="card__game-count">2 из 3</span>
           </div>
           <div className="card__game">
-            <button type="button" className="card__status-btn card__status-btn_sprint">спринт</button>
+            <div className="card__status-btn">спринт</div>
             <span className="card__game-count">2 из 3</span>
           </div>
         </div>

@@ -26,11 +26,11 @@ export default function PaginatedItems(props: IPaginate) {
   return (
     <ReactPaginate
       breakLabel="..."
-      nextLabel="&#8680;"
+      nextLabel="&#10095;"
       onPageChange={handlePageClick}
       pageRangeDisplayed={3}
       pageCount={pageCount}
-      previousLabel="&#8678;"
+      previousLabel="&#10094;"
       /* renderOnZeroPageCount={0} */
     />
   );

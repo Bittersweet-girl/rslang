@@ -85,7 +85,8 @@ export default function Dictionary() {
           }}
           style={group === 0 ? COLORS[1] : COLORS[0]}
         >
-          Раздел 1
+          <span className="dictionary__button-sub" style={group === 0 ? COLORS[8] : COLORS[9]}>A1</span>
+          Начальный
         </button>
         <button
           type="button"
@@ -96,7 +97,8 @@ export default function Dictionary() {
           }}
           style={group === 1 ? COLORS[2] : COLORS[0]}
         >
-          Раздел 2
+          <span className="dictionary__button-sub" style={group === 1 ? COLORS[8] : COLORS[9]}>A2</span>
+          Начальный
         </button>
         <button
           type="button"
@@ -107,7 +109,8 @@ export default function Dictionary() {
           }}
           style={group === 2 ? COLORS[3] : COLORS[0]}
         >
-          Раздел 3
+          <span className="dictionary__button-sub" style={group === 2 ? COLORS[8] : COLORS[9]}>B1</span>
+          Средний
         </button>
         <button
           type="button"
@@ -118,7 +121,8 @@ export default function Dictionary() {
           }}
           style={group === 3 ? COLORS[4] : COLORS[0]}
         >
-          Раздел 4
+          <span className="dictionary__button-sub" style={group === 3 ? COLORS[8] : COLORS[9]}>B2</span>
+          Средний
         </button>
         <button
           type="button"
@@ -129,7 +133,8 @@ export default function Dictionary() {
           }}
           style={group === 4 ? COLORS[5] : COLORS[0]}
         >
-          Раздел 5
+          <span className="dictionary__button-sub" style={group === 4 ? COLORS[8] : COLORS[9]}>С1</span>
+          Сложный
         </button>
         <button
           type="button"
@@ -140,7 +145,15 @@ export default function Dictionary() {
           }}
           style={group === 5 ? COLORS[6] : COLORS[0]}
         >
-          Раздел 6
+          <span className="dictionary__button-sub" style={group === 5 ? COLORS[8] : COLORS[9]}>С2</span>
+          Сложный
+        </button>
+        <button
+          type="button"
+          className="dictionary-menu__button dictionary-menu__button_seven btn"
+        >
+          <span className="dictionary__button-sub dictionary__button-sub_dot">●</span>
+          Сложные слова
         </button>
       </nav>
       { loading && <Loader />}
