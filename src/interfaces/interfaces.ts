@@ -29,3 +29,8 @@ export interface ITest {
   isLearn: boolean;
   learnCards: (id: string) => void;
 }
+
+export interface IPaginate {
+  itemsPerPage: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+}

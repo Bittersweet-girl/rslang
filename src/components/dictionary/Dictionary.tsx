@@ -9,6 +9,7 @@ import { IProduct } from '../../interfaces/interfaces';
 import { COLORS } from '../constants';
 import './dictionary.scss';
 import Loader from '../loader/Loader';
+import PaginatedItems from '../pagination/Pagination';
 
 export default function Dictionary() {
   const sessionGroupData = sessionStorage.getItem('group');
@@ -19,20 +20,21 @@ export default function Dictionary() {
   const [selectedCart, setSelectedCart] = useState('');
   const [diffCard, setDiffCard] = useState(['']);
   const [learnedCard, setLearnedCard] = useState(['']);
+  const [currentPage, setCurrentPage] = useState(0);
 
-  async function getData(gr: number) {
+  async function getData(gr: number, page: number) {
     setLoading(true);
-    const response = await axios.get(`https://rslang-database.herokuapp.com/words?page=0&group=${gr}`);
+    const response = await axios.get(`https://rslang-database.herokuapp.com/words?page=${page === 0 ? 0 : page - 1}&group=${gr}`);
     setProducts(response.data);
     setLoading(false);
   }
 
   useEffect(() => {
-    getData(group);
-  }, []);
+    getData(group, currentPage);
+  }, [group, currentPage]);
   function changeGroup(gr: number) {
     sessionStorage.setItem('group', gr.toString());
-    getData(gr);
+    /* getData(gr); */
     setGroup(gr);
   }
   const handleClick = (id: string) => {
@@ -71,6 +73,8 @@ export default function Dictionary() {
 
   return (
     <div className="dictionary">
+      <h1 className="dictionary__title">Учебник</h1>
+      <h2 className="dictionary__sub-title">Выберите уровень сложности слов.</h2>
       <nav className="dictionary-menu">
         <button
           type="button"
@@ -142,6 +146,9 @@ export default function Dictionary() {
       { loading && <Loader />}
       <div className="dictionary__cards">
         { products.map((product: IProduct) => <Product product={product} key={product.id} isActive={product.id === selectedCart} handleClick={handleClick} isHard={!!diffCard.includes(product.id)} diffCards={diffCards} isLearn={!!learnedCard.includes(product.id)} learnCards={learnCards} />)}
+      </div>
+      <div className="paginate-wrapper">
+        <PaginatedItems itemsPerPage={1} setPage={setCurrentPage} />
       </div>
     </div>
   );
