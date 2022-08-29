@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import './pagination.scss';
-import { IPaginate } from '../../interfaces/interfaces';
-import { items } from '../constants';
+import { IPaginate } from '../../types';
+import { items } from '../../constants';
 
 export default function PaginatedItems(props: IPaginate) {
   const [pageCount, setPageCount] = useState(0);
