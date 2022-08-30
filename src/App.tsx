@@ -1,40 +1,48 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useReducer, useState, useMemo } from 'react';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Login from './components/login/Login';
-import { UserContext } from './contexts';
+import { AppContext, UserContext } from './contexts';
 import { getCurrentUser } from './api/user';
-import { pages } from './constants';
+import { pages, PAGE_MAIN } from './constants';
+import appReducer from './reducers/appReducer';
 
 export default function App() {
-  const sessionPageData = sessionStorage.getItem('page');
-  const sessionPage = `${sessionPageData}`;
-  const [render, setRender] = useState<string>(sessionPage);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const initialState = {
+    navigation: {
+      page: sessionStorage.getItem('page') || PAGE_MAIN,
+      pageProps: {},
+    },
+  };
+  const [state, dispatch] = useReducer(appReducer, initialState);
+  const appContextValue = useMemo(() => ({ state, dispatch }), [state, dispatch]);
   const [user, setUser] = useState(getCurrentUser());
+  const { page, pageProps } = state.navigation || {};
 
   async function backCall() {
     await axios.get('https://rslang-database.herokuapp.com/words?page=0&group=0');
   }
   backCall();
-  const ActivePage = pages[render as keyof typeof pages];
+  const ActivePage = pages[page as keyof typeof pages];
+
   return (
     <UserContext.Provider value={user}>
-      <div className="app">
-        <Header
-          render={render}
-          setRender={setRender}
-          onLoginClick={() => setIsLoginOpen(true)}
-          signout={() => {
-            setUser(null);
-            localStorage.removeItem('user');
-          }}
-        />
-        <ActivePage />
-        <Footer />
-        {isLoginOpen && <Login onClose={() => setIsLoginOpen(false)} setUser={setUser} />}
-      </div>
+      <AppContext.Provider value={appContextValue}>
+        <div className="app">
+          <Header
+            onLoginClick={() => setIsLoginOpen(true)}
+            signout={() => {
+              setUser(null);
+              localStorage.removeItem('user');
+            }}
+          />
+          <ActivePage {...pageProps} />
+          <Footer />
+          {isLoginOpen && <Login onClose={() => setIsLoginOpen(false)} setUser={setUser} />}
+        </div>
+      </AppContext.Provider>
     </UserContext.Provider>
   );
 }
