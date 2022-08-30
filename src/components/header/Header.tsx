@@ -18,7 +18,7 @@ export default function Header(props: IRender) {
         <button type="button" className="header__logo_btn" onClick={() => changePage('main')}> </button>
         <nav className="header-menu">
           <div className="header-menu-list">
-            <button type="button" className="header-menu__button btn header-menu__button_dict" onClick={() => changePage('dictionary')} style={props.render === 'dict' ? COLORS[2] : COLORS[0]}>Учебник</button>
+            <button type="button" className="header-menu__button btn header-menu__button_dict" onClick={() => changePage('dictionary')} style={props.render === 'dictionary' ? COLORS[10] : COLORS[0]}>Учебник</button>
             <div className={props.render === 'dictionary' ? 'header-menu-list-content-dict' : 'header-menu-list-content'}>
               <button
                 type="button"
@@ -89,10 +89,10 @@ export default function Header(props: IRender) {
               </button>
             </div>
           </div>
-          <button type="button" className="header-menu__button btn header-menu__button_audio" onClick={() => changePage('audio')} style={props.render === 'audio' ? COLORS[3] : COLORS[0]}>Аудиовызов</button>
-          <button type="button" className="header-menu__button btn header-menu__button_sprint" onClick={() => changePage('sprint')} style={props.render === 'sprint' ? COLORS[4] : COLORS[0]}>Спринт</button>
-          <button type="button" className="header-menu__button btn header-menu__button_stat" onClick={() => changePage('statistic')} style={props.render === 'statistic' ? COLORS[5] : COLORS[0]}>Статистика</button>
-          <button type="button" className="header-menu__button btn header-menu__button_about" onClick={() => changePage('about')} style={props.render === 'about' ? COLORS[6] : COLORS[0]}>О Команде</button>
+          <button type="button" className="header-menu__button btn header-menu__button_audio" onClick={() => changePage('audio')} style={props.render === 'audio' ? COLORS[11] : COLORS[0]}>Аудиовызов</button>
+          <button type="button" className="header-menu__button btn header-menu__button_sprint" onClick={() => changePage('sprint')} style={props.render === 'sprint' ? COLORS[12] : COLORS[0]}>Спринт</button>
+          <button type="button" className="header-menu__button btn header-menu__button_stat" onClick={() => changePage('statistic')} style={props.render === 'statistic' ? COLORS[13] : COLORS[0]}>Статистика</button>
+          <button type="button" className="header-menu__button btn header-menu__button_about" onClick={() => changePage('about')} style={props.render === 'about' ? COLORS[14] : COLORS[0]}>О Команде</button>
         </nav>
         {!user && (
           <button

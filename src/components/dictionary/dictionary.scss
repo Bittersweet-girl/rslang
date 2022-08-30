@@ -6,70 +6,108 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  &__title {
+    font-weight: 600;
+    font-size: 36px;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  &__sub-title {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    font-weight: 400;
+    font-size: 24px;
+    color: $color-secondary;
+  }
   &-menu {
     height: 45px;
     display: flex;
-    gap: 25px;
+    gap: 15px;
+    margin-bottom: 20px;
     &__button {
-      width: 100px;
-      border: 1px solid black;
-      border-radius: 3px;
-      border-left: 4px solid black;
+      width: 160px;
+      border: 1px solid $color-secondary;
+      box-shadow: 0 0 0 1px $color-secondary;
+      border-radius: 5px;
+      border-left: 45px solid $color-secondary-light;
+      color: $color-secondary;
+      text-align: left;
+      &:hover {
+        color: $color-primary;
+      }
       &_first {
-        border-color: $color-yellow;
+        border-color: $color-secondary-light;
         &:hover {
-          background-color: $color-yellow;
+          border-color: $color-yellow;
+          box-shadow: none;
         }
       }
       &_second {
-        border-color: $color-orange;
+        border-color: $color-secondary-light;
         &:hover {
-          background-color: $color-orange;
+          border-color: $color-orange;
+          box-shadow: none;
         }
       }
       &_third {
-        border-color: $color-green;
+        border-color: $color-secondary-light;
         &:hover {
-          background-color: $color-green;
+          border-color: $color-green;
+          box-shadow: none;
         }
       }
       &_fourth {
-        border-color: $color-blue;
+        border-color: $color-secondary-light;
         &:hover {
-          background-color: $color-blue;
+          border-color: $color-blue;
+          box-shadow: none;
         }
       }
       &_fifth {
-        border-color: $color-pink;
+        border-color: $color-secondary-light;
         &:hover {
-          background-color: $color-pink;
+          border-color: $color-pink;
+          box-shadow: none;
         }
       }
       &_sixth {
-        border-color: $color-magenta;
+        border-color: $color-secondary-light;
         &:hover {
-          background-color: $color-magenta;
+          border-color: $color-magenta;
+          box-shadow: none;
+        }
+      }
+      &_seven {
+        border-color: $color-secondary-light;
+        line-height: 16px;
+        text-align: center;
+        &:hover {
+          border-color: $color-primary-light;
+          box-shadow: none;
         }
       }
     }
   }
+  &__button-sub {
+    display: inline-block;
+    transform: translateX(-38px);
+    &_dot {
+      transform: translate(-44px, 6px);
+      font-size: 20px;
+    }
+  }
   &__cards {
-    width: 660px;
+    width: 100%;
     margin: 0 auto;
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    flex-flow: column wrap;
+    max-height: 1879px;
     gap: 20px;
-  }
-  &__card {
-    width: 150px;
-    overflow: hidden;
+    margin-bottom: 30px;
   }
 }
-.img {
-  width: 150px;
-  height: 100px;
-}
-audio {
-  width: 150px;
-  height: 30px;
+
+.btn:hover .dictionary__button-sub {
+  color: $color-bg;
 }
