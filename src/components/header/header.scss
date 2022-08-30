@@ -90,10 +90,10 @@
                 background-color: $color-magenta;
             }
             &__button_difficult{
-                border-left: 3px solid $color-dark-blue;
+                border-left: 3px solid #263238;
             }
             &__button_difficult:hover{
-                background-color: $color-dark-blue;
+                background-color: #263238;
             }
         }
         &-list:hover .header-menu-list-content {
