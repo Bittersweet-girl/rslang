@@ -3,8 +3,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Product from '../words/Product';
 import { IProduct } from '../../types';
-import { COLORS } from '../../constants';
+import { COLORS, PAGE_SPRINT } from '../../constants';
+// import useNavgation, { navigationReducer, initialState } from '../../hooks/useNavigationReducer';
 import './dictionary.scss';
+import useNavigation from '../../hooks/useNavigation';
 
 export default function Dictionary() {
   const sessionGroupData = sessionStorage.getItem('group');
@@ -12,6 +14,7 @@ export default function Dictionary() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [group, setGroup] = useState<number>(sessionGroup);
+  const { navigate } = useNavigation();
 
   async function getData(gr: number) {
     setLoading(true);
@@ -102,6 +105,10 @@ export default function Dictionary() {
       { loading && <p className="text-center">Loading...</p>}
       <div className="dictionary__cards">
         { products.map((product: IProduct) => <Product product={product} key={product.id} />)}
+      </div>
+      <div>
+        <span>Go to sprint</span>
+        <button type="button" onClick={() => navigate(PAGE_SPRINT, { group })}>Go to sprint</button>
       </div>
     </div>
   );

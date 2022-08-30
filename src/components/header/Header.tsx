@@ -1,14 +1,15 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { useContext } from 'react';
 import './header.scss';
-import { IRender } from '../../types';
-import { COLORS } from '../../constants';
+import { IHeaderProps } from '../../types';
+import { COLORS, PAGE_DICTIONARY } from '../../constants';
 import { UserContext } from '../../contexts';
+import useNavigation from '../../hooks/useNavigation';
 
-export default function Header(props: IRender) {
-  function changePage(page: string) {
-    props.setRender(page);
-    sessionStorage.setItem('page', page);
+export default function Header(props: IHeaderProps) {
+  const { page, navigate } = useNavigation();
+  function changePage(newPage: string) {
+    navigate(newPage);
   }
   const user = useContext(UserContext);
 
@@ -18,8 +19,8 @@ export default function Header(props: IRender) {
         <button type="button" className="header__logo_btn" onClick={() => changePage('main')}> </button>
         <nav className="header-menu">
           <div className="header-menu-list">
-            <button type="button" className="header-menu__button btn header-menu__button_dict" onClick={() => changePage('dictionary')} style={props.render === 'dict' ? COLORS[2] : COLORS[0]}>Учебник</button>
-            <div className={props.render === 'dictionary' ? 'header-menu-list-content-dict' : 'header-menu-list-content'}>
+            <button type="button" className="header-menu__button btn header-menu__button_dict" onClick={() => changePage('dictionary')} style={page === PAGE_DICTIONARY ? COLORS[2] : COLORS[0]}>Учебник</button>
+            <div className={page === 'dictionary' ? 'header-menu-list-content-dict' : 'header-menu-list-content'}>
               <button
                 type="button"
                 className="header-menu-list__button btn header-menu-list__button_one"
@@ -89,10 +90,10 @@ export default function Header(props: IRender) {
               </button>
             </div>
           </div>
-          <button type="button" className="header-menu__button btn header-menu__button_audio" onClick={() => changePage('audio')} style={props.render === 'audio' ? COLORS[3] : COLORS[0]}>Аудиовызов</button>
-          <button type="button" className="header-menu__button btn header-menu__button_sprint" onClick={() => changePage('sprint')} style={props.render === 'sprint' ? COLORS[4] : COLORS[0]}>Спринт</button>
-          <button type="button" className="header-menu__button btn header-menu__button_stat" onClick={() => changePage('statistic')} style={props.render === 'statistic' ? COLORS[5] : COLORS[0]}>Статистика</button>
-          <button type="button" className="header-menu__button btn header-menu__button_about" onClick={() => changePage('about')} style={props.render === 'about' ? COLORS[6] : COLORS[0]}>О Команде</button>
+          <button type="button" className="header-menu__button btn header-menu__button_audio" onClick={() => changePage('audio')} style={page === 'audio' ? COLORS[3] : COLORS[0]}>Аудиовызов</button>
+          <button type="button" className="header-menu__button btn header-menu__button_sprint" onClick={() => changePage('sprint')} style={page === 'sprint' ? COLORS[4] : COLORS[0]}>Спринт</button>
+          <button type="button" className="header-menu__button btn header-menu__button_stat" onClick={() => changePage('statistic')} style={page === 'statistic' ? COLORS[5] : COLORS[0]}>Статистика</button>
+          <button type="button" className="header-menu__button btn header-menu__button_about" onClick={() => changePage('about')} style={page === 'about' ? COLORS[6] : COLORS[0]}>О Команде</button>
         </nav>
         {!user && (
           <button
