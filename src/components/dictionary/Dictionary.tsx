@@ -6,8 +6,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Product from '../words/Product';
 import { IProduct } from '../../types';
-import { COLORS } from '../../constants';
+import { COLORS, PAGE_SPRINT, PAGE_AUDIO } from '../../constants';
+// import useNavgation, { navigationReducer, initialState } from '../../hooks/useNavigationReducer';
 import './dictionary.scss';
+import useNavigation from '../../hooks/useNavigation';
 import Loader from '../loader/Loader';
 import PaginatedItems from '../pagination/Pagination';
 
@@ -17,6 +19,7 @@ export default function Dictionary() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [group, setGroup] = useState<number>(sessionGroup);
+  const { navigate } = useNavigation();
   const [selectedCart, setSelectedCart] = useState('');
   const [diffCard, setDiffCard] = useState(['']);
   const [learnedCard, setLearnedCard] = useState(['']);
@@ -32,6 +35,7 @@ export default function Dictionary() {
   useEffect(() => {
     getData(group, currentPage);
   }, [group, currentPage]);
+
   function changeGroup(gr: number) {
     sessionStorage.setItem('group', gr.toString());
     /* getData(gr); */
@@ -162,6 +166,11 @@ export default function Dictionary() {
       </div>
       <div className="paginate-wrapper">
         <PaginatedItems itemsPerPage={1} setPage={setCurrentPage} />
+      </div>
+      <div className="dictionary__games-container">
+        {/* <span>Go to sprint</span> */}
+        <button type="button" className="" onClick={() => navigate(PAGE_AUDIO, { group })}>Аудиовызов</button>
+        <button type="button" className="" onClick={() => navigate(PAGE_SPRINT, { group })}>Спринт</button>
       </div>
     </div>
   );

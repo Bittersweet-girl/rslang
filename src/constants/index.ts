@@ -25,6 +25,11 @@ export const COLORS = [
   { backgroundColor: '#CC62A5' },
 ];
 
+export const PAGE_DICTIONARY = 'dictionary';
+export const PAGE_SPRINT = 'sprint';
+export const PAGE_AUDIO = 'audio';
+export const PAGE_MAIN = 'main';
+
 export const pages = {
   dictionary: Dictionary,
   main: Main,
