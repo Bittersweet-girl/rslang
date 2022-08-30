@@ -1,0 +1,53 @@
+@import '../../sass-components/variables';
+
+* {
+  list-style: none;
+}
+.paginate-wrapper a:focus-within {
+  outline: none;
+}
+.paginate-wrapper a {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+}
+.paginate-wrapper ul {
+  width: 600px;
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.paginate-wrapper li {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  cursor: pointer;
+  font-weight: 600;
+}
+.paginate-wrapper li:hover {
+  font-size: 20px;
+}
+
+.selected {
+  background: $color-primary-light;
+  font-weight: 900;
+  color: $color-bg;
+}
+.selected:hover {
+  cursor: default;
+  font-size: 16px;
+}
+ul .previous {
+  font-size: 20px;
+}
+ul .next {
+  font-size: 20px;
+}

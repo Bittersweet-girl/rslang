@@ -1,0 +1,153 @@
+@import '../../sass-components/variables';
+
+.card {
+  width: 280px;
+  height: 300px;
+  overflow: hidden;
+  background: $color-secondary-light;
+  border: 1px solid $color-secondary;
+  border-radius: 15px;
+  transition: all 0.6s;
+  box-sizing: border-box;
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: 1px 1px 15px 1px rgba(12, 12, 12, .3);
+  }
+  &:hover .img {
+    transform: scale(1.05);
+  }
+  &_active {
+    width: 280px;
+    height: 580px;
+    background: $color-secondary-light;
+    border: 1px solid $color-secondary;
+    border-radius: 15px;
+    transition: all 0.6s;
+    overflow: hidden;
+  }
+  &__extra {
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  &__image {
+    width: 100%;
+    aspect-ratio: 1.5 / 1;
+    margin-bottom: 5px;
+  }
+  &__word {
+    display: block;
+    color: $color-primary-light;
+    font-weight: 600;
+    line-height: 10px;
+  }
+  &__word-translate {
+    display: block;
+    color: $color-secondary;
+  }
+  &__transcription {
+    display: block;
+    color: $color-primary-light;
+  }
+  &__header-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    font-size: 1.1rem;
+    font-weight: 400;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+  }
+  &__play-btn {
+    background-color: transparent;
+    border: none;
+  }
+  &__play-img {
+    width: 52px;
+    height: 40px;
+    filter: invert(59%) sepia(7%) saturate(596%) hue-rotate(186deg) brightness(99%) contrast(89%);
+    &:hover {
+      filter: invert(59%) sepia(86%) saturate(1184%) hue-rotate(158deg) brightness(101%) contrast(102%);
+    }
+  }
+  &__examples {
+    width: 260px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    border-top: .3px solid $color-secondary;
+    color: $color-primary;
+    &_translate {
+      color: $color-secondary;
+    } 
+  }
+  &__button-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+  &__game {
+    width: 100px;
+    height: 45px;
+    border: 1px solid $color-secondary;
+    border-radius: 5px;
+    padding-bottom: 5px;
+    &-count {
+      margin-left: 30px;
+      color: $color-secondary;
+    }
+  }
+  &__status-btn {
+    width: 102px;
+    height: 23px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    color: $color-bg;
+    background: $color-secondary;
+    border-color: transparent;
+    transform: translate(-1px, -2px);
+    &_diff {
+      &:hover {
+        background: $color-primary-light;
+      }
+      &-active {
+        background: $color-primary-light;
+      }
+    }
+    &_done {
+      &:hover {
+        background: $color-blue;
+      }
+      &-active {
+        background: $color-blue;
+      }
+    }
+  }
+}
+
+.hard {
+  border: 3px solid $color-primary;
+}
+
+.learn {
+  filter: grayscale(100%);
+  opacity: 60%;
+  &:hover {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}

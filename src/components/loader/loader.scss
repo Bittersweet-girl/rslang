@@ -1,6 +1,8 @@
 @import '../../sass-components/variables';
 
 .cs-loader {
+  position: absolute;
+  top: 130px;
   height: 100%;
   width: 100%;
 }
