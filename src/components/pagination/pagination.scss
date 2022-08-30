@@ -1,3 +1,5 @@
+@import '../../sass-components/variables';
+
 * {
   list-style: none;
 }
@@ -28,19 +30,20 @@
   align-items: center;
   border-radius: 100%;
   cursor: pointer;
+  font-weight: 600;
 }
 .paginate-wrapper li:hover {
-  transform: scale(1.1);
-  font-weight: 900;
+  font-size: 20px;
 }
 
 .selected {
-  background: rgb(45, 45, 45);
+  background: $color-primary-light;
   font-weight: 900;
-  color: white;
+  color: $color-bg;
 }
 .selected:hover {
   cursor: default;
+  font-size: 16px;
 }
 ul .previous {
   font-size: 20px;

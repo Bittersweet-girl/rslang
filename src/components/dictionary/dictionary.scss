@@ -17,7 +17,7 @@
     margin-bottom: 30px;
     font-weight: 400;
     font-size: 24px;
-    color: #8F95A5;
+    color: $color-secondary;
   }
   &-menu {
     height: 45px;
@@ -26,48 +26,55 @@
     margin-bottom: 20px;
     &__button {
       width: 160px;
-      border: 1px solid $color-secondary-light;
-      border-radius: 3px;
+      border: 1px solid $color-secondary;
+      box-shadow: 0 0 0 1px $color-secondary;
+      border-radius: 5px;
       border-left: 45px solid $color-secondary-light;
-      color: #8F95A5;
+      color: $color-secondary;
       text-align: left;
       &:hover {
-        color: #000000;
+        color: $color-primary;
       }
       &_first {
         border-color: $color-secondary-light;
         &:hover {
           border-color: $color-yellow;
+          box-shadow: none;
         }
       }
       &_second {
         border-color: $color-secondary-light;
         &:hover {
           border-color: $color-orange;
+          box-shadow: none;
         }
       }
       &_third {
         border-color: $color-secondary-light;
         &:hover {
           border-color: $color-green;
+          box-shadow: none;
         }
       }
       &_fourth {
         border-color: $color-secondary-light;
         &:hover {
           border-color: $color-blue;
+          box-shadow: none;
         }
       }
       &_fifth {
         border-color: $color-secondary-light;
         &:hover {
           border-color: $color-pink;
+          box-shadow: none;
         }
       }
       &_sixth {
         border-color: $color-secondary-light;
         &:hover {
           border-color: $color-magenta;
+          box-shadow: none;
         }
       }
       &_seven {
@@ -75,7 +82,8 @@
         line-height: 16px;
         text-align: center;
         &:hover {
-          border-color: #263238;
+          border-color: $color-primary-light;
+          box-shadow: none;
         }
       }
     }
@@ -101,5 +109,5 @@
 }
 
 .btn:hover .dictionary__button-sub {
-  color: white;
+  color: $color-bg;
 }
