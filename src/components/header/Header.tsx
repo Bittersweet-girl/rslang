@@ -1,16 +1,17 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { useContext } from 'react';
 import './header.scss';
-import { IRender } from '../../types';
+import { IRender, UserSigninResp } from '../../types';
 import { COLORS } from '../../constants';
 import { UserContext } from '../../contexts';
 
 export default function Header(props: IRender) {
+  const user: null | UserSigninResp = useContext(UserContext);
   function changePage(page: string) {
     props.setRender(page);
     sessionStorage.setItem('page', page);
+    console.log(user ? user.userId : 'user not authorized');
   }
-  const user = useContext(UserContext);
 
   return (
     <header className="header">

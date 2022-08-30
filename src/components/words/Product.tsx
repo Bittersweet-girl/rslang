@@ -3,13 +3,14 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, { useRef } from 'react';
-import { ITest } from '../../types';
+import React, { useRef, useContext } from 'react';
+import { ITest, UserSigninResp } from '../../types';
+import { UserContext } from '../../contexts';
 import './product.scss';
 
 export default function Product(props: ITest) {
   const domen = 'https://rslang-database.herokuapp.com/';
+  const user: null | UserSigninResp = useContext(UserContext);
 
   const {
     isActive, handleClick, product, isHard, diffCards, isLearn, learnCards,
@@ -62,10 +63,12 @@ export default function Product(props: ITest) {
         <audio src={domen + audio} />
         <button type="button" className="card__play-btn" onClick={(e) => play(e)}><img src="./assets/svg/play.svg" alt="play" className="card__play-img" /></button>
       </div>
-      <div className="card__button-wrapper">
-        <button type="button" className={diffButtonClassName} onClick={(e) => hardStatus(e)}>+  сложное</button>
-        <button type="button" className={learButtonClassName} onClick={(e) => learnStatus(e)}>✓  изучено</button>
-      </div>
+      {user && (
+        <div className="card__button-wrapper">
+          <button type="button" className={diffButtonClassName} onClick={(e) => hardStatus(e)}>+  сложное</button>
+          <button type="button" className={learButtonClassName} onClick={(e) => learnStatus(e)}>✓  изучено</button>
+        </div>
+      )}
       <div className="card__extra">
         <div className="card__examples">
           <div dangerouslySetInnerHTML={createMarkup(textMeaning)}></div>
