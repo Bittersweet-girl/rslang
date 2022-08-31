@@ -2,7 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 import Main from '../components/main/Main';
 import Dictionary from '../components/dictionary/Dictionary';
-import Audio from '../components/audio-game/Audio';
+import AudioGame from '../components/audio-game/AudioGame';
 import Sprint from '../components/sprint-game/Sprint';
 import Statistic from '../components/statistic/Statistic';
 import About from '../components/about/About';
@@ -34,7 +34,7 @@ export const pages = {
   dictionary: Dictionary,
   main: Main,
   null: Main,
-  audio: Audio,
+  audio: AudioGame,
   sprint: Sprint,
   statistic: Statistic,
   about: About,
