@@ -1,0 +1,120 @@
+@import '../../sass-components/normalize';
+@import '../../sass-components/variables';
+@import '../../sass-components/mixins';
+
+.sprint-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sprint-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 60px;
+  height: 500px;
+  width: 800px;
+  background-color: $color-secondary-light;
+  &__status {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 200px;
+  }
+  &__score-status {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__word {
+    margin: 0;
+    color: $color-primary;
+    font-size: 36px;
+  }
+  &__translate {
+    margin: 10px 0 0;
+    color: $color-secondary;
+    font-size: 36px;
+  }
+
+  &__success-row {
+    display: flex;
+    gap:10px;
+  }
+
+  &__score {
+    // box-sizing: border-box;
+    // height: 45px;
+    // border: solid 1px $color-primary-light;
+    // display: flex;
+    // align-items: center;
+    // border-radius: 3px;
+    // justify-content: center;
+    // padding: 10px;
+    // width: auto;
+    width: 30%;
+    color: $color-blue;
+    font-size: 36px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  &__success-item {
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    border: solid 1px #263238; 
+  }
+}
+
+.timer {
+  font-size: 24px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  background-color: $color-bg;
+  color: $color-primary-light;
+  border: solid 1px $color-primary-light;
+}
+
+.sprint-game__controllers{
+  margin-top: 80px;
+  display: flex;
+  gap: 20px;
+}
+
+.game__btn {
+  width: 100px;
+  padding: 5px;
+  height: 45px;
+  border: 0px;
+  border-radius: 3px;
+  color: $color-bg;
+  background: transparent;
+  transform: scale(1);
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.05);
+  }
+  &:active {
+    transform: translateY(4px);
+}
+}
+
+.game__button-no {
+  background-color: $color-green; 
+}
+
+.game__button-yes {
+  background-color: $color-red; 
+}
+

@@ -83,3 +83,10 @@ export interface GameProps {
   group: number;
   groupPage: number;
 }
+
+// --------------------sprine-game types---------------------
+
+export interface TimerParam {
+  time: number;
+  onTimeUp: ()=>void;
+}
