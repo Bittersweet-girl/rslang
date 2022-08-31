@@ -88,13 +88,15 @@ export default function Header(props: IHeaderProps) {
               >
                 Раздел шестой
               </button>
-              <button
-                type="button"
-                className="header-menu-list__button btn header-menu-list__button_difficult"
-                onClick={() => changePage('dictionary')}
-              >
-                Сложные слова
-              </button>
+              {user && (
+                <button
+                  type="button"
+                  className="header-menu-list__button btn header-menu-list__button_difficult"
+                  onClick={() => changePage('dictionary')}
+                >
+                  Сложные слова
+                </button>
+              )}
             </div>
           </div>
           <button

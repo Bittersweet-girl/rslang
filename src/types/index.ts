@@ -7,6 +7,7 @@ export interface IHeaderProps {
 }
 
 export interface IProduct {
+  _id: string,
   id: string,
   group: number,
   page: number,
@@ -23,7 +24,7 @@ export interface IProduct {
   textExampleTranslate: string
 }
 
-export interface ITest {
+export interface IWordCard {
   product: IProduct;
   isActive: boolean;
   handleClick: (id: string) => void;
@@ -36,6 +37,18 @@ export interface ITest {
 export interface IPaginate {
   itemsPerPage: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
+  forcePage: number;
+}
+
+export interface IUserWords {
+  difficulty: string;
+  id: string;
+  wordId: string;
+}
+
+export interface IDictMenu {
+  group: number;
+  changeGroup: (gr: number) => void;
 }
 
 // --------------------login interfaces---------------------
