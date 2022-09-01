@@ -83,3 +83,8 @@ export interface GameProps {
   group: number;
   groupPage: number;
 }
+
+// --------Audio Game ----------
+export interface IAudioProps{
+  onPlayClick: React.MouseEventHandler<HTMLButtonElement>;
+}

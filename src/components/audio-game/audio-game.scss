@@ -47,10 +47,19 @@
     }
     &__start{
         width: 100px;
-        background-color: $color-secondary;
         margin: 10px 0;
-        &:hover{
-            background-color: $color-green;
+        background-color: $color-green;
+        &[disabled]{
+            background-color: $color-secondary;
+            color: $color-primary;
+            &:active {
+                transform: translateY(0);
+            }
+            &:hover{
+                background-color: $color-secondary;
+                color: $color-primary;
+            }
         }
     }
 }
+
