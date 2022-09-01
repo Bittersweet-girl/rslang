@@ -31,14 +31,16 @@ export default function App() {
     <UserContext.Provider value={user}>
       <AppContext.Provider value={appContextValue}>
         <div className="app">
-          <Header
-            onLoginClick={() => setIsLoginOpen(true)}
-            signout={() => {
-              setUser(null);
-              localStorage.removeItem('user');
-            }}
-          />
-          <ActivePage {...pageProps} />
+          <div className="wrapper">
+            <Header
+              onLoginClick={() => setIsLoginOpen(true)}
+              signout={() => {
+                setUser(null);
+                localStorage.removeItem('user');
+              }}
+            />
+            <ActivePage {...pageProps} />
+          </div>
           <Footer />
           {isLoginOpen && <Login onClose={() => setIsLoginOpen(false)} setUser={setUser} />}
         </div>
