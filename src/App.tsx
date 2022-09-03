@@ -5,8 +5,24 @@ import Footer from './components/footer/Footer';
 import Login from './components/login/Login';
 import { AppContext, UserContext } from './contexts';
 import { getCurrentUser } from './api/user';
-import { pages, PAGE_MAIN } from './constants';
+import { PAGE_MAIN } from './constants';
 import appReducer from './reducers/appReducer';
+import Dictionary from './components/dictionary/Dictionary';
+import Main from './components/main/Main';
+import Sprint from './components/sprint-game/Sprint';
+import Statistic from './components/sprint-game/Statistic';
+import About from './components/about/About';
+import AudioGame from './components/audio-game/AudioGame';
+
+export const pages = {
+  dictionary: Dictionary,
+  main: Main,
+  null: Main,
+  audio: AudioGame,
+  sprint: Sprint,
+  statistic: Statistic,
+  about: About,
+};
 
 export default function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);

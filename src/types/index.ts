@@ -7,20 +7,20 @@ export interface IHeaderProps {
 }
 
 export interface IProduct {
-  id: string,
-  group: number,
-  page: number,
-  word: string,
-  image: string,
-  audio: string,
-  audioMeaning: string,
-  audioExample: string,
-  textMeaning: string,
-  textExample: string,
-  transcription: string,
-  wordTranslate: string,
-  textMeaningTranslate: string,
-  textExampleTranslate: string
+  id: string;
+  group: number;
+  page: number;
+  word: string;
+  image: string;
+  audio: string;
+  audioMeaning: string;
+  audioExample: string;
+  textMeaning: string;
+  textExample: string;
+  transcription: string;
+  wordTranslate: string;
+  textMeaningTranslate: string;
+  textExampleTranslate: string;
 }
 
 export interface ITest {
@@ -81,7 +81,7 @@ export interface AppContextParam {
 
 export interface GameProps {
   group: number;
-  groupPage: number;
+  currentPage: number;
 }
 
 // --------------------sprine-game types---------------------
@@ -89,4 +89,39 @@ export interface GameProps {
 export interface TimerParam {
   time: number;
   onTimeUp: ()=>void;
+}
+
+export interface GameWords {
+  words: IProduct[];
+}
+
+export interface GameState {
+  countCorrect: number;
+  correctRow: number;
+  total: number;
+  countBonus: number;
+  bonusRatio: number;
+  countWrong: number;
+  score: number;
+  index: number;
+  words: PreparedWords[],
+  initialWords: PreparedWords[],
+  isGameOver: boolean;
+  isGameStarted: boolean;
+}
+
+export interface SprintGameParam {
+  state: GameState;
+  setState: React.Dispatch<any>;
+}
+
+export interface PreparedWords extends IProduct {
+  isCorrect?: boolean;
+  isCorrectAnswer?: boolean;
+  fakeTranslation?: string;
+  isInGame?: boolean;
+}
+
+export interface GameWord {
+  word: IProduct;
 }

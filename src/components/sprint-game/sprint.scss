@@ -6,7 +6,132 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .sprint-statistic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .title {
+      margin: 40px 0;
+    }
+
+    .statistic-data {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 60px;
+      width: 500px;
+      height: 500px;
+      border: solid 1px $color-secondary;
+      border-radius: 3px;
+      overflow-y: auto;
+
+      &__score {
+        font-size: 36px;
+        color: $color-blue;
+      }
+
+      h2 {
+        align-self: center;
+        margin-bottom: 40px;
+      }
+
+      &__title {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin: 10px 0;
+      }
+
+      &__title-text {
+        color: $color-primary-light;
+        font-size: 24px;
+        margin: 0;
+      }
+
+      &__wrong {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        width: auto;
+        height: 30px;
+        padding: 0 20px;
+        background-color: $color-red;
+        color: white;
+        border-radius: 3px;
+      }
+      &__coorect {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        width: auto;
+        height: 30px;
+        padding: 0 20px;
+        background-color: $color-green;
+        color: white;
+        border-radius: 3px;
+      }
+      &__line {
+        border-bottom: solid 1px $color-secondary;
+        margin: 20px 0;
+      }
+    }
+
+    &__buttons {
+      margin: 40px 0;
+      display: flex;
+      gap: 20px;
+
+      .btn-dictionary{
+        background-color: $color-secondary;
+        width: 200px;
+       &:hover {
+         background-color: $color-orange;
+        }
+      }
+
+      .btn-repeat {
+        background-color: $color-secondary;
+        width: 200px;
+       &:hover {
+         background-color: $color-blue;
+        }
+      }
+
+    }
+  }
 }
+
+.sprint-data__word {
+  display: flex;
+  align-items: center;
+
+  .word-audio {
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    @include bgImage($url: url('../../../public/assets/svg/play.svg'), $width: 45px, $height: 45px);
+    background-size: 24px;
+    background-position: left;
+    filter: invert(33%) sepia(14%) saturate(301%) hue-rotate(186deg) brightness(88%) contrast(89%);
+    &:hover {
+      filter: invert(30%) sepia(76%) saturate(3191%) hue-rotate(158deg) brightness(103%) contrast(99%);
+      transition: 0.3s;
+    }
+  }
+
+  .word {
+    font-weight: 700;
+  }
+
+  .word-translate {
+    color: $color-secondary;
+  }
+}
+
 .sprint-game {
   display: flex;
   flex-direction: column;
@@ -47,15 +172,6 @@
   }
 
   &__score {
-    // box-sizing: border-box;
-    // height: 45px;
-    // border: solid 1px $color-primary-light;
-    // display: flex;
-    // align-items: center;
-    // border-radius: 3px;
-    // justify-content: center;
-    // padding: 10px;
-    // width: auto;
     width: 30%;
     color: $color-blue;
     font-size: 36px;
@@ -68,6 +184,18 @@
     width: 14px;
     border-radius: 50%;
     border: solid 1px #263238; 
+    &_check {
+      border: solid 1px $color-green;
+      background-color: $color-green;
+      color: $color-bg;
+      font-size: 36px;
+    }
+  } 
+
+  &__controllers{
+    margin-top: 80px;
+    display: flex;
+    gap: 20px;
   }
 }
 
@@ -83,12 +211,6 @@
   background-color: $color-bg;
   color: $color-primary-light;
   border: solid 1px $color-primary-light;
-}
-
-.sprint-game__controllers{
-  margin-top: 80px;
-  display: flex;
-  gap: 20px;
 }
 
 .game__btn {
@@ -107,14 +229,40 @@
   }
   &:active {
     transform: translateY(4px);
-}
+  }
 }
 
 .game__button-no {
-  background-color: $color-green; 
+  background-color: $color-red;
 }
 
 .game__button-yes {
-  background-color: $color-red; 
+  background-color: $color-green; 
 }
 
+
+.scrollbar {
+  scrollbar-color: transparent transparent;
+  scrollbar-width: thin;
+}
+
+.scrollbar:hover {
+  scrollbar-color: #babbce;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 10px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 0 4px transparent;
+}
+
+.scrollbar:hover::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 0 4px #babbce;
+}
+
+.scrollbar::-webkit-scrollbar-corner {
+  background-color: transparent;
+}

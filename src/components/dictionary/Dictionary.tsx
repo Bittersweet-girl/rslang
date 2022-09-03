@@ -169,8 +169,8 @@ export default function Dictionary() {
       </div>
       <div className="dictionary__games-container">
         {/* <span>Go to sprint</span> */}
-        <button type="button" className="" onClick={() => navigate(PAGE_AUDIO, { group })}>Аудиовызов</button>
-        <button type="button" className="" onClick={() => navigate(PAGE_SPRINT, { group })}>Спринт</button>
+        <button type="button" className="" onClick={() => navigate(PAGE_AUDIO, { group, currentPage })}>Аудиовызов</button>
+        <button type="button" className="" onClick={() => navigate(PAGE_SPRINT, { group, currentPage })}>Спринт</button>
       </div>
     </div>
   );

@@ -16,7 +16,9 @@ export default function Timer({ time, onTimeUp }: TimerParam) {
       });
     }, 1000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
   return (
     <div className="timer">
