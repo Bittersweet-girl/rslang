@@ -22,7 +22,7 @@ function Word({ word }:GameWord) {
   );
 }
 
-export default function Statistic({ state, setState }:SprintGameParam) {
+export default function SprintResult({ state, setState }:SprintGameParam) {
   const { navigate } = useNavigation();
   const { words } = state;
   const correctAnswers = words.filter((word) => word.isCorrectAnswer && word.isInGame);

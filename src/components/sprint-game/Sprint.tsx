@@ -3,9 +3,9 @@ import './sprint.scss';
 import { GameProps } from '../../types';
 import SprintGame from './SprintGame';
 import getWords from '../../api/words';
-import Statistic from './Statistic';
 import StartScreen from './StartScreen';
 import prepareGameData from './helpers';
+import SprintResult from './SprintResult';
 
 export default function Sprint({ group = 1, currentPage = 1 }: GameProps) {
   const [state, setState] = useState({
@@ -53,7 +53,7 @@ export default function Sprint({ group = 1, currentPage = 1 }: GameProps) {
 
       {isGameOver
           && (
-            <Statistic
+            <SprintResult
               state={state}
               setState={setState}
             />

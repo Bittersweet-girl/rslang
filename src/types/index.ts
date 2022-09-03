@@ -125,3 +125,9 @@ export interface PreparedWords extends IProduct {
 export interface GameWord {
   word: IProduct;
 }
+
+// --------Audio Game ----------
+
+export interface IAudioProps {
+  onPlayClick: React.MouseEventHandler<HTMLButtonElement>;
+}

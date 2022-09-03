@@ -10,7 +10,7 @@ import appReducer from './reducers/appReducer';
 import Dictionary from './components/dictionary/Dictionary';
 import Main from './components/main/Main';
 import Sprint from './components/sprint-game/Sprint';
-import Statistic from './components/sprint-game/Statistic';
+import Statistic from './components/statistic/Statistic';
 import About from './components/about/About';
 import AudioGame from './components/audio-game/AudioGame';
 
@@ -47,14 +47,16 @@ export default function App() {
     <UserContext.Provider value={user}>
       <AppContext.Provider value={appContextValue}>
         <div className="app">
-          <Header
-            onLoginClick={() => setIsLoginOpen(true)}
-            signout={() => {
-              setUser(null);
-              localStorage.removeItem('user');
-            }}
-          />
-          <ActivePage {...pageProps} />
+          <div className="wrapper">
+            <Header
+              onLoginClick={() => setIsLoginOpen(true)}
+              signout={() => {
+                setUser(null);
+                localStorage.removeItem('user');
+              }}
+            />
+            <ActivePage {...pageProps} />
+          </div>
           <Footer />
           {isLoginOpen && <Login onClose={() => setIsLoginOpen(false)} setUser={setUser} />}
         </div>
