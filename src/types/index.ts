@@ -50,7 +50,12 @@ export interface IDictMenu {
   group: number;
   changeGroup: (gr: number) => void;
 }
-
+export interface INewTokens {
+  data: {
+    token: string;
+    refreshToken: string;
+  }
+}
 // --------------------login interfaces---------------------
 
 export interface UserData {

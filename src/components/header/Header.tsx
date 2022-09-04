@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { useContext } from 'react';
 import './header.scss';
-import { IHeaderProps } from '../../types';
+import { IHeaderProps, UserSigninResp } from '../../types';
 import { COLORS, PAGE_DICTIONARY } from '../../constants';
 import { UserContext } from '../../contexts';
 import useNavigation from '../../hooks/useNavigation';
@@ -11,7 +11,7 @@ export default function Header(props: IHeaderProps) {
   function changePage(newPage: string) {
     navigate(newPage);
   }
-  const user = useContext(UserContext);
+  const user: null | UserSigninResp = useContext(UserContext);
 
   return (
     <header className="header">
