@@ -84,6 +84,7 @@ export default function SprintResult({ state, setState }:SprintGameParam) {
               isGameStarted: false,
               isGameOver: false,
               words: prepareGameData(state.initialWords),
+              isGroupConfirmed: false,
             });
           }}
         >

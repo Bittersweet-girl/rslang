@@ -86,6 +86,60 @@ export interface GameProps {
 
 // --------------------sprine-game types---------------------
 
+export interface UserWord {
+  difficulty: string;
+  id: string;
+  optional: {};
+  wordId: string;
+}
+
+interface GameResult {
+  right: number;
+  wrong: number;
+  row: number;
+}
+
+interface OptionalData {
+  isNew?: boolean;
+  sprint?: GameResult;
+  audio?: GameResult;
+}
+
+export interface NewUserWord {
+  dificulty: 'string';
+  optional?: OptionalData;
+}
+
+export interface PreparedWords extends IProduct {
+  isCorrect?: boolean;
+  isCorrectAnswer?: boolean;
+  fakeTranslation?: string;
+  isInGame?: boolean;
+}
+
+export interface CombinedWords {
+  words: IProduct[];
+  userWords: UserWord[];
+}
+
+export interface CombinedWordsData extends IProduct {
+  meta?: UserWord;
+}
+
+export interface GetWordsParam {
+  group: number;
+  page: number;
+}
+
+export interface MakeGameWordsParam extends GetWordsParam {
+  filterLearned: boolean;
+}
+
+export interface CreateUserWordParam {
+  wordId: string;
+  wordData: NewUserWord;
+}
+
 export interface TimerParam {
   time: number;
   onTimeUp: ()=>void;
@@ -113,13 +167,6 @@ export interface GameState {
 export interface SprintGameParam {
   state: GameState;
   setState: React.Dispatch<any>;
-}
-
-export interface PreparedWords extends IProduct {
-  isCorrect?: boolean;
-  isCorrectAnswer?: boolean;
-  fakeTranslation?: string;
-  isInGame?: boolean;
 }
 
 export interface GameWord {

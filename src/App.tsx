@@ -12,13 +12,13 @@ import Main from './components/main/Main';
 import Sprint from './components/sprint-game/Sprint';
 import Statistic from './components/statistic/Statistic';
 import About from './components/about/About';
-import AudioGame from './components/audio-game/AudioGame';
+import AudioMain from './components/audio-game';
 
 export const pages = {
   dictionary: Dictionary,
   main: Main,
   null: Main,
-  audio: AudioGame,
+  audio: AudioMain,
   sprint: Sprint,
   statistic: Statistic,
   about: About,
