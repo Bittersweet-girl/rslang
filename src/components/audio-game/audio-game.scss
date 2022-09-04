@@ -1,12 +1,14 @@
 @import '../../sass-components/variables';
 @import '../../sass-components/buttons';
 @import '../../sass-components/mixins';
-.audio-game{
+.audio-game,
+.audio-game-play{
     min-height: 500px;
     height: calc(100vh - 195px);
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     max-width: 600px;
     margin: 0 auto;
     text-align: center;
@@ -73,6 +75,48 @@
                 background-color: $color-secondary;
                 color: $color-primary;
             }
+        }
+    }
+}
+.audio-game-play{
+    &__btn_audio {
+        background-color: transparent;
+        border: none;
+    }
+    &__play-img {
+        width: 82px;
+        height: 60px;
+        filter: invert(59%) sepia(7%) saturate(596%) hue-rotate(186deg) brightness(99%) contrast(89%);
+        &:hover {
+            filter: invert(61%) sepia(90%) saturate(298%) hue-rotate(79deg) brightness(94%) contrast(93%);
+        }
+    }
+    &-options-block{
+        padding: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 10px;
+    }
+    &__option{
+        padding: 0 20px ;
+        &_0:hover{
+            background-color: $color-orange;
+        }
+        &_1:hover{
+            background-color: $color-green;
+        }
+        &_2:hover{
+            background-color: $color-blue;
+        }
+        &_3:hover{
+            background-color: $color-magenta;
+        }
+    }
+    &__btn{
+        width: 80px;
+        &:hover{
+            background-color: $color-green;
         }
     }
 }

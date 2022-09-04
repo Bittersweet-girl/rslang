@@ -175,6 +175,16 @@ export interface GameWord {
 
 // --------Audio Game ----------
 
-export interface IAudioProps {
-  onPlayClick: React.MouseEventHandler<HTMLButtonElement>;
+export interface AudioGameState {
+  index: number;
+  words: PreparedWords[],
+  initialWords: PreparedWords[],
+  isGameOver: boolean;
+  isGameStarted: boolean;
+  group: number;
+}
+
+export interface AudioGameParam {
+  state: AudioGameState;
+  setState: React.Dispatch<any>;
 }
