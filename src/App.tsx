@@ -11,6 +11,7 @@ import { getCurrentUser } from './api/user';
 import { pages, PAGE_MAIN } from './constants';
 import appReducer from './reducers/appReducer';
 
+let oneCall = true;
 export default function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const initialState = {
@@ -24,11 +25,7 @@ export default function App() {
   const [user, setUser] = useState(getCurrentUser());
   const { page, pageProps } = state.navigation || {};
 
-  /* async function backCall() {
-    await axios.get('https://rslang-database.herokuapp.com/words?page=0&group=0');
-  }
-  backCall(); */
-  async function refresh() {
+  async function refreshToken() {
     const res = user;
     const newTokens: INewTokens = await axios.get(
       `https://rslang-database.herokuapp.com/users/${user?.userId}/tokens`,
@@ -42,7 +39,10 @@ export default function App() {
     res.refreshToken = newTokens.data.refreshToken;
     localStorage.setItem('user', JSON.stringify(res));
     setUser(res);
-    console.log('updated');
+  }
+  if (oneCall && sessionStorage.getItem('page') === null) {
+    oneCall = false;
+    refreshToken();
   }
 
   const ActivePage = pages[page as keyof typeof pages];
@@ -51,7 +51,6 @@ export default function App() {
     <UserContext.Provider value={user}>
       <AppContext.Provider value={appContextValue}>
         <div className="app">
-          <button type="button" onClick={refresh}>refresh</button>
           <Header
             onLoginClick={() => setIsLoginOpen(true)}
             signout={() => {
