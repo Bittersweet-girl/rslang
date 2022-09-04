@@ -5,7 +5,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* import axios from 'axios'; */
 import React, { useRef, useContext } from 'react';
 import { IWordCard, UserSigninResp/* , IUserWords */ } from '../../types';
 import { UserContext } from '../../contexts';
@@ -29,52 +28,6 @@ export default function Words(props: IWordCard) {
   if (!id) {
     wordId = _id;
   }
-  /* function setUserWord(status: string) {
-    return axios.post(
-      `https://rslang-database.herokuapp.com/users/${user?.userId}/words/${id}`,
-      {
-        difficulty: status,
-        optional: {},
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${user?.token}`,
-        },
-      },
-    );
-  } */
-
-  /* async function getUserWordsIds() {
-    const response = await axios.get(
-      `https://rslang-database.herokuapp.com/users/${user?.userId}/words`,
-      {
-        headers: {
-          Authorization: `Bearer ${user?.token}`,
-        },
-      },
-    );
-    const userWordsData = response.data.map((i: IUserWords) => i.wordId);
-    const hardWordsData = response.data.filter((i: IUserWords) => i.difficulty === 'hard').map((i: IUserWords) => i.wordId);
-    const learnedWordsData = response.data.filter((i: IUserWords) => i.difficulty === 'learned').map((i: IUserWords) => i.wordId);
-    console.log(userWordsData);
-    console.log(hardWordsData);
-    console.log(learnedWordsData);
-  } */
-
-  /* async function getUserWord() {
-    const response = await axios.get(
-      `https://rslang-database.herokuapp.com/users/${user?.userId}/aggregatedWords`,
-      {
-        headers: {
-          Authorization: `Bearer ${user?.token}`,
-        },
-        params: {
-          filter: '{"$and":[{"userWord.difficulty":"hard"}]}',
-        },
-      },
-    );
-    console.log(response.data[0].paginatedResults);
-  } */
 
   const audioSrc = domen + audio;
   const audioElement = useRef(new Audio(audioSrc));

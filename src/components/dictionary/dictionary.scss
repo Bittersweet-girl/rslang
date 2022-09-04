@@ -105,6 +105,10 @@
     max-height: 1879px;
     gap: 20px;
     margin-bottom: 30px;
+    &_done {
+      background: rgb(195, 241, 195);
+      border-radius: 15px;
+    }
   }
 
   &__games-container {

@@ -32,6 +32,12 @@ export default function Dictionary() {
     currentPage,
     setCurrentPage,
   } = useDictionaryData();
+  let pageStatus = 'dictionary__cards';
+  let gameBtnStatus = false;
+  if (learnedCard.length >= 20) {
+    pageStatus += ' dictionary__cards_done';
+    gameBtnStatus = true;
+  }
 
   return (
     <div className="dictionary">
@@ -39,7 +45,7 @@ export default function Dictionary() {
       <h2 className="dictionary__sub-title">Выберите уровень сложности слов.</h2>
       <DictionaryMenu group={group} changeGroup={changeGroup} />
       { loading && <Loader />}
-      <div className="dictionary__cards">
+      <div className={pageStatus}>
         {group === 6 ? (hardWordsData.map((product: IProduct) => <Words product={product} key={product._id} isActive={product._id === selectedCart} handleClick={handleClick} isHard={!!hardCard.includes(product._id)} diffCards={diffCards} isLearn={!!learnedCard.includes(product.id)} learnCards={learnCards} />))
           : (wordsData.map((product: IProduct) => <Words product={product} key={product.id} isActive={product.id === selectedCart} handleClick={handleClick} isHard={!!hardCard.includes(product.id)} diffCards={diffCards} isLearn={!!learnedCard.includes(product.id)} learnCards={learnCards} />))}
       </div>
@@ -50,8 +56,8 @@ export default function Dictionary() {
       )}
       <div className="dictionary__games-container">
         {/* <span>Go to sprint</span> */}
-        <button type="button" className="" onClick={() => navigate(PAGE_AUDIO, { group })}>Аудиовызов</button>
-        <button type="button" className="" onClick={() => navigate(PAGE_SPRINT, { group })}>Спринт</button>
+        <button type="button" className="" disabled={gameBtnStatus} onClick={() => navigate(PAGE_AUDIO, { group })}>Аудиовызов</button>
+        <button type="button" className="" disabled={gameBtnStatus} onClick={() => navigate(PAGE_SPRINT, { group })}>Спринт</button>
       </div>
     </div>
   );
