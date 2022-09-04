@@ -1,18 +1,21 @@
+/* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable react/no-danger */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import axios from 'axios';
+/* import axios from 'axios'; */
 import React, { useRef, useContext } from 'react';
-import { IWordCard, UserSigninResp, IUserWords } from '../../types';
+import { IWordCard, UserSigninResp/* , IUserWords */ } from '../../types';
 import { UserContext } from '../../contexts';
 import './words.scss';
 
 export default function Words(props: IWordCard) {
   const domen = 'https://rslang-database.herokuapp.com/';
   const user: null | UserSigninResp = useContext(UserContext);
+  const sessionGroupData = sessionStorage.getItem('group');
+  const sessionGroup = Number(sessionGroupData);
 
   const {
     isActive, handleClick, product, isHard, diffCards, isLearn, learnCards,
@@ -26,7 +29,7 @@ export default function Words(props: IWordCard) {
   if (!id) {
     wordId = _id;
   }
-  function setUserWord(status: string) {
+  /* function setUserWord(status: string) {
     return axios.post(
       `https://rslang-database.herokuapp.com/users/${user?.userId}/words/${id}`,
       {
@@ -39,9 +42,9 @@ export default function Words(props: IWordCard) {
         },
       },
     );
-  }
+  } */
 
-  async function getUserWordsIds() {
+  /* async function getUserWordsIds() {
     const response = await axios.get(
       `https://rslang-database.herokuapp.com/users/${user?.userId}/words`,
       {
@@ -56,7 +59,7 @@ export default function Words(props: IWordCard) {
     console.log(userWordsData);
     console.log(hardWordsData);
     console.log(learnedWordsData);
-  }
+  } */
 
   /* async function getUserWord() {
     const response = await axios.get(
@@ -84,28 +87,35 @@ export default function Words(props: IWordCard) {
   }
   let cardClassName = 'card';
   let diffButtonClassName = 'card__status-btn card__status-btn_diff';
+  let diffButtonStatus = false;
+  let diffButtonText = '+  сложное';
   let learButtonClassName = 'card__status-btn card__status-btn_done';
   if (isActive) {
     cardClassName += ' card_active';
   } if (isHard) {
     cardClassName += ' hard';
     diffButtonClassName += ' card__status-btn_diff-active';
+    diffButtonStatus = true;
+    diffButtonText = 'сложное';
   } if (isLearn) {
     cardClassName += ' learn';
     learButtonClassName += ' card__status-btn_done-active';
+  } if (isHard && sessionGroup === 6) {
+    diffButtonText = 'удалить';
+    diffButtonStatus = false;
+    cardClassName = 'card';
+    diffButtonClassName = 'card__status-btn card__status-btn_diff';
   }
 
   function hardStatus(e: React.MouseEvent) {
     e.stopPropagation();
     diffCards(wordId);
-    setUserWord('hard');
+    /* setUserWord('hard'); */
   }
   function learnStatus(e: React.MouseEvent) {
     e.stopPropagation();
     learnCards(wordId);
-    getUserWordsIds();
-    /* console.log(user?.token);
-    console.log(user?.userId); */
+    /* getUserWordsIds(); */
   }
   return (
     <div className={cardClassName} onClick={() => handleClick(wordId)}>
@@ -124,7 +134,7 @@ export default function Words(props: IWordCard) {
         </div>
         {user && (
           <div className="card__button-wrapper">
-            <button type="button" className={diffButtonClassName} onClick={(e) => hardStatus(e)}>+  сложное</button>
+            <button type="button" className={diffButtonClassName} disabled={diffButtonStatus} onClick={(e) => hardStatus(e)}>{diffButtonText}</button>
             <button type="button" className={learButtonClassName} onClick={(e) => learnStatus(e)}>✓  изучено</button>
           </div>
         )}

@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
+/* eslint-disable max-len */
 import axios from 'axios';
 import { useEffect, useState, useContext } from 'react';
-import { UserSigninResp } from '../types';
+import { UserSigninResp, IUserWords } from '../types';
 import { UserContext } from '../contexts';
 
 export default function useDictionaryData() {
@@ -10,6 +12,7 @@ export default function useDictionaryData() {
   const [loading, setLoading] = useState(false);
   const [group, setGroup] = useState<number>(sessionGroup);
   const [selectedCart, setSelectedCart] = useState('');
+  const [userCards, setUserCards] = useState(['']);
   const [hardCard, setHardCard] = useState(['']);
   const [learnedCard, setLearnedCard] = useState(['']);
   const [currentPage, setCurrentPage] = useState(0);
@@ -17,6 +20,7 @@ export default function useDictionaryData() {
   const [hardWordsData, setHardWordsData] = useState([]);
 
   async function getWordsData(gr: number, page: number) {
+    getUserWordsIds();
     setLoading(true);
     const response = await axios.get(`https://rslang-database.herokuapp.com/words?page=${page === 0 ? 0 : page - 1}&group=${gr}`);
     setWordsData(response.data);
@@ -36,6 +40,24 @@ export default function useDictionaryData() {
       },
     );
     setHardWordsData(response.data[0].paginatedResults);
+  }
+
+  async function getUserWordsIds() {
+    const response = await axios.get(
+      `https://rslang-database.herokuapp.com/users/${user?.userId}/words`,
+      {
+        headers: {
+          Authorization: `Bearer ${user?.token}`,
+        },
+      },
+    );
+    const userWordsId = response.data.map((i: IUserWords) => i.wordId);
+    const hardWordsId = response.data.filter((i: IUserWords) => i.difficulty === 'hard').map((i: IUserWords) => i.wordId);
+    const learnedWordsId = response.data.filter((i: IUserWords) => i.difficulty === 'learned').map((i: IUserWords) => i.wordId);
+
+    setUserCards(userWordsId);
+    setHardCard(hardWordsId);
+    setLearnedCard(learnedWordsId);
   }
 
   useEffect(() => {
@@ -59,30 +81,79 @@ export default function useDictionaryData() {
     }
   };
 
+  function postUserWord(id: string, status: string) {
+    return axios.post(
+      `https://rslang-database.herokuapp.com/users/${user?.userId}/words/${id}`,
+      {
+        difficulty: status,
+        optional: {},
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${user?.token}`,
+        },
+      },
+    );
+  }
+
+  function deleteUserWord(id: string) {
+    return axios.delete(
+      `https://rslang-database.herokuapp.com/users/${user?.userId}/words/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${user?.token}`,
+        },
+      },
+    );
+  }
+
+  function putUserWord(id: string, status: string) {
+    return axios.put(
+      `https://rslang-database.herokuapp.com/users/${user?.userId}/words/${id}`,
+      {
+        difficulty: status,
+        optional: {},
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${user?.token}`,
+        },
+      },
+    );
+  }
+
   const diffCards = (id: string) => {
-    if (learnedCard.includes(id)) {
-      setLearnedCard(learnedCard.filter((i) => i !== id));
+    if (!userCards.includes(id)) {
+      postUserWord(id, 'hard');
+      getUserWordsIds();
     }
-    const newCardsArr = (): string[] => {
-      if (hardCard.includes(id)) {
-        return hardCard.filter((i) => i !== id);
-      }
-      return hardCard.concat([id]);
-    };
-    setHardCard(newCardsArr);
+    if (hardCard.includes(id)) {
+      deleteUserWord(id);
+      getUserWordsIds();
+    }
+    if (learnedCard.includes(id)) {
+      putUserWord(id, 'hard');
+      getUserWordsIds();
+    }
+
+    getUserWordsIds();
   };
 
   const learnCards = (id: string) => {
-    if (hardCard.includes(id)) {
-      setHardCard(hardCard.filter((i) => i !== id));
+    if (!userCards.includes(id)) {
+      postUserWord(id, 'learned');
+      getUserWordsIds();
     }
-    const newCardsArr = (): string[] => {
-      if (learnedCard.includes(id)) {
-        return learnedCard.filter((i) => i !== id);
-      }
-      return learnedCard.concat([id]);
-    };
-    setLearnedCard(newCardsArr);
+    if (learnedCard.includes(id)) {
+      deleteUserWord(id);
+      getUserWordsIds();
+    }
+    if (hardCard.includes(id)) {
+      putUserWord(id, 'learned');
+      getUserWordsIds();
+    }
+
+    getUserWordsIds();
   };
   return {
     group,

@@ -40,7 +40,7 @@ export default function Dictionary() {
       <DictionaryMenu group={group} changeGroup={changeGroup} />
       { loading && <Loader />}
       <div className="dictionary__cards">
-        {group === 6 ? (hardWordsData.map((product: IProduct) => <Words product={product} key={product.id} isActive={product._id === selectedCart} handleClick={handleClick} isHard={!!hardCard.includes(product.id)} diffCards={diffCards} isLearn={!!learnedCard.includes(product.id)} learnCards={learnCards} />))
+        {group === 6 ? (hardWordsData.map((product: IProduct) => <Words product={product} key={product._id} isActive={product._id === selectedCart} handleClick={handleClick} isHard={!!hardCard.includes(product._id)} diffCards={diffCards} isLearn={!!learnedCard.includes(product.id)} learnCards={learnCards} />))
           : (wordsData.map((product: IProduct) => <Words product={product} key={product.id} isActive={product.id === selectedCart} handleClick={handleClick} isHard={!!hardCard.includes(product.id)} diffCards={diffCards} isLearn={!!learnedCard.includes(product.id)} learnCards={learnCards} />))}
       </div>
       {group === 6 ? '' : (
