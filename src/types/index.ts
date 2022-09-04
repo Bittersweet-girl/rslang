@@ -89,28 +89,28 @@ export interface GameProps {
 export interface UserWord {
   difficulty: string;
   id: string;
-  optional: {};
+  optional: OptionalData;
   wordId: string;
 }
 
 interface GameResult {
+  correctRow: number;
+  correct: number;
   right: number;
   wrong: number;
-  row: number;
 }
 
 interface OptionalData {
-  isNew?: boolean;
   sprint?: GameResult;
   audio?: GameResult;
 }
 
 export interface NewUserWord {
-  dificulty: 'string';
+  difficulty: string;
   optional?: OptionalData;
 }
 
-export interface PreparedWords extends IProduct {
+export interface PreparedWords extends CombinedWordsData {
   isCorrect?: boolean;
   isCorrectAnswer?: boolean;
   fakeTranslation?: string;
@@ -138,6 +138,7 @@ export interface MakeGameWordsParam extends GetWordsParam {
 export interface CreateUserWordParam {
   wordId: string;
   wordData: NewUserWord;
+  usePut: boolean;
 }
 
 export interface TimerParam {
@@ -171,6 +172,15 @@ export interface SprintGameParam {
 
 export interface GameWord {
   word: IProduct;
+}
+
+export interface SaveStatisticParam {
+  game: string;
+  correct: number;
+  wrong: number;
+  correctRow: number;
+  newWords: number;
+  learned: number;
 }
 
 // --------Audio Game ----------

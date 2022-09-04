@@ -4,7 +4,7 @@ import { GameProps } from '../../types';
 import SprintGame from './SprintGame';
 import { getGameWords } from '../../api/words';
 import StartScreen from './StartScreen';
-import prepareGameData from './helpers';
+import prepareGameData, { saveSprintStatistic } from './helpers';
 import SprintResult from './SprintResult';
 
 export default function Sprint({ group, currentPage }: GameProps) {
@@ -40,10 +40,20 @@ export default function Sprint({ group, currentPage }: GameProps) {
             words: prepareGameData(wordsData),
             initialWords: wordsData,
             isGameStarted: true,
+            isGroupConfirmed: false,
           }),
         ));
     }
   }, [currentGroup, page, isGroupConfirmed]);
+
+  // build and save statistic
+  useEffect(() => {
+    if (isGameOver) {
+      saveSprintStatistic(state);
+    }
+  }, [isGameOver]);
+
+  // console.log('word.meta', words);
 
   const confirmGroup = () => setState({ ...state, isGroupConfirmed: true });
   const changeGroup = (newGroup:number) => setState({ ...state, group: newGroup });
@@ -51,7 +61,7 @@ export default function Sprint({ group, currentPage }: GameProps) {
   return (
     <section className="sprint-page">
 
-      {!isGroupConfirmed && (
+      {!isGroupConfirmed && !isGameStarted && !isGameOver && (
         <StartScreen
           onStartGameClick={confirmGroup}
           onGroupChange={changeGroup}

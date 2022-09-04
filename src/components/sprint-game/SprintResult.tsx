@@ -2,7 +2,7 @@ import React from 'react';
 import { PAGE_DICTIONARY } from '../../constants';
 import useNavigation from '../../hooks/useNavigation';
 import { GameWord, SprintGameParam } from '../../types';
-import prepareGameData from './helpers';
+// import prepareGameData from './helpers';
 import './sprint.scss';
 
 function Word({ word }:GameWord) {
@@ -25,8 +25,8 @@ function Word({ word }:GameWord) {
 export default function SprintResult({ state, setState }:SprintGameParam) {
   const { navigate } = useNavigation();
   const { words } = state;
-  const correctAnswers = words.filter((word) => word.isCorrectAnswer && word.isInGame);
-  const wrongAnswers = words.filter((word) => !word.isCorrectAnswer && word.isInGame);
+  const correctAnswers = words.filter((word) => word.isCorrectAnswer);
+  const wrongAnswers = words.filter((word) => word.isCorrectAnswer === false);
 
   return (
     <div className="sprint-statistic">
@@ -83,8 +83,8 @@ export default function SprintResult({ state, setState }:SprintGameParam) {
               index: 0,
               isGameStarted: false,
               isGameOver: false,
-              words: prepareGameData(state.initialWords),
-              isGroupConfirmed: false,
+              words: [],
+              isGroupConfirmed: true,
             });
           }}
         >

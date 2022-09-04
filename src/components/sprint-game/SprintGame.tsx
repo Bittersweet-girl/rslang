@@ -14,6 +14,8 @@ export default function SprintGame({
 
   const onCorrectAnswer = () => {
     const newState = { ...state, words: [...words] };
+    // const difficulty = newState.words[index].meta?.difficulty;
+    // const isNew = newState.words[index].meta?.optional;
     newState.total += 1;
     newState.countCorrect += 1;
     newState.correctRow += 1;
@@ -28,7 +30,10 @@ export default function SprintGame({
     } else {
       newState.index = state.index + 1;
     }
-    newState.words[index] = { ...currentWord, isCorrectAnswer: true, isInGame: true };
+    // if (newState.words[index].meta) {
+
+    // }
+    newState.words[index] = { ...currentWord, isCorrectAnswer: true };
     setState(newState);
   };
 
@@ -43,7 +48,7 @@ export default function SprintGame({
     } else {
       newState.index = state.index + 1;
     }
-    newState.words[index] = { ...currentWord, isCorrectAnswer: false, isInGame: true };
+    newState.words[index] = { ...currentWord, isCorrectAnswer: false };
     setState(newState);
   };
 

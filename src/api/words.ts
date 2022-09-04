@@ -7,8 +7,7 @@ import {
   MakeGameWordsParam, UserWord,
 } from '../types';
 import { getCurrentUser } from './user';
-
-const LEARNED = 'learned';
+import { difficulties } from '../constants';
 
 // если не залогиненый /words?group=1&page=1
 
@@ -60,8 +59,14 @@ export function makeCombinedWords({ words, userWords }: CombinedWords) {
   });
 }
 
+// export async function getCombinedWords({ group, page }) {
+//   const words = (await getWords({ group, page }));
+//   const userWords = await getUserWords();
+//   return makeCombinedWords({ words, userWords });
+// }
+
 export function filterLearnedWords(words:CombinedWordsData[]) {
-  return words.filter((word) => !word.meta || word.meta.difficulty === LEARNED);
+  return words.filter((word) => !word.meta || word.meta.difficulty === difficulties.LEARNED);
 }
 
 export async function getGameWords({ group, page, filterLearned }: MakeGameWordsParam) {
@@ -74,24 +79,51 @@ export async function getGameWords({ group, page, filterLearned }: MakeGameWords
   return gameWords;
 }
 
-export function createUserWord({ wordId, wordData }: CreateUserWordParam) {
+// getGameWords({ group: 1, page: 1, filterLearned: true }).then((data) => {
+//   console.log('data', data);
+// });
+
+// getCombinedWords({ group: 1, page: 1 }).then((words) => {
+//   console.log('combinedwords', words);
+//   // console.log(words.map((word) => word.optional));
+// });
+
+// getUserWords().then((data) => {
+//   console.log('data', data);
+// });
+
+// const newWord: NewUserWord = {
+//   difficulty: 'hard', | learned | easy
+//   optional: {
+//     sprint: {
+//       correct: 3,
+//       wrong: 3,
+//       correctRow: 3,
+//     },
+//   },
+// };
+
+export function saveUserWord({ wordId, wordData, usePut = false }: CreateUserWordParam) {
+  console.log('saveUserWord', { wordId, wordData, usePut });
+
   const user = getCurrentUser();
   if (!user?.userId) {
-    return Promise.resolve();
+    return Promise.reject();
   }
-  return axios.post(
-    `https://rslang-database.herokuapp.com/users/${user.userId}/words/${wordId}`,
-    {
-      data: wordData,
+  return axios({
+    url: `https://rslang-database.herokuapp.com/users/${user.userId}/words/${wordId}`,
+    method: usePut ? 'PUT' : 'POST',
+    data: wordData,
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${user.token}`,
     },
-    {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${user.token}`,
-      },
-    },
-  )
-    .then(({ data }) => data)
-    .catch(() => []);
+  })
+    .then(({ data }) => data);
 }
+
+// createUserWord({ wordId: '5e9f5ee35eb9e72bc21afe15', wordData: newWord, usePut: false })
+// .then((data) => {
+//   console.log('data', data);
+// });
