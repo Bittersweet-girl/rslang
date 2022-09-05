@@ -99,5 +99,111 @@ export interface AppContextParam {
 
 export interface GameProps {
   group: number;
-  groupPage: number;
+  currentPage: number;
+}
+
+// --------------------sprine-game types---------------------
+
+export interface UserWord {
+  difficulty: string;
+  id: string;
+  optional: OptionalData;
+  wordId: string;
+}
+
+interface GameResult {
+  correctRow: number;
+  correct: number;
+  // right: number;
+  wrong: number;
+}
+
+interface OptionalData {
+  sprint?: GameResult;
+  audio?: GameResult;
+}
+
+export interface NewUserWord {
+  difficulty: string;
+  optional?: OptionalData;
+}
+
+export interface PreparedWords extends CombinedWordsData {
+  isCorrect?: boolean;
+  isCorrectAnswer?: boolean;
+  fakeTranslation?: string;
+  isInGame?: boolean;
+}
+
+export interface CombinedWords {
+  words: IProduct[];
+  userWords: UserWord[];
+}
+
+export interface CombinedWordsData extends IProduct {
+  meta?: UserWord;
+}
+
+export interface GetWordsParam {
+  group: number;
+  page: number;
+}
+
+export interface MakeGameWordsParam extends GetWordsParam {
+  filterLearned: boolean;
+  amount: number;
+}
+
+export interface CreateUserWordParam {
+  wordId: string;
+  wordData: NewUserWord;
+  usePut: boolean;
+}
+
+export interface TimerParam {
+  time: number;
+  onTimeUp: ()=>void;
+}
+
+export interface GameWords {
+  words: IProduct[];
+}
+
+export interface GameState {
+  countCorrect: number;
+  correctRow: number;
+  total: number;
+  countBonus: number;
+  bonusRatio: number;
+  countWrong: number;
+  score: number;
+  index: number;
+  words: PreparedWords[],
+  initialWords: PreparedWords[],
+  isGameOver: boolean;
+  isGameStarted: boolean;
+}
+
+export interface SprintGameParam {
+  state: GameState;
+  setState: React.Dispatch<any>;
+}
+
+export interface GameWord {
+  word: IProduct;
+}
+
+export interface SaveStatisticParam {
+  game: string;
+  correct: number;
+  wrong: number;
+  correctRow: number;
+  newWords: number;
+  learned: number;
+}
+
+// --------Audio Game ----------
+
+export interface IAudioProps {
+  onPlayClick: React.MouseEventHandler<HTMLButtonElement>;
 }

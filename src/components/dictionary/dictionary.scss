@@ -1,4 +1,5 @@
 @import '../../sass-components/variables';
+@import '../../sass-components/mixins';
 
 .dictionary {
   padding: 20px 0;
@@ -116,10 +117,69 @@
   }
 
   &__games-container {
-    margin: 40px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 60px 0 60px;
+
+    .dictionary__audio-btn {
+      border-radius: 4px;
+      background-color: $color-secondary-light;
+      @include bgImage($url: url('../../../public/assets/svg/audio-game.svg'), $width: 280px, $height: 280px);
+      background-position: top;
+      background-size: 180px 160px;
+      border: solid 1px $color-secondary;
+      color: $color-secondary;
+      padding: 20px;
+      transition: 0.3s;
+      transform: scale(1);
+        &:hover {
+          transform: scale(1.01);
+          box-shadow: 1px 1px 5px 1px rgb(12 12 12 / 20%);
+        }
+      }
+
+      .dictionary__audio-btn[disabled] {
+        filter: saturate(0);
+        opacity: 0.5;
+      }
+
+      .dictionary__audio-text {
+        background: transparent;
+        text-align: justify;
+        margin-top: 150px;
+      }
+
+      .dictionary__sprint-btn {
+        border-radius: 4px;
+        background-color: $color-secondary-light;
+        @include bgImage($url: url('../../../public/assets/svg/sprint-game.svg'), $width: 280px, $height: 280px);
+        background-position: top;
+        background-size: 180px 160px;
+        border: solid 1px $color-secondary;
+        color: $color-secondary;
+        padding: 20px;
+        transition: 0.3s;
+        transform: scale(1);
+          &:hover {
+            transform: scale(1.01);
+            box-shadow: 1px 1px 5px 1px rgb(12 12 12 / 20%);
+          }
+        }
+        .dictionary__sprint-text {
+          background: transparent;
+          text-align: justify;
+          margin-top: 150px;
+        }
+
+        .dictionary__sprint-btn[disabled] {
+          filter: saturate(0);
+          opacity: 0.5;
+        }
   }
 }
 
 .btn:hover .dictionary__button-sub {
   color: $color-bg;
 }
+

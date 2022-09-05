@@ -8,8 +8,24 @@ import Login from './components/login/Login';
 import { INewTokens } from './types';
 import { AppContext, UserContext } from './contexts';
 import { getCurrentUser } from './api/user';
-import { pages, PAGE_MAIN } from './constants';
+import { PAGE_MAIN } from './constants';
 import appReducer from './reducers/appReducer';
+import Dictionary from './components/dictionary/Dictionary';
+import Main from './components/main/Main';
+import Sprint from './components/sprint-game/Sprint';
+import Statistic from './components/statistic/Statistic';
+import About from './components/about/About';
+import AudioMain from './components/audio-game';
+
+export const pages = {
+  dictionary: Dictionary,
+  main: Main,
+  null: Main,
+  audio: AudioMain,
+  sprint: Sprint,
+  statistic: Statistic,
+  about: About,
+};
 
 let oneCall = true;
 export default function App() {
@@ -40,7 +56,7 @@ export default function App() {
     localStorage.setItem('user', JSON.stringify(res));
     setUser(res);
   }
-  if (oneCall && sessionStorage.getItem('page') === null) {
+  if (user && oneCall && sessionStorage.getItem('page') === null) {
     oneCall = false;
     refreshToken();
   }
@@ -51,14 +67,16 @@ export default function App() {
     <UserContext.Provider value={user}>
       <AppContext.Provider value={appContextValue}>
         <div className="app">
-          <Header
-            onLoginClick={() => setIsLoginOpen(true)}
-            signout={() => {
-              setUser(null);
-              localStorage.removeItem('user');
-            }}
-          />
-          <ActivePage {...pageProps} />
+          <div className="wrapper">
+            <Header
+              onLoginClick={() => setIsLoginOpen(true)}
+              signout={() => {
+                setUser(null);
+                localStorage.removeItem('user');
+              }}
+            />
+            <ActivePage {...pageProps} />
+          </div>
           <Footer />
           {isLoginOpen && <Login onClose={() => setIsLoginOpen(false)} setUser={setUser} />}
         </div>
