@@ -7,23 +7,24 @@ export interface IHeaderProps {
 }
 
 export interface IProduct {
-  id: string;
-  group: number;
-  page: number;
-  word: string;
-  image: string;
-  audio: string;
-  audioMeaning: string;
-  audioExample: string;
-  textMeaning: string;
-  textExample: string;
-  transcription: string;
-  wordTranslate: string;
-  textMeaningTranslate: string;
-  textExampleTranslate: string;
+  _id: string,
+  id: string,
+  group: number,
+  page: number,
+  word: string,
+  image: string,
+  audio: string,
+  audioMeaning: string,
+  audioExample: string,
+  textMeaning: string,
+  textExample: string,
+  transcription: string,
+  wordTranslate: string,
+  textMeaningTranslate: string,
+  textExampleTranslate: string
 }
 
-export interface ITest {
+export interface IWordCard {
   product: IProduct;
   isActive: boolean;
   handleClick: (id: string) => void;
@@ -36,8 +37,25 @@ export interface ITest {
 export interface IPaginate {
   itemsPerPage: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
+  forcePage: number;
 }
 
+export interface IUserWords {
+  difficulty: string;
+  id: string;
+  wordId: string;
+}
+
+export interface IDictMenu {
+  group: number;
+  changeGroup: (gr: number) => void;
+}
+export interface INewTokens {
+  data: {
+    token: string;
+    refreshToken: string;
+  }
+}
 // --------------------login interfaces---------------------
 
 export interface UserData {

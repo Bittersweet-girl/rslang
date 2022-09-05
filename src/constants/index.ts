@@ -6,7 +6,7 @@ export const COLORS = [
   { borderColor: '#15C9FE', color: '#000000', boxShadow: 'none' },
   { borderColor: '#FE95D0', color: '#000000', boxShadow: 'none' },
   { borderColor: '#CC62A5', color: '#000000', boxShadow: 'none' },
-  { borderColor: '#CC62A5', color: '#000000', boxShadow: 'none' },
+  { borderColor: '#263238', color: '#000000', boxShadow: 'none' },
   { color: '#ffffff' },
   { color: '' },
   { backgroundColor: '#FE941B' },
