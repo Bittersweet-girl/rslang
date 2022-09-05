@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SprintGameParam, State } from '../../types';
 import './sprint.scss';
 import Timer from './Timer';
@@ -30,9 +30,6 @@ export default function SprintGame({
     } else {
       newState.index = state.index + 1;
     }
-    // if (newState.words[index].meta) {
-
-    // }
     newState.words[index] = { ...currentWord, isCorrectAnswer: true };
     setState(newState);
   };
@@ -51,6 +48,29 @@ export default function SprintGame({
     newState.words[index] = { ...currentWord, isCorrectAnswer: false };
     setState(newState);
   };
+
+  const onLeftBtnClick = currentWord.isCorrect ? onWrongAnswer : onCorrectAnswer;
+  const onRightBtnClick = currentWord.isCorrect ? onCorrectAnswer : onWrongAnswer;
+
+  useEffect(() => {
+    const onKeypress = (e:any) => {
+      if (e.code === 'ArrowLeft') {
+        e.preventDefault();
+        e.stopPropagation();
+        onLeftBtnClick();
+      }
+
+      if (e.code === 'ArrowRight') {
+        e.preventDefault();
+        e.stopPropagation();
+        onRightBtnClick();
+      }
+    };
+    window.addEventListener('keyup', onKeypress);
+    return () => {
+      window.removeEventListener('keyup', onKeypress);
+    };
+  }, [onLeftBtnClick, onRightBtnClick]);
 
   // if (!currentWord) {
   //   return null;
@@ -85,7 +105,7 @@ export default function SprintGame({
         <button
           type="button"
           className="game__btn game__button-no"
-          onClick={currentWord.isCorrect ? onWrongAnswer : onCorrectAnswer}
+          onClick={onLeftBtnClick}
         >
           Неверно
         </button>
@@ -93,7 +113,7 @@ export default function SprintGame({
         <button
           type="button"
           className="game__btn game__button-yes"
-          onClick={currentWord.isCorrect ? onCorrectAnswer : onWrongAnswer}
+          onClick={onRightBtnClick}
         >
           Верно
         </button>

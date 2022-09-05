@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { difficulties } from '../constants';
 import { SaveStatisticParam } from '../types';
 import { getCurrentUser } from './user';
 
@@ -65,9 +66,11 @@ export async function saveStatistic({
       },
     },
   };
+
   console.log('saveStatistic', {
     game, correct, wrong, correctRow, newWords, learned,
   });
+
   return axios.put(
     `https://rslang-database.herokuapp.com/users/${user.userId}/statistics`,
     newStats,
@@ -78,4 +81,25 @@ export async function saveStatistic({
     },
   )
     .then(({ data }) => data);
+}
+
+// getStatistic().then((data) => {
+//   console.log('getStatistic', data);
+// });
+
+export function getLeurnedWords() {
+  const user = getCurrentUser();
+  if (!user?.userId) {
+    return Promise.reject();
+  }
+  return axios.get(`https://rslang-database.herokuapp.com/users/${user?.userId}/aggregatedWords`, {
+    headers: {
+      Authorization: `Bearer ${user?.token}`,
+    },
+    params: {
+      filter: `{"$and":[{"userWord.difficulty":"${difficulties.LEARNED}"}]}`,
+    },
+  })
+    .then(({ data }) => data)
+    .catch(() => []);
 }
