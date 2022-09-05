@@ -60,8 +60,24 @@ export default function Dictionary() {
       {group === 6 ? '' : (
         <div className="dictionary__games-container">
           {/* <span>Go to sprint</span> */}
-          <button type="button" className="" disabled={gameBtnStatus} onClick={() => navigate(PAGE_AUDIO, { group })}>Аудиовызов</button>
-          <button type="button" className="" disabled={gameBtnStatus} onClick={() => navigate(PAGE_SPRINT, { group })}>Спринт</button>
+          <button
+            type="button"
+            className="dictionary__audio-btn"
+            disabled={gameBtnStatus}
+            onClick={() => navigate(PAGE_AUDIO, { group })}
+          >
+            <p className="dictionary__audio-text">Важный навык - восприятия языка на слух. С этой игрой вы сможете запомнить больше новых слов.</p>
+
+          </button>
+          <button
+            type="button"
+            className="dictionary__sprint-btn"
+            disabled={gameBtnStatus}
+            onClick={() => navigate(PAGE_SPRINT, { group })}
+          >
+            <p className="dictionary__sprint-text">Учите английский язык быстро, а эта игра вам поможет запомнить еще больше слов. Вперед!</p>
+
+          </button>
         </div>
       )}
     </div>

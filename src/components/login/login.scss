@@ -110,22 +110,17 @@
     background-color: $color-red;
     color: $color-bg;
     width: 100%;
+    transform: scale(1);
+    transition: 0.3s;
     &:hover {
-      border: solid 1px $color-red;
-      background-color: transparent;
-      color: $color-red;
-      transition: 0.3s;
+      transform: scale(1.03);
     }
+
     &_green {
       background-color: $color-green;
-      &:hover {
-        border: solid 1px $color-green;
-        background-color: transparent;
-        color: $color-green;
-        transition: 0.3s;
-      }
     }
   }
+  
   &__error {
     color: $color-red;
     margin: 0 0 5px;

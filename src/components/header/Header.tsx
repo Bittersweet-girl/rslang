@@ -36,7 +36,7 @@ export default function Header(props: IHeaderProps) {
                   sessionStorage.setItem('group', '0');
                 }}
               >
-                Раздел первый
+                А1 Начальный
               </button>
               <button
                 type="button"
@@ -46,7 +46,7 @@ export default function Header(props: IHeaderProps) {
                   sessionStorage.setItem('group', '1');
                 }}
               >
-                Раздел второй
+                А2 Начальный
               </button>
               <button
                 type="button"
@@ -56,7 +56,7 @@ export default function Header(props: IHeaderProps) {
                   sessionStorage.setItem('group', '2');
                 }}
               >
-                Раздел третий
+                В1 Средний
               </button>
               <button
                 type="button"
@@ -66,7 +66,7 @@ export default function Header(props: IHeaderProps) {
                   sessionStorage.setItem('group', '3');
                 }}
               >
-                Раздел четвертый
+                В2 Средний
               </button>
               <button
                 type="button"
@@ -76,7 +76,7 @@ export default function Header(props: IHeaderProps) {
                   sessionStorage.setItem('group', '4');
                 }}
               >
-                Раздел пятый
+                С1 Сложный
               </button>
               <button
                 type="button"
@@ -86,7 +86,7 @@ export default function Header(props: IHeaderProps) {
                   sessionStorage.setItem('group', '5');
                 }}
               >
-                Раздел шестой
+                С1 Сложный
               </button>
               {user && (
                 <button
