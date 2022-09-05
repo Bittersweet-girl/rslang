@@ -113,6 +113,7 @@ export interface NewUserWord {
 export interface PreparedWords extends IProduct {
   isCorrect?: boolean;
   isCorrectAnswer?: boolean;
+  isCorrectAnswerAudio?: boolean;
   fakeTranslation?: string;
   isInGame?: boolean;
 }
@@ -176,9 +177,11 @@ export interface GameWord {
 // --------Audio Game ----------
 
 export interface AudioGameState {
+  isAnswer: boolean;
+  isCorrect: boolean;
   index: number;
   words: PreparedWords[],
-  initialWords: PreparedWords[],
+  answers: string[],
   isGameOver: boolean;
   isGameStarted: boolean;
   group: number;

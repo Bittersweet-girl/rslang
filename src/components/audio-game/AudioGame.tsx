@@ -1,7 +1,6 @@
 /* eslint-disable import/no-cycle */
 import React from 'react';
 import { BTNS_BG } from '../../constants';
-import './audio-game.scss';
 
 export default function AudioGame({
   onStartGameClick, onGroupChange, group, isGroupChangeDisabled,

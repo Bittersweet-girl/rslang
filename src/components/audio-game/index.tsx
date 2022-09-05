@@ -4,13 +4,16 @@ import AudioGame from './AudioGame';
 import AudioGamePlay from './AudioGamePlay';
 import { getGameWords } from '../../api/words';
 import { GameProps } from '../../types';
-import prepareGameData from '../sprint-game/helpers';
+import { makeAnswerArr } from './audioGameFunc';
+import './audio-game.scss';
 
 export default function AudioMain({ group, currentPage }: GameProps) {
   const [state, setState] = useState({
+    isAnswer: false,
+    isCorrect: false,
     index: 0,
-    initialWords: [],
     words: [],
+    answers: [],
     isGameOver: false,
     isGroupConfirmed: false,
     isGameStarted: false,
@@ -18,7 +21,7 @@ export default function AudioMain({ group, currentPage }: GameProps) {
     page: currentPage || 27,
   });
   const {
-    isGameStarted, isGameOver, words, isGroupConfirmed, page,
+    index, isGameStarted, isGameOver, words, isGroupConfirmed, page,
   } = state;
   const currentGroup = state.group;
 
@@ -28,14 +31,14 @@ export default function AudioMain({ group, currentPage }: GameProps) {
         .then((wordsData) => setState(
           (currentState: any) => ({
             ...currentState,
-            words: prepareGameData(wordsData),
-            initialWords: wordsData,
+            words: wordsData,
             isGameStarted: true,
+            answers: makeAnswerArr(index, wordsData),
           }),
         ));
     }
   }, [currentGroup, page, isGroupConfirmed]);
-
+  // console.log('index');
   const confirmGroup = () => setState({ ...state, isGroupConfirmed: true });
   const changeGroup = (newGroup: number) => setState({ ...state, group: newGroup });
 

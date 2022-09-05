@@ -1,55 +1,86 @@
 /* eslint-disable import/no-cycle */
-import React from 'react';
-// import axios from 'axios';
-import './audio-game.scss';
+/* eslint-disable react/no-array-index-key */
+import React, { useEffect } from 'react';
 import { AudioGameParam, IProduct, GameWord } from '../../types';
-import checkAnswer from './audioGameFunc';
+import { checkAnswer, makeAnswerArr } from './audioGameFunc';
 
-function Word({ word }: GameWord) {
-  const playAudio = () => {
-    const domen = 'https://rslang-database.herokuapp.com/';
-    const audioSrc = `${domen}${word.audio}`;
-    const audioElement = new Audio(audioSrc);
-    audioElement.play();
-  };
+const playAudio = (word: IProduct) => {
+  const domen = 'https://rslang-database.herokuapp.com/';
+  const audioSrc = `${domen}${word.audio}`;
+  const audioElement = new Audio(audioSrc);
+  audioElement.play();
+};
+
+function WordAudio({ word }: GameWord) {
+  useEffect(() => playAudio(word));
   return (
-    <button type="button" className="audio-game-play__btn_audio" onClick={playAudio}>
+    <button type="button" className="audio-game-play__btn_audio" onClick={() => playAudio(word)}>
       <img src="./assets/svg/play.svg" alt="play" className="audio-game-play__play-img" />
     </button>
   );
 }
 
-function makeAnswerArr(num: number, arr: IProduct[]) {
-  const items: string[] = [];
-  const numArr: number[] = [];
-  items.push(arr[num].wordTranslate);
-
-  for (let i = 0; i < 3; i += 1) {
-    let v = Math.floor(Math.random() * 20);
-    while (num === v || numArr.includes(v)) {
-      v = Math.floor(Math.random() * 20);
-    }
-    numArr.push(v);
-    items.push(arr[v].wordTranslate);
-  }
-  return items;
-}
-
 export default function AudioGamePlay({ state, setState }: AudioGameParam) {
-  const { index, words } = state;
+  const { index, words, answers } = state;
   const currentWord = words[index];
-  const items = makeAnswerArr(index, words);
+
+  function nextQuestion() {
+    const newState = { ...state, words: [...words] };
+    if (newState.index === newState.words.length - 1) {
+      newState.isGameOver = true;
+    } else {
+      newState.index = state.index + 1;
+      newState.isAnswer = false;
+      newState.answers = makeAnswerArr(index + 1, words);
+    }
+    if (state.isCorrect) {
+      newState.words[index] = { ...currentWord, isCorrectAnswerAudio: true };
+    } else {
+      newState.words[index] = { ...currentWord, isCorrectAnswerAudio: false };
+    }
+    setState(newState);
+  }
+  function setAnswer(event: React.MouseEvent<HTMLButtonElement>) {
+    const newState = { ...state };
+    newState.isCorrect = checkAnswer(event, index, words);
+    newState.isAnswer = true;
+    setState(newState);
+  }
+
+  if (!state.isAnswer) {
+    return (
+      <div className="audio-game-play">
+        <WordAudio word={currentWord} key={currentWord.id} />
+        <div className="audio-game-play-options-block">
+          {answers.map((ans: string, i: number) => (
+            <button
+              key={i}
+              type="button"
+              className={`audio-game-play__option audio-game-play__option_${i} btn`}
+              onClick={(event) => {
+                setAnswer(event);
+              }}
+            >
+              {ans}
+            </button>
+          ))}
+        </div>
+        <button className="audio-game-play__btn btn" type="button">Не знаю</button>
+      </div>
+    );
+  }
   return (
     <div className="audio-game-play">
-      <Word word={currentWord} key={currentWord.id} />
+      <WordAudio word={currentWord} key={currentWord.id} />
+      <h3>{ currentWord.word }</h3>
       <div className="audio-game-play-options-block">
-        {items.map((ans: string, i: number) => (
-          <button type="button" className={`audio-game-play__option audio-game-play__option_${i} btn`} onClick={(event) => checkAnswer(event, index, words)}>
+        {answers.map((ans: string, i: number) => (
+          <button key={i} type="button" className={`audio-game-play__option audio-game-play__option_${i} btn`}>
             {ans}
           </button>
         ))}
       </div>
-      <button className="audio-game-play__btn btn" type="button">Не знаю</button>
+      <button className="audio-game-play__btn btn" type="button" onClick={nextQuestion}>Дальше</button>
     </div>
   );
 }
