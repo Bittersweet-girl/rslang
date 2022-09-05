@@ -40,7 +40,7 @@ export default function App() {
     localStorage.setItem('user', JSON.stringify(res));
     setUser(res);
   }
-  if (oneCall && sessionStorage.getItem('page') === null) {
+  if (user && oneCall && sessionStorage.getItem('page') === null) {
     oneCall = false;
     refreshToken();
   }
