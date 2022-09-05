@@ -39,15 +39,9 @@ function getDayKey() {
 
 export async function getTodayStatistic() {
   const todayDate = getDayKey();
-  // console.log('todaydate', todayDate);
-
   const statistic = await getStatistic();
   const todayStats = statistic?.optional?.[todayDate] || {};
   return { audio: EMPTY_GAME_STATISTIC, sprint: EMPTY_GAME_STATISTIC, ...todayStats };
-
-  // console.log('statisticGET', statistic);
-  // console.log('statistic.optional[todayDate]', statistic.optional[todayDate]);
-  // return statistic.optional[todayDate];
 }
 
 // getTodayStatistic().then((data) => console.log(data));
