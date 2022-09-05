@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-first-prop-new-line */
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable react/self-closing-comp */
@@ -58,20 +59,24 @@ export default function Words(props: IWordCard) {
     diffButtonStatus = false;
     cardClassName = 'card';
     diffButtonClassName = 'card__status-btn card__status-btn_diff';
+  } if (isHard && isActive) {
+    cardClassName = 'card card_active';
   }
 
   function hardStatus(e: React.MouseEvent) {
     e.stopPropagation();
     diffCards(wordId);
-    /* setUserWord('hard'); */
   }
   function learnStatus(e: React.MouseEvent) {
     e.stopPropagation();
     learnCards(wordId);
-    /* getUserWordsIds(); */
   }
   return (
-    <div className={cardClassName} onClick={() => handleClick(wordId)}>
+    <div className={cardClassName}
+      onClick={() => {
+        handleClick(wordId);
+      }}
+    >
       <div className="card__main">
         <div>
           <img className="card__image" src={domen + image} alt={word} />

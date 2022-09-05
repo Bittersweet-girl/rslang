@@ -109,6 +109,10 @@
       background: rgb(195, 241, 195);
       border-radius: 15px;
     }
+    &_hard {
+      flex-direction: row;
+      max-height: 100%;
+    }
   }
 
   &__games-container {

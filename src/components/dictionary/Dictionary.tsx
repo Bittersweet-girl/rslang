@@ -1,3 +1,4 @@
+/* eslint-disable no-confusing-arrow */
 /* eslint-disable max-len */
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable no-underscore-dangle */
@@ -34,11 +35,13 @@ export default function Dictionary() {
   } = useDictionaryData();
   let pageStatus = 'dictionary__cards';
   let gameBtnStatus = false;
-  if (learnedCard.length >= 20) {
+  if (wordsData.filter((i: IProduct) => learnedCard.includes(i.id)).length >= 20) {
     pageStatus += ' dictionary__cards_done';
     gameBtnStatus = true;
   }
-
+  if (group === 6) {
+    pageStatus = 'dictionary__cards dictionary__cards_hard';
+  }
   return (
     <div className="dictionary">
       <h1 className="dictionary__title">Учебник</h1>

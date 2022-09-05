@@ -15,6 +15,7 @@ export default function useDictionaryData() {
   const [userCards, setUserCards] = useState(['']);
   const [hardCard, setHardCard] = useState(['']);
   const [learnedCard, setLearnedCard] = useState(['']);
+  const [easyCard, setEasyCard] = useState(['']);
   const [currentPage, setCurrentPage] = useState(0);
   const user: null | UserSigninResp = useContext(UserContext);
   const [hardWordsData, setHardWordsData] = useState([]);
@@ -35,6 +36,7 @@ export default function useDictionaryData() {
           Authorization: `Bearer ${user?.token}`,
         },
         params: {
+          wordsPerPage: '600',
           filter: '{"$and":[{"userWord.difficulty":"hard"}]}',
         },
       },
@@ -54,10 +56,12 @@ export default function useDictionaryData() {
     const userWordsId = response.data.map((i: IUserWords) => i.wordId);
     const hardWordsId = response.data.filter((i: IUserWords) => i.difficulty === 'hard').map((i: IUserWords) => i.wordId);
     const learnedWordsId = response.data.filter((i: IUserWords) => i.difficulty === 'learned').map((i: IUserWords) => i.wordId);
+    const easyWordsId = response.data.filter((i: IUserWords) => i.difficulty === 'easy').map((i: IUserWords) => i.wordId);
 
     setUserCards(userWordsId);
     setHardCard(hardWordsId);
     setLearnedCard(learnedWordsId);
+    setEasyCard(easyWordsId);
   }
 
   useEffect(() => {
@@ -73,6 +77,7 @@ export default function useDictionaryData() {
     setGroup(gr);
     setCurrentPage(1);
   }
+
   const handleClick = (id: string) => {
     if (selectedCart === id) {
       setSelectedCart('');
@@ -96,7 +101,7 @@ export default function useDictionaryData() {
     );
   }
 
-  function deleteUserWord(id: string) {
+  /* function deleteUserWord(id: string) {
     return axios.delete(
       `https://rslang-database.herokuapp.com/users/${user?.userId}/words/${id}`,
       {
@@ -105,7 +110,7 @@ export default function useDictionaryData() {
         },
       },
     );
-  }
+  } */
 
   function putUserWord(id: string, status: string) {
     return axios.put(
@@ -128,10 +133,10 @@ export default function useDictionaryData() {
       getUserWordsIds();
     }
     if (hardCard.includes(id)) {
-      deleteUserWord(id);
+      putUserWord(id, 'easy');
       getUserWordsIds();
     }
-    if (learnedCard.includes(id)) {
+    if (learnedCard.includes(id) || easyCard.includes(id)) {
       putUserWord(id, 'hard');
       getUserWordsIds();
     }
@@ -145,10 +150,10 @@ export default function useDictionaryData() {
       getUserWordsIds();
     }
     if (learnedCard.includes(id)) {
-      deleteUserWord(id);
+      putUserWord(id, 'easy');
       getUserWordsIds();
     }
-    if (hardCard.includes(id)) {
+    if (hardCard.includes(id) || easyCard.includes(id)) {
       putUserWord(id, 'learned');
       getUserWordsIds();
     }
