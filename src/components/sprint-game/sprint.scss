@@ -7,7 +7,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  // height: calc(100vh - 195px);
+  min-height: 750px;
+  height: calc(100vh - 195px);
 
   .sprint-statistic {
     display: flex;
@@ -272,8 +273,8 @@
 
 // ------------------ start-screen --------------------
 .start-screen{
-  min-height: 500px;
-  height: calc(100vh - 195px);
+  min-height: 600px;
+  // height: calc(100vh - 195px);
   display: flex;
   align-items: center;
   justify-content: center;

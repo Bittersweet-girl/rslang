@@ -69,18 +69,30 @@ export function filterLearnedWords(words:CombinedWordsData[]) {
   return words.filter((word) => !word.meta || word.meta.difficulty === difficulties.LEARNED);
 }
 
-export async function getGameWords({ group, page, filterLearned }: MakeGameWordsParam) {
-  // let requaredAmount = new Array(amount);
-
-  const words = await getWords({ group, page });
+export async function getGameWords({
+  group, page, filterLearned, amount,
+}: MakeGameWordsParam) {
   const userWords = await getUserWords();
-  const combinedWords = makeCombinedWords({ words, userWords });
-  const gameWords = filterLearned ? filterLearnedWords(combinedWords) : combinedWords;
-  return gameWords;
+  let result: CombinedWordsData[] = [];
+
+  const load = async (currentPage: number):Promise<CombinedWordsData[]> => {
+    const words = await getWords({ group, page: currentPage });
+    const combinedWords = makeCombinedWords({ words, userWords });
+    const gameWords = filterLearned ? filterLearnedWords(combinedWords) : combinedWords;
+    result = [...result, ...gameWords];
+    const shouldLoadMore = result.length < amount && currentPage > 0;
+    console.log('load', result.length, currentPage);
+
+    return shouldLoadMore ? load(currentPage - 1) : result;
+  };
+
+  return load(page);
 }
 
-// getGameWords({ group: 1, page: 1, filterLearned: true }).then((data) => {
-//   console.log('data', data);
+// getGameWords({
+//   group: 1, page: 10, filterLearned: true, amount: 100,
+// }).then((data) => {
+//   console.log('getGameWords', data.length, data);
 // });
 
 // getCombinedWords({ group: 1, page: 1 }).then((words) => {

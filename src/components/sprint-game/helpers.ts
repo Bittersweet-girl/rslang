@@ -30,8 +30,8 @@ export default function prepareGameData(words: IProduct[]): PreparedWords[] {
   return shuffle(preparedWords);
 }
 
-function isWordJustLearned(word) {
-  if (!word.isCorrectAnswer || !word?.meta?.sprint) {
+function isWordJustLearned(word: any) {
+  if (!word.isCorrectAnswer || !word?.meta?.optional?.sprint) {
     return false;
   }
   const dif = word.meta.difficulty;

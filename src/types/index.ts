@@ -96,7 +96,7 @@ export interface UserWord {
 interface GameResult {
   correctRow: number;
   correct: number;
-  right: number;
+  // right: number;
   wrong: number;
 }
 
@@ -133,6 +133,7 @@ export interface GetWordsParam {
 
 export interface MakeGameWordsParam extends GetWordsParam {
   filterLearned: boolean;
+  amount: number;
 }
 
 export interface CreateUserWordParam {
