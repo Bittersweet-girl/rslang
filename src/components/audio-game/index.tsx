@@ -15,6 +15,9 @@ export default function AudioMain({ group, currentPage }: GameProps) {
   const [state, setState] = useState({
     isAnswer: false,
     isCorrect: false,
+    countCorrect: 0,
+    countWrong: 0,
+    correctRow: 0,
     index: 0,
     words: [],
     answers: [],

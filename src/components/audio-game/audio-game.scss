@@ -1,18 +1,21 @@
+@import '../../sass-components/normalize';
 @import '../../sass-components/variables';
-@import '../../sass-components/buttons';
+@import '../../sass-components/mixins';
 @import '../../sass-components/mixins';
 
 .audio-game,
 .audio-game-play{
     min-height: 500px;
-    height: calc(100vh - 195px);
+    // height: calc(100vh - 195px);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 20px auto;
     text-align: center;
+}
+    .audio-game{
     &__logo{
         margin: 0 auto;
         @include bgImage($url: url('../../../public/assets/svg/audio-game.svg'), $width: 270px, $height: 168px);

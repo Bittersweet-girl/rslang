@@ -208,6 +208,9 @@ export interface SaveStatisticParam {
 export interface AudioGameState {
   isAnswer: boolean;
   isCorrect: boolean;
+  countCorrect: number;
+  countWrong: number;
+  correctRow: number;
   index: number;
   words: PreparedWords[],
   answers: string[],

@@ -35,8 +35,12 @@ export default function AudioGamePlay({ state, setState }: AudioGameParam) {
       newState.answers = makeAnswerArr(index + 1, words);
     }
     if (state.isCorrect) {
+      newState.countCorrect += 1;
+      newState.correctRow += 1;
       newState.words[index] = { ...currentWord, isCorrectAnswerAudio: true };
     } else {
+      newState.countWrong += 1;
+      newState.correctRow = 0;
       newState.words[index] = { ...currentWord, isCorrectAnswerAudio: false };
     }
     setState(newState);
@@ -47,7 +51,7 @@ export default function AudioGamePlay({ state, setState }: AudioGameParam) {
     newState.isAnswer = true;
     setState(newState);
   }
-
+  console.log(state.correctRow, state.countCorrect, state.countWrong);
   if (!state.isAnswer) {
     return (
       <div className="audio-game-play">
