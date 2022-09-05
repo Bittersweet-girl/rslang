@@ -1,0 +1,84 @@
+@import '../../sass-components/variables';
+
+.statistic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  &__header {
+    font-weight: 600;
+    font-size: 36px;
+    margin-bottom: 50px;
+  }
+  &__total {
+    max-width: 1080px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 100px;
+    border: 1px solid $color-secondary;
+    border-radius: 10px;
+    padding: 70px;
+    &__item {
+      text-align: center;
+      min-width: 260px;
+    }
+    &__title {
+      font-family: Times serif;
+      font-size: 130px;
+      font-weight: 700;
+      margin: 20px 0;
+      margin-top: 0;
+    }
+    &__subtitle {
+      font-weight: 600;
+      font-size: 36px;
+      line-height: 25px;
+    }
+  }
+  &__games {
+    display: flex;
+    margin-bottom: 70px;
+    gap: 80px;
+    &__item {
+      width: 500px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: $color-secondary-light;
+      border-radius: 10px;
+      padding-top: 20px;
+    }
+    &__img {
+      width: 180px;
+      margin-bottom: 30px;
+    }
+    &__title {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    &__desc {
+      font-weight: 400;
+      font-size: 18px;
+      color: $color-secondary;
+    }
+    &__score {
+      font-weight: 600;
+      font-size: 24px;
+      color: $color-primary-light;
+    }
+  }
+  
+}
+
+.orange {
+  color: $color-orange;
+}
+.pink {
+  color: $color-pink;
+}
+.magenta {
+  color: $color-magenta;
+}
