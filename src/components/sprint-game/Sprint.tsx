@@ -11,7 +11,7 @@ const getRandomPageNumber = () => Math.max(3, Math.floor(Math.random() * 29));
 
 export default function Sprint({ group, currentPage }: GameProps) {
   const hasComeFromMenu = typeof group === 'undefined';
-  console.log('hasComeFromMenu', hasComeFromMenu);
+  // console.log('hasComeFromMenu', hasComeFromMenu);
 
   const [state, setState] = useState({
     countCorrect: 0,

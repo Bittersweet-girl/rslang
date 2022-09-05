@@ -81,7 +81,7 @@ export async function getGameWords({
     const gameWords = filterLearned ? filterLearnedWords(combinedWords) : combinedWords;
     result = [...result, ...gameWords];
     const shouldLoadMore = result.length < amount && currentPage > 0;
-    console.log('load', result.length, currentPage);
+    // console.log('load', result.length, currentPage);
 
     return shouldLoadMore ? load(currentPage - 1) : result;
   };
@@ -116,7 +116,7 @@ export async function getGameWords({
 // };
 
 export function saveUserWord({ wordId, wordData, usePut = false }: CreateUserWordParam) {
-  console.log('saveUserWord', { wordId, wordData, usePut });
+  // console.log('saveUserWord', { wordId, wordData, usePut });
 
   const user = getCurrentUser();
   if (!user?.userId) {

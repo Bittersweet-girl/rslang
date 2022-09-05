@@ -3,6 +3,14 @@ import { difficulties } from '../constants';
 import { SaveStatisticParam } from '../types';
 import { getCurrentUser } from './user';
 
+const EMPTY_GAME_STATISTIC = {
+  correct: 0,
+  wrong: 0,
+  correctRow: 0,
+  newWords: 0,
+  learned: 0,
+};
+
 export function getStatistic() {
   const user = getCurrentUser();
   const defaultData = {
@@ -18,10 +26,7 @@ export function getStatistic() {
     },
   })
     .then(({ data }) => data)
-    .catch((e) => {
-      console.log(e);
-      return defaultData;
-    });
+    .catch(() => defaultData);
 }
 
 function getDayKey() {
@@ -32,8 +37,23 @@ function getDayKey() {
   return `${year}-${month}-${day}`;
 }
 
+export async function getTodayStatistic() {
+  const todayDate = getDayKey();
+  // console.log('todaydate', todayDate);
+
+  const statistic = await getStatistic();
+  const todayStats = statistic?.optional?.[todayDate] || {};
+  return { audio: EMPTY_GAME_STATISTIC, sprint: EMPTY_GAME_STATISTIC, ...todayStats };
+
+  // console.log('statisticGET', statistic);
+  // console.log('statistic.optional[todayDate]', statistic.optional[todayDate]);
+  // return statistic.optional[todayDate];
+}
+
+// getTodayStatistic().then((data) => console.log(data));
+
 export async function saveStatistic({
-  game, correct, wrong, correctRow, newWords, learned,
+  correct, wrong, correctRow, newWords, learned,
 }: SaveStatisticParam) {
   const user = getCurrentUser();
   if (!user?.userId) {
@@ -42,13 +62,7 @@ export async function saveStatistic({
   const key = getDayKey();
   const { learnedWords = 0, optional = {} } = await getStatistic();
   const todayStat = optional[key] || {};
-  const todaySprint = todayStat.sprint || {
-    correct: 0,
-    wrong: 0,
-    correctRow: 0,
-    newWords: 0,
-    learned: 0,
-  };
+  const todaySprint = todayStat.sprint || { ...EMPTY_GAME_STATISTIC };
 
   const newStats = {
     learnedWords,
@@ -67,9 +81,9 @@ export async function saveStatistic({
     },
   };
 
-  console.log('saveStatistic', {
-    game, correct, wrong, correctRow, newWords, learned,
-  });
+  // console.log('saveStatistic', {
+  //   game, correct, wrong, correctRow, newWords, learned,
+  // });
 
   return axios.put(
     `https://rslang-database.herokuapp.com/users/${user.userId}/statistics`,
@@ -100,6 +114,9 @@ export function getLeurnedWords() {
       filter: `{"$and":[{"userWord.difficulty":"${difficulties.LEARNED}"}]}`,
     },
   })
-    .then(({ data }) => data)
+    .then(({ data }) => ({
+      words: data[0].paginatedResults,
+      count: data[0].totalCount[0].count,
+    }))
     .catch(() => []);
 }

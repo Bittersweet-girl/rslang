@@ -59,7 +59,7 @@ function isWordJustLearned(word: any) {
 // };
 
 export function saveSprintStatistic(state: GameState) {
-  console.log('saveSprintStatistic', state);
+  // console.log('saveSprintStatistic', state);
   let newWords = 0;
   let learned = 0;
   const {
@@ -68,7 +68,7 @@ export function saveSprintStatistic(state: GameState) {
   const playedWords = words.filter(({ isCorrectAnswer }) => typeof isCorrectAnswer !== 'undefined');
   playedWords.forEach((word) => {
     const isNew = !word?.meta?.optional?.sprint;
-    console.log('word', isNew, word);
+    // console.log('word', isNew, word);
     const isJustLearned = isWordJustLearned(word);
     let difficulty = word.meta?.difficulty || difficulties.EASY;
     const optional = word.meta?.optional || {};

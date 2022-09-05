@@ -11,7 +11,9 @@
     margin-bottom: 50px;
   }
   &__total {
+    box-sizing: border-box;
     max-width: 1080px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     gap: 20px;
