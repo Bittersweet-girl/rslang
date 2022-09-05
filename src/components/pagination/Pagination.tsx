@@ -9,7 +9,7 @@ export default function PaginatedItems(props: IPaginate) {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const {
-    itemsPerPage, setPage,
+    itemsPerPage, setPage, forcePage,
   } = props;
 
   useEffect(() => {
@@ -31,7 +31,8 @@ export default function PaginatedItems(props: IPaginate) {
       pageRangeDisplayed={3}
       pageCount={pageCount}
       previousLabel="&#10094;"
-      /* renderOnZeroPageCount={0} */
+      forcePage={forcePage - 1}
+      /* renderOnZeroPageCount={null} */
     />
   );
 }

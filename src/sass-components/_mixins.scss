@@ -37,3 +37,13 @@
   color: $color-secondary;
   font-weight: 400;
 }
+
+@mixin disabledGameBtn {
+  background-color: $color-secondary-light;
+  &:hover {
+      pointer-events: none;
+      background-color: $color-secondary-light;
+      color: $color-secondary;
+      border: 1px solid $color-secondary;
+    }
+}

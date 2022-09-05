@@ -7,23 +7,24 @@ export interface IHeaderProps {
 }
 
 export interface IProduct {
-  id: string;
-  group: number;
-  page: number;
-  word: string;
-  image: string;
-  audio: string;
-  audioMeaning: string;
-  audioExample: string;
-  textMeaning: string;
-  textExample: string;
-  transcription: string;
-  wordTranslate: string;
-  textMeaningTranslate: string;
-  textExampleTranslate: string;
+  _id: string,
+  id: string,
+  group: number,
+  page: number,
+  word: string,
+  image: string,
+  audio: string,
+  audioMeaning: string,
+  audioExample: string,
+  textMeaning: string,
+  textExample: string,
+  transcription: string,
+  wordTranslate: string,
+  textMeaningTranslate: string,
+  textExampleTranslate: string
 }
 
-export interface ITest {
+export interface IWordCard {
   product: IProduct;
   isActive: boolean;
   handleClick: (id: string) => void;
@@ -36,8 +37,25 @@ export interface ITest {
 export interface IPaginate {
   itemsPerPage: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
+  forcePage: number;
 }
 
+export interface IUserWords {
+  difficulty: string;
+  id: string;
+  wordId: string;
+}
+
+export interface IDictMenu {
+  group: number;
+  changeGroup: (gr: number) => void;
+}
+export interface INewTokens {
+  data: {
+    token: string;
+    refreshToken: string;
+  }
+}
 // --------------------login interfaces---------------------
 
 export interface UserData {
@@ -89,28 +107,28 @@ export interface GameProps {
 export interface UserWord {
   difficulty: string;
   id: string;
-  optional: {};
+  optional: OptionalData;
   wordId: string;
 }
 
 interface GameResult {
-  right: number;
+  correctRow: number;
+  correct: number;
+  // right: number;
   wrong: number;
-  row: number;
 }
 
 interface OptionalData {
-  isNew?: boolean;
   sprint?: GameResult;
   audio?: GameResult;
 }
 
 export interface NewUserWord {
-  dificulty: 'string';
+  difficulty: string;
   optional?: OptionalData;
 }
 
-export interface PreparedWords extends IProduct {
+export interface PreparedWords extends CombinedWordsData {
   isCorrect?: boolean;
   isCorrectAnswer?: boolean;
   isCorrectAnswerAudio?: boolean;
@@ -134,11 +152,13 @@ export interface GetWordsParam {
 
 export interface MakeGameWordsParam extends GetWordsParam {
   filterLearned: boolean;
+  amount: number;
 }
 
 export interface CreateUserWordParam {
   wordId: string;
   wordData: NewUserWord;
+  usePut: boolean;
 }
 
 export interface TimerParam {
@@ -172,6 +192,15 @@ export interface SprintGameParam {
 
 export interface GameWord {
   word: IProduct;
+}
+
+export interface SaveStatisticParam {
+  game: string;
+  correct: number;
+  wrong: number;
+  correctRow: number;
+  newWords: number;
+  learned: number;
 }
 
 // --------Audio Game ----------
