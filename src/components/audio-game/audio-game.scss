@@ -80,6 +80,7 @@
     }
 }
 .audio-game-play{
+    gap: 20px;
     &__btn_audio {
         background-color: transparent;
         border: none;
@@ -120,4 +121,14 @@
             background-color: $color-green;
         }
     }
+    &__image{
+        width: 300px;
+        height: 250px;
+    }
+}
+.correct{
+    border: $color-green 2px solid;
+}
+.wrong{
+    border: $color-red 2px solid;
 }

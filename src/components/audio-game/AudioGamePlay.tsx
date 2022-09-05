@@ -4,15 +4,15 @@ import React, { useEffect } from 'react';
 import { AudioGameParam, IProduct, GameWord } from '../../types';
 import { checkAnswer, makeAnswerArr } from './audioGameFunc';
 
+const domen = 'https://rslang-database.herokuapp.com/';
+
 const playAudio = (word: IProduct) => {
-  const domen = 'https://rslang-database.herokuapp.com/';
   const audioSrc = `${domen}${word.audio}`;
   const audioElement = new Audio(audioSrc);
   audioElement.play();
 };
 
 function WordAudio({ word }: GameWord) {
-  useEffect(() => playAudio(word));
   return (
     <button type="button" className="audio-game-play__btn_audio" onClick={() => playAudio(word)}>
       <img src="./assets/svg/play.svg" alt="play" className="audio-game-play__play-img" />
@@ -23,6 +23,7 @@ function WordAudio({ word }: GameWord) {
 export default function AudioGamePlay({ state, setState }: AudioGameParam) {
   const { index, words, answers } = state;
   const currentWord = words[index];
+  useEffect(() => playAudio(words[index]));
 
   function nextQuestion() {
     const newState = { ...state, words: [...words] };
@@ -50,7 +51,9 @@ export default function AudioGamePlay({ state, setState }: AudioGameParam) {
   if (!state.isAnswer) {
     return (
       <div className="audio-game-play">
+        <img className="audio-game-play__image" src="./assets/svg/quest.svg" alt="question" />
         <WordAudio word={currentWord} key={currentWord.id} />
+        <h3> </h3>
         <div className="audio-game-play-options-block">
           {answers.map((ans: string, i: number) => (
             <button
@@ -71,14 +74,18 @@ export default function AudioGamePlay({ state, setState }: AudioGameParam) {
   }
   return (
     <div className="audio-game-play">
+      <img className="audio-game-play__image" src={domen + currentWord.image} alt={currentWord.word} />
       <WordAudio word={currentWord} key={currentWord.id} />
       <h3>{ currentWord.word }</h3>
       <div className="audio-game-play-options-block">
-        {answers.map((ans: string, i: number) => (
-          <button key={i} type="button" className={`audio-game-play__option audio-game-play__option_${i} btn`}>
-            {ans}
-          </button>
-        ))}
+        {answers.map((ans: string, i: number) => {
+          const classCorrect: string = (ans === currentWord.wordTranslate) ? 'correct' : 'wrong';
+          return (
+            <button key={i} type="button" className={`audio-game-play__option btn ${classCorrect}`}>
+              {ans}
+            </button>
+          );
+        })}
       </div>
       <button className="audio-game-play__btn btn" type="button" onClick={nextQuestion}>Дальше</button>
     </div>

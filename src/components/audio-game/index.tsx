@@ -2,12 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import AudioGame from './AudioGame';
 import AudioGamePlay from './AudioGamePlay';
+import AudioGameResult from './AudioGameResult';
 import { getGameWords } from '../../api/words';
 import { GameProps } from '../../types';
 import { makeAnswerArr } from './audioGameFunc';
 import './audio-game.scss';
 
+const getRandomPageNumber = () => Math.max(3, Math.floor(Math.random() * 29));
+
 export default function AudioMain({ group, currentPage }: GameProps) {
+  const hasComeFromMenu = typeof group === 'undefined';
   const [state, setState] = useState({
     isAnswer: false,
     isCorrect: false,
@@ -18,7 +22,7 @@ export default function AudioMain({ group, currentPage }: GameProps) {
     isGroupConfirmed: false,
     isGameStarted: false,
     group,
-    page: currentPage || 27,
+    page: currentPage ?? getRandomPageNumber(),
   });
   const {
     index, isGameStarted, isGameOver, words, isGroupConfirmed, page,
@@ -27,7 +31,9 @@ export default function AudioMain({ group, currentPage }: GameProps) {
 
   useEffect(() => {
     if (isGroupConfirmed) {
-      getGameWords({ group: currentGroup, page, filterLearned: false })
+      getGameWords({
+        group: currentGroup, page, filterLearned: !hasComeFromMenu, amount: 20,
+      })
         .then((wordsData) => setState(
           (currentState: any) => ({
             ...currentState,
@@ -59,6 +65,13 @@ export default function AudioMain({ group, currentPage }: GameProps) {
           setState={setState}
         />
       )}
+      {isGameOver
+        && (
+        <AudioGameResult
+          state={state}
+          setState={setState}
+        />
+        )}
     </section>
   );
 }
