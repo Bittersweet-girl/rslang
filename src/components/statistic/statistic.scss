@@ -27,7 +27,7 @@
     }
     &__title {
       font-family: Times serif;
-      font-size: 130px;
+      font-size: 100px;
       font-weight: 700;
       margin: 20px 0;
       margin-top: 0;
@@ -50,7 +50,8 @@
       align-items: center;
       background: $color-secondary-light;
       border-radius: 10px;
-      padding-top: 20px;
+      padding: 30px;
+      box-sizing: border-box;
     }
     &__img {
       width: 180px;
@@ -60,6 +61,9 @@
       display: flex;
       align-items: center;
       gap: 30px;
+      max-width: 300px;
+      width: 100%;
+      justify-content: space-between;
     }
     &__desc {
       font-weight: 400;

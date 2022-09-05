@@ -82,7 +82,7 @@ export default function Statistic() {
           <img className="statistic__games__img" src="./assets/svg/audio-game.svg" alt="audio-game" />
           <div className="statistic__games__title">
             <p className="statistic__games__desc">
-              Новых слов за день
+              Новых слов за день:
             </p>
             <span className="statistic__games__score">
               {newAudio ?? '0'}
@@ -90,50 +90,52 @@ export default function Statistic() {
           </div>
           <div className="statistic__games__title">
             <p className="statistic__games__desc">
-              Правильных ответов
+              Правильных ответов:
             </p>
             <span className="statistic__games__score">
-              {audioPercent ?? '0'}
+              {`${audioPercent}%` ?? '0'}
             </span>
           </div>
           <div className="statistic__games__title">
             <p className="statistic__games__desc">
               Самая длинная серия
               <br />
-              правильных ответов
+              правильных ответов:
             </p>
             <span className="statistic__games__score">
               {correctRowAudio ?? '0'}
             </span>
           </div>
         </div>
+
         <div className="statistic__games__item">
           <img className="statistic__games__img" src="./assets/svg/sprint-game.svg" alt="sprint-game" />
           <div className="statistic__games__title">
+            <p className="statistic__games__desc">
+              Новых слов за день:
+            </p>
             <span className="statistic__games__score">
               {newSprint ?? '0'}
             </span>
-            <p className="statistic__games__desc">
-              новых слов за день
-            </p>
           </div>
           <div className="statistic__games__title">
+            <p className="statistic__games__desc">
+              Правильных ответов:
+            </p>
             <span className="statistic__games__score">
               {`${sprintPercent}%` ?? '0'}
             </span>
-            <p className="statistic__games__desc">
-              правильных ответов
-            </p>
+
           </div>
           <div className="statistic__games__title">
+            <p className="statistic__games__desc">
+              Самая длинная серия
+              <br />
+              правильных ответов:
+            </p>
             <span className="statistic__games__score">
               {correctRowSprint ?? '0'}
             </span>
-            <p className="statistic__games__desc">
-              самая длинная серия
-              <br />
-              правильных ответов
-            </p>
           </div>
         </div>
       </div>

@@ -9,24 +9,6 @@ import {
 import { getCurrentUser } from './user';
 import { difficulties } from '../constants';
 
-// если не залогиненый /words?group=1&page=1
-
-// если залогиненый
-// 1)  /words?group=1&page=1
-// 2) /users/6305dbb8516d050016a47ec7/words
-// 3) id - обший массив
-// из меню - все слова пользователя
-// из учебника - все кроме изученых
-
-// после игры
-// group, page, amount, withoutLearned
-
-// get words
-// getuserwords
-// get combined array
-// get filtered array by learned words
-// call get wards while get requared amount of words
-
 export default function getWords({ group, page }: GetWordsParam) {
   return axios.get(`https://rslang-database.herokuapp.com/words?page=${page}&group=${group}`)
     .then(({ data }) => data);
@@ -81,7 +63,6 @@ export async function getGameWords({
     const gameWords = filterLearned ? filterLearnedWords(combinedWords) : combinedWords;
     result = [...result, ...gameWords];
     const shouldLoadMore = result.length < amount && currentPage > 0;
-    // console.log('load', result.length, currentPage);
 
     return shouldLoadMore ? load(currentPage - 1) : result;
   };
@@ -116,8 +97,6 @@ export async function getGameWords({
 // };
 
 export function saveUserWord({ wordId, wordData, usePut = false }: CreateUserWordParam) {
-  // console.log('saveUserWord', { wordId, wordData, usePut });
-
   const user = getCurrentUser();
   if (!user?.userId) {
     return Promise.reject();

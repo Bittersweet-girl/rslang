@@ -1,3 +1,5 @@
+/* eslint-disable no-unneeded-ternary */
+/* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable max-len */
 import axios from 'axios';
@@ -12,6 +14,7 @@ export default function useDictionaryData() {
   const [loading, setLoading] = useState(false);
   const [group, setGroup] = useState<number>(sessionGroup);
   const [selectedCart, setSelectedCart] = useState('');
+  const [userData, setUserData] = useState([]);
   const [userCards, setUserCards] = useState(['']);
   const [hardCard, setHardCard] = useState(['']);
   const [learnedCard, setLearnedCard] = useState(['']);
@@ -29,39 +32,46 @@ export default function useDictionaryData() {
   }
 
   async function getHardWords() {
-    const response = await axios.get(
-      `https://rslang-database.herokuapp.com/users/${user?.userId}/aggregatedWords`,
-      {
-        headers: {
-          Authorization: `Bearer ${user?.token}`,
+    if (user) {
+      const response = await axios.get(
+        `https://rslang-database.herokuapp.com/users/${user?.userId}/aggregatedWords`,
+        {
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+          },
+          params: {
+            wordsPerPage: '600',
+            filter: '{"$and":[{"userWord.difficulty":"hard"}]}',
+          },
         },
-        params: {
-          wordsPerPage: '600',
-          filter: '{"$and":[{"userWord.difficulty":"hard"}]}',
-        },
-      },
-    );
-    setHardWordsData(response.data[0].paginatedResults);
+      );
+      setHardWordsData(response.data[0].paginatedResults);
+    }
   }
 
   async function getUserWordsIds() {
-    const response = await axios.get(
-      `https://rslang-database.herokuapp.com/users/${user?.userId}/words`,
-      {
-        headers: {
-          Authorization: `Bearer ${user?.token}`,
+    if (user) {
+      const response = await axios.get(
+        `https://rslang-database.herokuapp.com/users/${user?.userId}/words`,
+        {
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+          },
         },
-      },
-    );
-    const userWordsId = response.data.map((i: IUserWords) => i.wordId);
-    const hardWordsId = response.data.filter((i: IUserWords) => i.difficulty === 'hard').map((i: IUserWords) => i.wordId);
-    const learnedWordsId = response.data.filter((i: IUserWords) => i.difficulty === 'learned').map((i: IUserWords) => i.wordId);
-    const easyWordsId = response.data.filter((i: IUserWords) => i.difficulty === 'easy').map((i: IUserWords) => i.wordId);
+      );
 
-    setUserCards(userWordsId);
-    setHardCard(hardWordsId);
-    setLearnedCard(learnedWordsId);
-    setEasyCard(easyWordsId);
+      const userWordsId = response.data.map((i: IUserWords) => i.wordId);
+      const hardWordsId = response.data.filter((i: IUserWords) => i.difficulty === 'hard').map((i: IUserWords) => i.wordId);
+      const learnedWordsId = response.data.filter((i: IUserWords) => i.difficulty === 'learned').map((i: IUserWords) => i.wordId);
+      const easyWordsId = response.data.filter((i: IUserWords) => i.difficulty === 'easy').map((i: IUserWords) => i.wordId);
+
+      setUserData(response.data);
+      setUserCards(userWordsId);
+      setHardCard(hardWordsId);
+      setLearnedCard(learnedWordsId);
+      setEasyCard(easyWordsId);
+      /* console.log(userData); */
+    }
   }
 
   useEffect(() => {
@@ -86,7 +96,7 @@ export default function useDictionaryData() {
     }
   };
 
-  function postUserWord(id: string, status: string) {
+  async function postUserWord(id: string, status: string) {
     return axios.post(
       `https://rslang-database.herokuapp.com/users/${user?.userId}/words/${id}`,
       {
@@ -101,23 +111,19 @@ export default function useDictionaryData() {
     );
   }
 
-  /* function deleteUserWord(id: string) {
-    return axios.delete(
-      `https://rslang-database.herokuapp.com/users/${user?.userId}/words/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${user?.token}`,
-        },
-      },
-    );
-  } */
+  interface Id {
+    wordId: string;
+    optional?: {};
+  }
 
-  function putUserWord(id: string, status: string) {
+  async function putUserWord(id: string, status: string) {
+    const wordData = userData.filter((el: Id) => el.wordId === id).map((i: Id) => i.optional);
+    const options = wordData[0] ? wordData[0] : {};
     return axios.put(
       `https://rslang-database.herokuapp.com/users/${user?.userId}/words/${id}`,
       {
         difficulty: status,
-        optional: {},
+        optional: options,
       },
       {
         headers: {
