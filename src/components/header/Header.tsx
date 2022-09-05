@@ -92,7 +92,10 @@ export default function Header(props: IHeaderProps) {
                 <button
                   type="button"
                   className="header-menu-list__button btn header-menu-list__button_difficult"
-                  onClick={() => changePage('dictionary')}
+                  onClick={() => {
+                    changePage('dictionary');
+                    sessionStorage.setItem('group', '6');
+                  }}
                 >
                   Сложные слова
                 </button>
