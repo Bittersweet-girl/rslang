@@ -45,7 +45,7 @@ export function makeAnswerArr(num: number, arr: IProduct[]): string[] {
 }
 
 function isWordJustLearned(word: any) {
-  if (!word.isCorrectAnswer || !word?.meta?.optional?.audio) {
+  if (!word.isCorrectAnswerAudio || !word?.meta?.optional?.audio) {
     return false;
   }
   const dif = word.meta.difficulty;
@@ -61,16 +61,16 @@ function isWordJustLearned(word: any) {
 }
 
 export function saveAudioStatistic(state: AudioGameState) {
-  console.log('saveAudioStatistic', state);// -------------------------------log--------------------
+  // console.log('saveAudioStatistic', state);// -------------------------------log--------------------
   let newWords = 0;
   let learned = 0;
   const {
     words, correctRow, countCorrect, countWrong,
   } = state;
-  const playedWords = words.filter(({ isCorrectAnswer }) => typeof isCorrectAnswer !== 'undefined');
+  const playedWords = words.filter(({ isCorrectAnswerAudio }) => typeof isCorrectAnswerAudio !== 'undefined');
   playedWords.forEach((word) => {
     const isNew = !word?.meta?.optional?.audio;
-    console.log('word', isNew, word);// ---------------------------log---------------------
+    // console.log('word', isNew, word);// ---------------------------log---------------------
     const isJustLearned = isWordJustLearned(word);
     let difficulty = word.meta?.difficulty || difficulties.EASY;
     const optional = word.meta?.optional || {};
@@ -87,7 +87,7 @@ export function saveAudioStatistic(state: AudioGameState) {
       difficulty = difficulties.LEARNED;
     }
 
-    if (word.isCorrectAnswer) {
+    if (word.isCorrectAnswerAudio) {
       audio.correctRow += 1;
       audio.correct += 1;
     } else {

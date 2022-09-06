@@ -44,7 +44,7 @@ export async function getTodayStatistic() {
   return { audio: EMPTY_GAME_STATISTIC, sprint: EMPTY_GAME_STATISTIC, ...todayStats };
 }
 
-getTodayStatistic().then((data) => console.log('getTodayStatistic', data));// ------------------log-----------------
+// getTodayStatistic().then((data) => console.log('getTodayStatistic', data));// -------log---------
 
 export async function saveStatistic({
   game, correct, wrong, correctRow, newWords, learned,
@@ -74,9 +74,9 @@ export async function saveStatistic({
     },
   };
 
-  console.log('saveStatistic', {
-    correct, wrong, correctRow, newWords, learned,
-  });// ---------------------------------------------------log--------------------------
+  // console.log('saveStatistic', {
+  //   correct, wrong, correctRow, newWords, learned,
+  // });// ---------------------------------------------------log--------------------------
 
   return axios.put(
     `https://rslang-database.herokuapp.com/users/${user.userId}/statistics`,
