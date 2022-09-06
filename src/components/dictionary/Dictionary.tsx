@@ -64,7 +64,7 @@ export default function Dictionary() {
             type="button"
             className="dictionary__audio-btn"
             disabled={gameBtnStatus}
-            onClick={() => navigate(PAGE_AUDIO, { group })}
+            onClick={() => navigate(PAGE_AUDIO, { group, currentPage })}
           >
             <p className="dictionary__audio-text">Важный навык - восприятия языка на слух. С этой игрой вы сможете запомнить больше новых слов.</p>
 
@@ -73,7 +73,7 @@ export default function Dictionary() {
             type="button"
             className="dictionary__sprint-btn"
             disabled={gameBtnStatus}
-            onClick={() => navigate(PAGE_SPRINT, { group })}
+            onClick={() => navigate(PAGE_SPRINT, { group, currentPage })}
           >
             <p className="dictionary__sprint-text">Учите английский язык быстро, а эта игра вам поможет запомнить еще больше слов. Вперед!</p>
 

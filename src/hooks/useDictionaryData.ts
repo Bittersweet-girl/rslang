@@ -24,10 +24,13 @@ export default function useDictionaryData() {
   const [hardWordsData, setHardWordsData] = useState([]);
 
   async function getWordsData(gr: number, page: number) {
+    console.log('getWordsData11111111', gr, page);// ----------log------------
+
     getUserWordsIds();
     setLoading(true);
-    const response = await axios.get(`https://rslang-database.herokuapp.com/words?page=${page === 0 ? 0 : page - 1}&group=${gr}`);
+    const response = await axios.get(`https://rslang-database.herokuapp.com/words?page=${page}&group=${gr}`);
     setWordsData(response.data);
+    console.log('response.data', response.data);// ----------log------------${page === 0 ? 0 : page - 1} changed
     setLoading(false);
   }
 
@@ -85,7 +88,7 @@ export default function useDictionaryData() {
   function changeGroup(gr: number) {
     sessionStorage.setItem('group', gr.toString());
     setGroup(gr);
-    setCurrentPage(1);
+    setCurrentPage(0);
   }
 
   const handleClick = (id: string) => {
