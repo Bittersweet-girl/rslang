@@ -74,10 +74,6 @@ export async function saveStatistic({
     },
   };
 
-  // console.log('saveStatistic', {
-  //   correct, wrong, correctRow, newWords, learned,
-  // });// ---------------------------------------------------log--------------------------
-
   return axios.put(
     `https://rslang-database.herokuapp.com/users/${user.userId}/statistics`,
     newStats,
@@ -89,10 +85,6 @@ export async function saveStatistic({
   )
     .then(({ data }) => data);
 }
-
-// getStatistic().then((data) => {
-//   console.log('getStatistic', data);
-// });
 
 export function getLeurnedWords() {
   const user = getCurrentUser();

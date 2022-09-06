@@ -33,7 +33,7 @@ export default function App() {
   const initialState = {
     navigation: {
       page: sessionStorage.getItem('page') || PAGE_MAIN,
-      pageProps: {},
+      pageProps: { page: 0 },
     },
   };
   const [state, dispatch] = useReducer(appReducer, initialState);

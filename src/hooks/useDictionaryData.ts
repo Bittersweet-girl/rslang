@@ -85,7 +85,7 @@ export default function useDictionaryData() {
   function changeGroup(gr: number) {
     sessionStorage.setItem('group', gr.toString());
     setGroup(gr);
-    setCurrentPage(1);
+    setCurrentPage(0);
   }
 
   const handleClick = (id: string) => {

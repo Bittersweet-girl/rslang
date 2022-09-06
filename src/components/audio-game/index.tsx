@@ -25,7 +25,7 @@ export default function AudioMain({ group, currentPage }: GameProps) {
     isGroupConfirmed: false,
     isGameStarted: false,
     group,
-    page: currentPage ?? getRandomPageNumber(),
+    page: currentPage - 1 ?? getRandomPageNumber(),
   });
   const {
     index, isGameStarted, isGameOver, words, isGroupConfirmed, page,
@@ -37,14 +37,16 @@ export default function AudioMain({ group, currentPage }: GameProps) {
       getGameWords({
         group: currentGroup, page, filterLearned: !hasComeFromMenu, amount: 20,
       })
-        .then((wordsData) => setState(
-          (currentState: any) => ({
-            ...currentState,
-            words: wordsData,
-            isGameStarted: true,
-            answers: makeAnswerArr(index, wordsData),
-          }),
-        ));
+        .then((wordsData) => {
+          setState(
+            (currentState: any) => ({
+              ...currentState,
+              words: wordsData,
+              isGameStarted: true,
+              answers: makeAnswerArr(index, wordsData),
+            }),
+          );
+        });
     }
   }, [currentGroup, page, isGroupConfirmed]);
 

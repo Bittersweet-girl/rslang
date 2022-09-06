@@ -28,7 +28,7 @@ export default function Sprint({ group, currentPage }: GameProps) {
     isGroupConfirmed: false,
     isGameStarted: false,
     group,
-    page: currentPage ?? getRandomPageNumber(),
+    page: currentPage - 1 ?? getRandomPageNumber(),
   });
 
   const {

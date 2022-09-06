@@ -30,15 +30,14 @@ export default function Words(props: IWordCard) {
   if (!id) {
     wordId = _id;
   }
-
   const wordData = userData.filter((el: Id) => el.wordId === wordId).map((i: Id) => i.optional)[0];
-  const sprintCorrect = wordData?.sprint.correct ? wordData?.sprint.correct : 0;
-  const sprintWrong = wordData?.sprint.wrong ? wordData?.sprint.wrong : 0;
+  const sprintCorrect = wordData?.sprint?.correct ? wordData?.sprint.correct : 0;
+  const sprintWrong = wordData?.sprint?.wrong ? wordData?.sprint.wrong : 0;
   const sprintTotal = sprintCorrect + sprintWrong;
 
-  /* const audioCorrect = wordData?.audio.correct ? wordData?.audio.correct : 0; */
-  /* const audioWrong = wordData?.audio.wrong ? wordData?.audio.wrong : 0;
-  const audioTotal = audioCorrect + audioWrong; */
+  const audioCorrect = wordData?.audio?.correct ? wordData?.audio.correct : 0;
+  const audioWrong = wordData?.audio?.wrong ? wordData?.audio.wrong : 0;
+  const audioTotal = audioCorrect + audioWrong;
 
   const audioSrc = domen + audio;
   const audioElement = useRef(new Audio(audioSrc));
@@ -85,7 +84,6 @@ export default function Words(props: IWordCard) {
     <div className={cardClassName}
       onClick={() => {
         handleClick(wordId);
-        console.log(wordData);
       }}
     >
       <div className="card__main">
@@ -122,9 +120,9 @@ export default function Words(props: IWordCard) {
             <div className="card__game">
               <div className="card__status-btn">аудиовызов</div>
               <span className="card__game-count">
-                {/* {audioCorrect} */}
+                {audioCorrect}
                 &nbsp;из&nbsp;
-                {/* {audioTotal} */}
+                {audioTotal}
               </span>
             </div>
             <div className="card__game">

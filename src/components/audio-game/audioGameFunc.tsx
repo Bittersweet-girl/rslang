@@ -61,7 +61,6 @@ function isWordJustLearned(word: any) {
 }
 
 export function saveAudioStatistic(state: AudioGameState) {
-  // console.log('saveAudioStatistic', state);// -------------------------------log--------------------
   let newWords = 0;
   let learned = 0;
   const {
@@ -70,7 +69,6 @@ export function saveAudioStatistic(state: AudioGameState) {
   const playedWords = words.filter(({ isCorrectAnswerAudio }) => typeof isCorrectAnswerAudio !== 'undefined');
   playedWords.forEach((word) => {
     const isNew = !word?.meta?.optional?.audio;
-    // console.log('word', isNew, word);// ---------------------------log---------------------
     const isJustLearned = isWordJustLearned(word);
     let difficulty = word.meta?.difficulty || difficulties.EASY;
     const optional = word.meta?.optional || {};
