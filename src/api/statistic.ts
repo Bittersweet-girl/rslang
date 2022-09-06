@@ -57,6 +57,7 @@ export async function saveStatistic({
   const { learnedWords = 0, optional = {} } = await getStatistic();
   const todayStat = optional[key] || {};
   const todaySprint = todayStat.sprint || { ...EMPTY_GAME_STATISTIC };
+  const todayAudio = todayStat.audio || { ...EMPTY_GAME_STATISTIC };
 
   const newStats = {
     learnedWords,
@@ -71,13 +72,20 @@ export async function saveStatistic({
           newWords: todaySprint.newWords + newWords,
           learned: todaySprint.learned + learned,
         },
+        audio: {
+          correct: todayAudio.correct + correct,
+          wrong: todayAudio.wrong + wrong,
+          correctRow: Math.max(todayAudio.correctRow, correctRow),
+          newWords: todayAudio.newWords + newWords,
+          learned: todayAudio.learned + learned,
+        },
       },
     },
   };
 
-  // console.log('saveStatistic', {
-  //   game, correct, wrong, correctRow, newWords, learned,
-  // });
+  console.log('saveStatistic', {
+    correct, wrong, correctRow, newWords, learned,
+  });
 
   return axios.put(
     `https://rslang-database.herokuapp.com/users/${user.userId}/statistics`,

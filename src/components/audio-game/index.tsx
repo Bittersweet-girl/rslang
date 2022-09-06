@@ -5,7 +5,7 @@ import AudioGamePlay from './AudioGamePlay';
 import AudioGameResult from './AudioGameResult';
 import { getGameWords } from '../../api/words';
 import { GameProps } from '../../types';
-import { makeAnswerArr } from './audioGameFunc';
+import { makeAnswerArr, saveAudioStatistic } from './audioGameFunc';
 import './audio-game.scss';
 
 const getRandomPageNumber = () => Math.max(3, Math.floor(Math.random() * 29));
@@ -47,7 +47,14 @@ export default function AudioMain({ group, currentPage }: GameProps) {
         ));
     }
   }, [currentGroup, page, isGroupConfirmed]);
-  // console.log('index');
+
+  // build and save statistic
+  useEffect(() => {
+    if (isGameOver) {
+      saveAudioStatistic(state);
+    }
+  }, [isGameOver]);
+
   const confirmGroup = () => setState({ ...state, isGroupConfirmed: true });
   const changeGroup = (newGroup: number) => setState({ ...state, group: newGroup });
 

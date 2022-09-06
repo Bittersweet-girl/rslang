@@ -51,7 +51,7 @@ export default function AudioGamePlay({ state, setState }: AudioGameParam) {
     newState.isAnswer = true;
     setState(newState);
   }
-  console.log(state.correctRow, state.countCorrect, state.countWrong);
+  // console.log(state.correctRow, state.countCorrect, state.countWrong);
   if (!state.isAnswer) {
     return (
       <div className="audio-game-play">

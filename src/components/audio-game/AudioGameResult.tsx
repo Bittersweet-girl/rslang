@@ -28,7 +28,7 @@ export default function AudioGameResult({ state, setState }: AudioGameParam) {
   const wrongAnswers = words.filter((word) => word.isCorrectAnswerAudio === false);
 
   return (
-    <div className="audio-game-res sprint-statistic">
+    <div className="audio-game-res">
       <h1>Молодец! Так держать!</h1>
       <div className="statistic-data scrollbar">
         <h2>
@@ -54,7 +54,7 @@ export default function AudioGameResult({ state, setState }: AudioGameParam) {
         {correctAnswers.map((word) => <Word word={word} key={word.id} />)}
       </div>
 
-      <div className="sprint-statistic__buttons">
+      <div className="audio-game-res__buttons">
         <button
           type="button"
           className="game__btn btn-dictionary"
