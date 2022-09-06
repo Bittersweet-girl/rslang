@@ -24,6 +24,20 @@ export interface IProduct {
   textExampleTranslate: string
 }
 
+export interface Id {
+  wordId: string;
+  optional?: {
+    sprint: {
+      correct: number;
+      wrong: number;
+    },
+    audio: {
+      correct: number;
+      wrong: number;
+    }
+  };
+}
+
 export interface IWordCard {
   product: IProduct;
   isActive: boolean;
@@ -32,6 +46,7 @@ export interface IWordCard {
   diffCards: (id: string) => void;
   isLearn: boolean;
   learnCards: (id: string) => void;
+  userData: Id[];
 }
 
 export interface IPaginate {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/jsx-first-prop-new-line */
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/naming-convention */
@@ -7,7 +8,7 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useRef, useContext } from 'react';
-import { IWordCard, UserSigninResp/* , IUserWords */ } from '../../types';
+import { IWordCard, UserSigninResp, Id } from '../../types';
 import { UserContext } from '../../contexts';
 import './words.scss';
 
@@ -18,7 +19,7 @@ export default function Words(props: IWordCard) {
   const sessionGroup = Number(sessionGroupData);
 
   const {
-    isActive, handleClick, product, isHard, diffCards, isLearn, learnCards,
+    isActive, handleClick, product, isHard, diffCards, isLearn, learnCards, userData,
   } = props;
   const {
     _id, id, word, transcription, image, audio, wordTranslate, textMeaning, textExample,
@@ -29,6 +30,15 @@ export default function Words(props: IWordCard) {
   if (!id) {
     wordId = _id;
   }
+
+  const wordData = userData.filter((el: Id) => el.wordId === wordId).map((i: Id) => i.optional)[0];
+  const sprintCorrect = wordData?.sprint.correct ? wordData?.sprint.correct : 0;
+  const sprintWrong = wordData?.sprint.wrong ? wordData?.sprint.wrong : 0;
+  const sprintTotal = sprintCorrect + sprintWrong;
+
+  /* const audioCorrect = wordData?.audio.correct ? wordData?.audio.correct : 0; */
+  /* const audioWrong = wordData?.audio.wrong ? wordData?.audio.wrong : 0;
+  const audioTotal = audioCorrect + audioWrong; */
 
   const audioSrc = domen + audio;
   const audioElement = useRef(new Audio(audioSrc));
@@ -75,6 +85,7 @@ export default function Words(props: IWordCard) {
     <div className={cardClassName}
       onClick={() => {
         handleClick(wordId);
+        console.log(wordData);
       }}
     >
       <div className="card__main">
@@ -110,11 +121,19 @@ export default function Words(props: IWordCard) {
           <div className="card__button-wrapper card__button-wrapper-games">
             <div className="card__game">
               <div className="card__status-btn">аудиовызов</div>
-              <span className="card__game-count">2 из 3</span>
+              <span className="card__game-count">
+                {/* {audioCorrect} */}
+                &nbsp;из&nbsp;
+                {/* {audioTotal} */}
+              </span>
             </div>
             <div className="card__game">
               <div className="card__status-btn">спринт</div>
-              <span className="card__game-count">2 из 3</span>
+              <span className="card__game-count">
+                {sprintCorrect}
+                &nbsp;из&nbsp;
+                {sprintTotal}
+              </span>
             </div>
           </div>
         )}

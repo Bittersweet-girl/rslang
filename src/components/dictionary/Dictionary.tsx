@@ -32,6 +32,7 @@ export default function Dictionary() {
     learnedCard,
     currentPage,
     setCurrentPage,
+    userData,
   } = useDictionaryData();
   let pageStatus = 'dictionary__cards';
   let gameBtnStatus = false;
@@ -49,8 +50,8 @@ export default function Dictionary() {
       <DictionaryMenu group={group} changeGroup={changeGroup} />
       { loading && <Loader />}
       <div className={pageStatus}>
-        {group === 6 ? (hardWordsData.map((product: IProduct) => <Words product={product} key={product._id} isActive={product._id === selectedCart} handleClick={handleClick} isHard={!!hardCard.includes(product._id)} diffCards={diffCards} isLearn={!!learnedCard.includes(product.id)} learnCards={learnCards} />))
-          : (wordsData.map((product: IProduct) => <Words product={product} key={product.id} isActive={product.id === selectedCart} handleClick={handleClick} isHard={!!hardCard.includes(product.id)} diffCards={diffCards} isLearn={!!learnedCard.includes(product.id)} learnCards={learnCards} />))}
+        {group === 6 ? (hardWordsData.map((product: IProduct) => <Words product={product} key={product._id} isActive={product._id === selectedCart} handleClick={handleClick} isHard={!!hardCard.includes(product._id)} diffCards={diffCards} isLearn={!!learnedCard.includes(product.id)} learnCards={learnCards} userData={userData} />))
+          : (wordsData.map((product: IProduct) => <Words product={product} key={product.id} isActive={product.id === selectedCart} handleClick={handleClick} isHard={!!hardCard.includes(product.id)} diffCards={diffCards} isLearn={!!learnedCard.includes(product.id)} learnCards={learnCards} userData={userData} />))}
       </div>
       {group === 6 ? '' : (
         <div className="paginate-wrapper">

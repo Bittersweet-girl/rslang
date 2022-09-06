@@ -4,7 +4,7 @@
 /* eslint-disable max-len */
 import axios from 'axios';
 import { useEffect, useState, useContext } from 'react';
-import { UserSigninResp, IUserWords } from '../types';
+import { UserSigninResp, IUserWords, Id } from '../types';
 import { UserContext } from '../contexts';
 
 export default function useDictionaryData() {
@@ -111,11 +111,6 @@ export default function useDictionaryData() {
     );
   }
 
-  interface Id {
-    wordId: string;
-    optional?: {};
-  }
-
   async function putUserWord(id: string, status: string) {
     const wordData = userData.filter((el: Id) => el.wordId === id).map((i: Id) => i.optional);
     const options = wordData[0] ? wordData[0] : {};
@@ -180,5 +175,6 @@ export default function useDictionaryData() {
     learnedCard,
     currentPage,
     setCurrentPage,
+    userData,
   };
 }
