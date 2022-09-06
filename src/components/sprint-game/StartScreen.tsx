@@ -70,7 +70,7 @@ export default function StartScreen({
         >
           Начать
         </button>
-
+        <p className="start-screen__text">Используйте кнопки стрелки вправо и влево для выбора вариантов</p>
       </div>
 
     </section>

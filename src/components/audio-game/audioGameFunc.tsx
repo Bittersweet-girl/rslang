@@ -1,18 +1,10 @@
 /* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
 /* eslint-disable prefer-destructuring */
-import React from 'react';
-import { PreparedWords, IProduct, AudioGameState } from '../../types';
+import { IProduct, AudioGameState } from '../../types';
 import { saveStatistic } from '../../api/statistic';
 import { difficulties } from '../../constants';
 import { saveUserWord } from '../../api/words';
-
-export function checkAnswer(event: React.MouseEvent<HTMLButtonElement>, index: number, words: PreparedWords[]) {
-  if (event.currentTarget.innerText === words[index].wordTranslate) {
-    return true;
-  }
-  return false;
-}
 
 function shuffle(array: any) {
   let currentIndex = array.length;
