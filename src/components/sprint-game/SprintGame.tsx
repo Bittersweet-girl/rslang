@@ -9,13 +9,21 @@ export default function SprintGame({
   const {
     words, index, countBonus, isGameOver,
   } = state;
-
+  const wrongAudio = () => {
+    const audioSrc = './assets/sounds/wrong.mp3';
+    const audioElement = new Audio(audioSrc);
+    audioElement.play();
+  };
+  const rightAudio = () => {
+    const audioSrc = './assets/sounds/right.mp3';
+    const audioElement = new Audio(audioSrc);
+    audioElement.play();
+  };
   const currentWord = words[index];
 
   const onCorrectAnswer = () => {
+    rightAudio();
     const newState = { ...state, words: [...words] };
-    // const difficulty = newState.words[index].meta?.difficulty;
-    // const isNew = newState.words[index].meta?.optional;
     newState.total += 1;
     newState.countCorrect += 1;
     newState.correctRow += 1;
@@ -35,6 +43,7 @@ export default function SprintGame({
   };
 
   const onWrongAnswer = () => {
+    wrongAudio();
     const newState = { ...state, words: [...words] };
     newState.countWrong += 1;
     newState.correctRow = 0;
