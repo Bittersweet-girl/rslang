@@ -10,6 +10,7 @@ import SprintResult from './SprintResult';
 const getRandomPageNumber = () => Math.max(3, Math.floor(Math.random() * 29));
 
 export default function Sprint({ group, currentPage }: GameProps) {
+  console.log('group, currentPage', group, currentPage);
   const hasComeFromMenu = typeof group === 'undefined';
   // console.log('hasComeFromMenu', hasComeFromMenu);
 
@@ -40,17 +41,20 @@ export default function Sprint({ group, currentPage }: GameProps) {
   useEffect(() => {
     if (isGroupConfirmed) {
       getGameWords({
-        group: currentGroup, page, filterLearned: !hasComeFromMenu, amount: 60,
+        group: currentGroup, page, filterLearned: !hasComeFromMenu, amount: 20,
       })
-        .then((wordsData) => setState(
-          (currentState: any) => ({
-            ...currentState,
-            words: prepareGameData(wordsData),
-            initialWords: wordsData,
-            isGameStarted: true,
-            isGroupConfirmed: false,
-          }),
-        ));
+        .then((wordsData) => {
+          console.log('getGameWords', wordsData);
+          setState(
+            (currentState: any) => ({
+              ...currentState,
+              words: prepareGameData(wordsData),
+              initialWords: wordsData,
+              isGameStarted: true,
+              isGroupConfirmed: false,
+            }),
+          );
+        });
     }
   }, [currentGroup, page, isGroupConfirmed]);
 
