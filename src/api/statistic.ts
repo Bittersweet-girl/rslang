@@ -44,10 +44,10 @@ export async function getTodayStatistic() {
   return { audio: EMPTY_GAME_STATISTIC, sprint: EMPTY_GAME_STATISTIC, ...todayStats };
 }
 
-// getTodayStatistic().then((data) => console.log(data));
+// getTodayStatistic().then((data) => console.log('getTodayStatistic', data));// -------log---------
 
 export async function saveStatistic({
-  correct, wrong, correctRow, newWords, learned,
+  game, correct, wrong, correctRow, newWords, learned,
 }: SaveStatisticParam) {
   const user = getCurrentUser();
   if (!user?.userId) {
@@ -56,36 +56,23 @@ export async function saveStatistic({
   const key = getDayKey();
   const { learnedWords = 0, optional = {} } = await getStatistic();
   const todayStat = optional[key] || {};
-  const todaySprint = todayStat.sprint || { ...EMPTY_GAME_STATISTIC };
-  const todayAudio = todayStat.audio || { ...EMPTY_GAME_STATISTIC };
-
+  const todayGame = todayStat[game] || { ...EMPTY_GAME_STATISTIC };
   const newStats = {
     learnedWords,
     optional: {
       ...optional,
       [key]: {
         ...todayStat,
-        sprint: {
-          correct: todaySprint.correct + correct,
-          wrong: todaySprint.wrong + wrong,
-          correctRow: Math.max(todaySprint.correctRow, correctRow),
-          newWords: todaySprint.newWords + newWords,
-          learned: todaySprint.learned + learned,
-        },
-        audio: {
-          correct: todayAudio.correct + correct,
-          wrong: todayAudio.wrong + wrong,
-          correctRow: Math.max(todayAudio.correctRow, correctRow),
-          newWords: todayAudio.newWords + newWords,
-          learned: todayAudio.learned + learned,
+        [game]: {
+          correct: todayGame.correct + correct,
+          wrong: todayGame.wrong + wrong,
+          correctRow: Math.max(todayGame.correctRow, correctRow),
+          newWords: todayGame.newWords + newWords,
+          learned: todayGame.learned + learned,
         },
       },
     },
   };
-
-  console.log('saveStatistic', {
-    correct, wrong, correctRow, newWords, learned,
-  });
 
   return axios.put(
     `https://rslang-database.herokuapp.com/users/${user.userId}/statistics`,
@@ -98,10 +85,6 @@ export async function saveStatistic({
   )
     .then(({ data }) => data);
 }
-
-// getStatistic().then((data) => {
-//   console.log('getStatistic', data);
-// });
 
 export function getLeurnedWords() {
   const user = getCurrentUser();

@@ -11,7 +11,6 @@ const getRandomPageNumber = () => Math.max(3, Math.floor(Math.random() * 29));
 
 export default function Sprint({ group, currentPage }: GameProps) {
   const hasComeFromMenu = typeof group === 'undefined';
-  // console.log('hasComeFromMenu', hasComeFromMenu);
 
   const [state, setState] = useState({
     countCorrect: 0,
@@ -40,17 +39,19 @@ export default function Sprint({ group, currentPage }: GameProps) {
   useEffect(() => {
     if (isGroupConfirmed) {
       getGameWords({
-        group: currentGroup, page, filterLearned: !hasComeFromMenu, amount: 60,
+        group: currentGroup, page, filterLearned: !hasComeFromMenu, amount: 20,
       })
-        .then((wordsData) => setState(
-          (currentState: any) => ({
-            ...currentState,
-            words: prepareGameData(wordsData),
-            initialWords: wordsData,
-            isGameStarted: true,
-            isGroupConfirmed: false,
-          }),
-        ));
+        .then((wordsData) => {
+          setState(
+            (currentState: any) => ({
+              ...currentState,
+              words: prepareGameData(wordsData),
+              initialWords: wordsData,
+              isGameStarted: true,
+              isGroupConfirmed: false,
+            }),
+          );
+        });
     }
   }, [currentGroup, page, isGroupConfirmed]);
 
@@ -60,8 +61,6 @@ export default function Sprint({ group, currentPage }: GameProps) {
       saveSprintStatistic(state);
     }
   }, [isGameOver]);
-
-  // console.log('word.meta', words);
 
   const confirmGroup = () => setState({ ...state, isGroupConfirmed: true });
   const changeGroup = (newGroup:number) => setState({ ...state, group: newGroup });

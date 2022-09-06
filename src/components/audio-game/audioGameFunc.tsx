@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
+/* eslint-disable prefer-destructuring */
 import React from 'react';
 import { PreparedWords, IProduct, AudioGameState } from '../../types';
 import { saveStatistic } from '../../api/statistic';
@@ -29,13 +30,15 @@ function shuffle(array: any) {
 }
 
 export function makeAnswerArr(num: number, arr: IProduct[]): string[] {
+  // console.log('arr', arr);
+  const length = arr.length;
   let items: string[] = [];
   const numArr: number[] = [];
   items.push(arr[num].wordTranslate);
   for (let i = 0; i < 3; i += 1) {
-    let v = Math.floor(Math.random() * 20);
+    let v = Math.floor(Math.random() * length);
     while (num === v || numArr.includes(v)) {
-      v = Math.floor(Math.random() * 20);
+      v = Math.floor(Math.random() * length);
     }
     numArr.push(v);
     items.push(arr[v].wordTranslate);
@@ -45,7 +48,7 @@ export function makeAnswerArr(num: number, arr: IProduct[]): string[] {
 }
 
 function isWordJustLearned(word: any) {
-  if (!word.isCorrectAnswer || !word?.meta?.optional?.audio) {
+  if (!word.isCorrectAnswerAudio || !word?.meta?.optional?.audio) {
     return false;
   }
   const dif = word.meta.difficulty;
@@ -61,16 +64,14 @@ function isWordJustLearned(word: any) {
 }
 
 export function saveAudioStatistic(state: AudioGameState) {
-  // console.log('saveSprintStatistic', state);
   let newWords = 0;
   let learned = 0;
   const {
     words, correctRow, countCorrect, countWrong,
   } = state;
-  const playedWords = words.filter(({ isCorrectAnswer }) => typeof isCorrectAnswer !== 'undefined');
+  const playedWords = words.filter(({ isCorrectAnswerAudio }) => typeof isCorrectAnswerAudio !== 'undefined');
   playedWords.forEach((word) => {
     const isNew = !word?.meta?.optional?.audio;
-    // console.log('word', isNew, word);
     const isJustLearned = isWordJustLearned(word);
     let difficulty = word.meta?.difficulty || difficulties.EASY;
     const optional = word.meta?.optional || {};
@@ -87,7 +88,7 @@ export function saveAudioStatistic(state: AudioGameState) {
       difficulty = difficulties.LEARNED;
     }
 
-    if (word.isCorrectAnswer) {
+    if (word.isCorrectAnswerAudio) {
       audio.correctRow += 1;
       audio.correct += 1;
     } else {

@@ -32,6 +32,7 @@ export default function Dictionary() {
     learnedCard,
     currentPage,
     setCurrentPage,
+    userData,
   } = useDictionaryData();
   let pageStatus = 'dictionary__cards';
   let gameBtnStatus = false;
@@ -49,8 +50,8 @@ export default function Dictionary() {
       <DictionaryMenu group={group} changeGroup={changeGroup} />
       { loading && <Loader />}
       <div className={pageStatus}>
-        {group === 6 ? (hardWordsData.map((product: IProduct) => <Words product={product} key={product._id} isActive={product._id === selectedCart} handleClick={handleClick} isHard={!!hardCard.includes(product._id)} diffCards={diffCards} isLearn={!!learnedCard.includes(product.id)} learnCards={learnCards} />))
-          : (wordsData.map((product: IProduct) => <Words product={product} key={product.id} isActive={product.id === selectedCart} handleClick={handleClick} isHard={!!hardCard.includes(product.id)} diffCards={diffCards} isLearn={!!learnedCard.includes(product.id)} learnCards={learnCards} />))}
+        {group === 6 ? (hardWordsData.map((product: IProduct) => <Words product={product} key={product._id} isActive={product._id === selectedCart} handleClick={handleClick} isHard={!!hardCard.includes(product._id)} diffCards={diffCards} isLearn={!!learnedCard.includes(product.id)} learnCards={learnCards} userData={userData} />))
+          : (wordsData.map((product: IProduct) => <Words product={product} key={product.id} isActive={product.id === selectedCart} handleClick={handleClick} isHard={!!hardCard.includes(product.id)} diffCards={diffCards} isLearn={!!learnedCard.includes(product.id)} learnCards={learnCards} userData={userData} />))}
       </div>
       {group === 6 ? '' : (
         <div className="paginate-wrapper">
@@ -64,7 +65,7 @@ export default function Dictionary() {
             type="button"
             className="dictionary__audio-btn"
             disabled={gameBtnStatus}
-            onClick={() => navigate(PAGE_AUDIO, { group })}
+            onClick={() => navigate(PAGE_AUDIO, { group, currentPage })}
           >
             <p className="dictionary__audio-text">Важный навык - восприятия языка на слух. С этой игрой вы сможете запомнить больше новых слов.</p>
 
@@ -73,7 +74,7 @@ export default function Dictionary() {
             type="button"
             className="dictionary__sprint-btn"
             disabled={gameBtnStatus}
-            onClick={() => navigate(PAGE_SPRINT, { group })}
+            onClick={() => navigate(PAGE_SPRINT, { group, currentPage })}
           >
             <p className="dictionary__sprint-text">Учите английский язык быстро, а эта игра вам поможет запомнить еще больше слов. Вперед!</p>
 

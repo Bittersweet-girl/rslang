@@ -51,7 +51,12 @@ export default function AudioGamePlay({ state, setState }: AudioGameParam) {
     newState.isAnswer = true;
     setState(newState);
   }
-  // console.log(state.correctRow, state.countCorrect, state.countWrong);
+  function noAnswer() {
+    const newState = { ...state };
+    newState.isCorrect = false;
+    newState.isAnswer = true;
+    setState(newState);
+  }
   if (!state.isAnswer) {
     return (
       <div className="audio-game-play">
@@ -72,7 +77,7 @@ export default function AudioGamePlay({ state, setState }: AudioGameParam) {
             </button>
           ))}
         </div>
-        <button className="audio-game-play__btn btn" type="button">Не знаю</button>
+        <button className="audio-game-play__btn btn" type="button" onClick={noAnswer}>Не знаю</button>
       </div>
     );
   }

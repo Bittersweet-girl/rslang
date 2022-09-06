@@ -4,7 +4,7 @@
 /* eslint-disable max-len */
 import axios from 'axios';
 import { useEffect, useState, useContext } from 'react';
-import { UserSigninResp, IUserWords } from '../types';
+import { UserSigninResp, IUserWords, Id } from '../types';
 import { UserContext } from '../contexts';
 
 export default function useDictionaryData() {
@@ -26,7 +26,7 @@ export default function useDictionaryData() {
   async function getWordsData(gr: number, page: number) {
     getUserWordsIds();
     setLoading(true);
-    const response = await axios.get(`https://rslang-database.herokuapp.com/words?page=${page === 0 ? 0 : page - 1}&group=${gr}`);
+    const response = await axios.get(`https://rslang-database.herokuapp.com/words?page=${page}&group=${gr}`);
     setWordsData(response.data);
     setLoading(false);
   }
@@ -85,7 +85,7 @@ export default function useDictionaryData() {
   function changeGroup(gr: number) {
     sessionStorage.setItem('group', gr.toString());
     setGroup(gr);
-    setCurrentPage(1);
+    setCurrentPage(0);
   }
 
   const handleClick = (id: string) => {
@@ -109,11 +109,6 @@ export default function useDictionaryData() {
         },
       },
     );
-  }
-
-  interface Id {
-    wordId: string;
-    optional?: {};
   }
 
   async function putUserWord(id: string, status: string) {
@@ -180,5 +175,6 @@ export default function useDictionaryData() {
     learnedCard,
     currentPage,
     setCurrentPage,
+    userData,
   };
 }

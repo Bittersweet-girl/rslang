@@ -48,7 +48,7 @@ export function makeCombinedWords({ words, userWords }: CombinedWords) {
 // }
 
 export function filterLearnedWords(words:CombinedWordsData[]) {
-  return words.filter((word) => !word.meta || word.meta.difficulty === difficulties.LEARNED);
+  return words.filter((word) => !word.meta || word.meta.difficulty !== difficulties.LEARNED);
 }
 
 export async function getGameWords({
@@ -62,9 +62,9 @@ export async function getGameWords({
     const combinedWords = makeCombinedWords({ words, userWords });
     const gameWords = filterLearned ? filterLearnedWords(combinedWords) : combinedWords;
     result = [...result, ...gameWords];
-    const shouldLoadMore = result.length < amount && currentPage > 0;
+    const shouldLoadMore = result.length < amount && currentPage >= 0 && currentPage < 30;
 
-    return shouldLoadMore ? load(currentPage - 1) : result;
+    return shouldLoadMore ? load(currentPage + 1) : result.slice(0, 20);
   };
 
   return load(page);
