@@ -47,7 +47,7 @@ export async function getTodayStatistic() {
 // getTodayStatistic().then((data) => console.log(data));
 
 export async function saveStatistic({
-  correct, wrong, correctRow, newWords, learned,
+  game, correct, wrong, correctRow, newWords, learned,
 }: SaveStatisticParam) {
   const user = getCurrentUser();
   if (!user?.userId) {
@@ -56,7 +56,7 @@ export async function saveStatistic({
   const key = getDayKey();
   const { learnedWords = 0, optional = {} } = await getStatistic();
   const todayStat = optional[key] || {};
-  const todaySprint = todayStat.sprint || { ...EMPTY_GAME_STATISTIC };
+  const todayGame = todayStat[game] || { ...EMPTY_GAME_STATISTIC };
 
   const newStats = {
     learnedWords,
@@ -64,12 +64,12 @@ export async function saveStatistic({
       ...optional,
       [key]: {
         ...todayStat,
-        sprint: {
-          correct: todaySprint.correct + correct,
-          wrong: todaySprint.wrong + wrong,
-          correctRow: Math.max(todaySprint.correctRow, correctRow),
-          newWords: todaySprint.newWords + newWords,
-          learned: todaySprint.learned + learned,
+        [game]: {
+          correct: todayGame.correct + correct,
+          wrong: todayGame.wrong + wrong,
+          correctRow: Math.max(todayGame.correctRow, correctRow),
+          newWords: todayGame.newWords + newWords,
+          learned: todayGame.learned + learned,
         },
       },
     },
