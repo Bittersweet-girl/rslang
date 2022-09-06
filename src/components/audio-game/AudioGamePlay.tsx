@@ -11,6 +11,16 @@ const playAudio = (word: IProduct) => {
   const audioElement = new Audio(audioSrc);
   audioElement.play();
 };
+const wrongAudio = () => {
+  const audioSrc = './assets/sounds/wrong.mp3';
+  const audioElement = new Audio(audioSrc);
+  audioElement.play();
+};
+const rightAudio = () => {
+  const audioSrc = './assets/sounds/right.mp3';
+  const audioElement = new Audio(audioSrc);
+  audioElement.play();
+};
 
 function WordAudio({ word }: GameWord) {
   return (
@@ -23,7 +33,14 @@ function WordAudio({ word }: GameWord) {
 export default function AudioGamePlay({ state, setState }: AudioGameParam) {
   const { index, words, answers } = state;
   const currentWord = words[index];
-  useEffect(() => playAudio(words[index]));
+  useEffect(() => {
+    if (state.isAnswer && state.isCorrect) {
+      rightAudio();
+    } else if (state.isAnswer && !state.isCorrect) {
+      wrongAudio();
+    }
+    playAudio(words[index]);
+  }, [state.isAnswer, state.isCorrect]);
 
   function nextQuestion() {
     const newState = { ...state, words: [...words] };
