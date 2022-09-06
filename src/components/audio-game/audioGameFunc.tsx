@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
+/* eslint-disable prefer-destructuring */
 import React from 'react';
 import { PreparedWords, IProduct, AudioGameState } from '../../types';
 import { saveStatistic } from '../../api/statistic';
@@ -29,13 +30,15 @@ function shuffle(array: any) {
 }
 
 export function makeAnswerArr(num: number, arr: IProduct[]): string[] {
+  // console.log('arr', arr);
+  const length = arr.length;
   let items: string[] = [];
   const numArr: number[] = [];
   items.push(arr[num].wordTranslate);
   for (let i = 0; i < 3; i += 1) {
-    let v = Math.floor(Math.random() * 20);
+    let v = Math.floor(Math.random() * length);
     while (num === v || numArr.includes(v)) {
-      v = Math.floor(Math.random() * 20);
+      v = Math.floor(Math.random() * length);
     }
     numArr.push(v);
     items.push(arr[v].wordTranslate);

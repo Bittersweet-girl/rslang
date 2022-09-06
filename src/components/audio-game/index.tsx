@@ -25,7 +25,7 @@ export default function AudioMain({ group, currentPage }: GameProps) {
     isGroupConfirmed: false,
     isGameStarted: false,
     group,
-    page: currentPage - 1 ?? getRandomPageNumber(),
+    page: currentPage ?? getRandomPageNumber(),
   });
   const {
     index, isGameStarted, isGameOver, words, isGroupConfirmed, page,

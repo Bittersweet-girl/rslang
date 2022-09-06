@@ -10,9 +10,7 @@ import SprintResult from './SprintResult';
 const getRandomPageNumber = () => Math.max(3, Math.floor(Math.random() * 29));
 
 export default function Sprint({ group, currentPage }: GameProps) {
-  console.log('group, currentPage', group, currentPage);
   const hasComeFromMenu = typeof group === 'undefined';
-  // console.log('hasComeFromMenu', hasComeFromMenu);
 
   const [state, setState] = useState({
     countCorrect: 0,
@@ -29,7 +27,7 @@ export default function Sprint({ group, currentPage }: GameProps) {
     isGroupConfirmed: false,
     isGameStarted: false,
     group,
-    page: currentPage - 1 ?? getRandomPageNumber(),
+    page: currentPage ?? getRandomPageNumber(),
   });
 
   const {
@@ -44,7 +42,6 @@ export default function Sprint({ group, currentPage }: GameProps) {
         group: currentGroup, page, filterLearned: !hasComeFromMenu, amount: 20,
       })
         .then((wordsData) => {
-          console.log('getGameWords', wordsData);
           setState(
             (currentState: any) => ({
               ...currentState,
@@ -64,8 +61,6 @@ export default function Sprint({ group, currentPage }: GameProps) {
       saveSprintStatistic(state);
     }
   }, [isGameOver]);
-
-  // console.log('word.meta', words);
 
   const confirmGroup = () => setState({ ...state, isGroupConfirmed: true });
   const changeGroup = (newGroup:number) => setState({ ...state, group: newGroup });
