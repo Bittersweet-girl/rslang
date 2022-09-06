@@ -36,7 +36,7 @@ export default function Statistic() {
 
   const tryTotalCorrect = Math.round(
     ((correctAudio + correctSprint)
-      / (correctAudio + correctSprint + wrongAudio + wrongSprint)) * 100,
+     / (correctAudio + correctSprint + wrongAudio + wrongSprint)) * 100,
   );
 
   const totalPercent = Object.is(NaN, tryTotalCorrect) ? 0 : tryTotalCorrect;
