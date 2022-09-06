@@ -79,6 +79,7 @@ export default function AudioGame({
         </button>
       </div>
       <button type="button" className="audio-game__start btn" onClick={onStartGameClick} disabled={typeof group === 'undefined'}>Начать</button>
+      <p className="audio-game__text">Используйте кнопки 1-4 основной клавиатуры для выбора вариантов, пробел для повтора звука и ентер для пропуска или следующего слова.</p>
     </div>
   );
 }

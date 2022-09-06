@@ -1,13 +1,25 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect } from 'react';
-import { AudioGameParam, IProduct, GameWord } from '../../types';
-import { checkAnswer, makeAnswerArr } from './audioGameFunc';
+import {
+  AudioGameParam, IProduct, GameWord, PreparedWords,
+} from '../../types';
+import { makeAnswerArr } from './audioGameFunc';
 
 const domen = 'https://rslang-database.herokuapp.com/';
 
 const playAudio = (word: IProduct) => {
   const audioSrc = `${domen}${word.audio}`;
+  const audioElement = new Audio(audioSrc);
+  audioElement.play();
+};
+const wrongAudio = () => {
+  const audioSrc = './assets/sounds/wrong.mp3';
+  const audioElement = new Audio(audioSrc);
+  audioElement.play();
+};
+const rightAudio = () => {
+  const audioSrc = './assets/sounds/right.mp3';
   const audioElement = new Audio(audioSrc);
   audioElement.play();
 };
@@ -23,7 +35,6 @@ function WordAudio({ word }: GameWord) {
 export default function AudioGamePlay({ state, setState }: AudioGameParam) {
   const { index, words, answers } = state;
   const currentWord = words[index];
-  useEffect(() => playAudio(words[index]));
 
   function nextQuestion() {
     const newState = { ...state, words: [...words] };
@@ -45,9 +56,15 @@ export default function AudioGamePlay({ state, setState }: AudioGameParam) {
     }
     setState(newState);
   }
-  function setAnswer(event: React.MouseEvent<HTMLButtonElement>) {
+  function checkAnswer(i: number, checkIindex: number, checkWords: PreparedWords[]) {
+    if (answers[i] === checkWords[checkIindex].wordTranslate) {
+      return true;
+    }
+    return false;
+  }
+  function setAnswer(i: number) {
     const newState = { ...state };
-    newState.isCorrect = checkAnswer(event, index, words);
+    newState.isCorrect = checkAnswer(i, index, words);
     newState.isAnswer = true;
     setState(newState);
   }
@@ -57,6 +74,56 @@ export default function AudioGamePlay({ state, setState }: AudioGameParam) {
     newState.isAnswer = true;
     setState(newState);
   }
+
+  useEffect(() => {
+    if (state.isAnswer && state.isCorrect) {
+      rightAudio();
+    } else if (state.isAnswer && !state.isCorrect) {
+      wrongAudio();
+    }
+    playAudio(words[index]);
+    const onKeypress = (e: any) => {
+      if (e.code === 'Digit1') {
+        e.preventDefault();
+        e.stopPropagation();
+        setAnswer(0);
+      }
+      if (e.code === 'Digit2') {
+        e.preventDefault();
+        e.stopPropagation();
+        setAnswer(1);
+      }
+      if (e.code === 'Digit3') {
+        e.preventDefault();
+        e.stopPropagation();
+        setAnswer(2);
+      }
+      if (e.code === 'Digit4') {
+        e.preventDefault();
+        e.stopPropagation();
+        setAnswer(3);
+      }
+      if (e.code === 'Space') {
+        e.preventDefault();
+        e.stopPropagation();
+        playAudio(words[index]);
+      }
+      if (e.code === 'Enter') {
+        e.preventDefault();
+        e.stopPropagation();
+        if (state.isAnswer) {
+          nextQuestion();
+        } else {
+          noAnswer();
+        }
+      }
+    };
+    window.addEventListener('keyup', onKeypress);
+    return () => {
+      window.removeEventListener('keyup', onKeypress);
+    };
+  }, [state.isAnswer, state.isCorrect]);
+
   if (!state.isAnswer) {
     return (
       <div className="audio-game-play">
@@ -69,10 +136,12 @@ export default function AudioGamePlay({ state, setState }: AudioGameParam) {
               key={i}
               type="button"
               className={`audio-game-play__option audio-game-play__option_${i} btn`}
-              onClick={(event) => {
-                setAnswer(event);
+              onClick={() => {
+                setAnswer(i);
               }}
             >
+              {i + 1}
+              {'   '}
               {ans}
             </button>
           ))}
