@@ -131,6 +131,7 @@ export interface NewUserWord {
 export interface PreparedWords extends CombinedWordsData {
   isCorrect?: boolean;
   isCorrectAnswer?: boolean;
+  isCorrectAnswerAudio?: boolean;
   fakeTranslation?: string;
   isInGame?: boolean;
 }
@@ -204,6 +205,21 @@ export interface SaveStatisticParam {
 
 // --------Audio Game ----------
 
-export interface IAudioProps {
-  onPlayClick: React.MouseEventHandler<HTMLButtonElement>;
+export interface AudioGameState {
+  isAnswer: boolean;
+  isCorrect: boolean;
+  countCorrect: number;
+  countWrong: number;
+  correctRow: number;
+  index: number;
+  words: PreparedWords[],
+  answers: string[],
+  isGameOver: boolean;
+  isGameStarted: boolean;
+  group: number;
+}
+
+export interface AudioGameParam {
+  state: AudioGameState;
+  setState: React.Dispatch<any>;
 }
