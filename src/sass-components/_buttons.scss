@@ -1,0 +1,14 @@
+.btn {
+    padding: 5px;
+    height: 45px;
+    border: 0px;
+    border-radius: 3px;
+    background: transparent;
+    cursor: pointer;
+    &:hover {
+        color: $color-bg;
+    }
+    &:active {
+        transform: translateY(4px);
+    }
+}
