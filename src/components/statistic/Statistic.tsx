@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { getLeurnedWords, getTodayStatistic } from '../../api/statistic';
 import './statistic.scss';
+import { UserContext } from '../../contexts';
+import { UserSigninResp } from '../../types';
 
 export default function Statistic() {
+  const user: null | UserSigninResp = useContext(UserContext);
   const [statistic, setStatistic] = useState({
     sprint: {
       correct: 0, correctRow: 0, wrong: 0, newWords: 0,
@@ -43,6 +46,7 @@ export default function Statistic() {
 
   return (
     <section className="statistic">
+      {!user && <span className="statistic__color-red">Войдите в систему, чтобы увидеть статистику</span>}
       <h1 className="statistic__header">Прогресс за сегодня</h1>
       <div className="statistic__total">
         <div className="statistic__total__item">

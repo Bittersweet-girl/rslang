@@ -64,7 +64,7 @@ export async function getGameWords({
     result = [...result, ...gameWords];
     const shouldLoadMore = result.length < amount && currentPage >= 0 && currentPage < 30;
 
-    return shouldLoadMore ? load(currentPage + 1) : result.slice(0, 20);
+    return shouldLoadMore ? load(currentPage - 1) : result.slice(0, 20);
   };
 
   return load(page);

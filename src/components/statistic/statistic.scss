@@ -5,6 +5,11 @@
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
+  &__color-red {
+    color: $color-red;
+    font-weight: 600;
+    font-size: 32px;
+  }
   &__header {
     font-weight: 600;
     font-size: 36px;

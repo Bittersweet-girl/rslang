@@ -7,6 +7,7 @@ import { IPaginate } from '../../types';
 export default function PaginatedItems({ forcePage, setPage }: IPaginate) {
   const handlePageClick = (event: { selected: number; }) => {
     setPage(event.selected);
+    sessionStorage.setItem('sessionpPage', event.selected.toString());
   };
 
   return (

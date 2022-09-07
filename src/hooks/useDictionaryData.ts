@@ -10,6 +10,9 @@ import { UserContext } from '../contexts';
 export default function useDictionaryData() {
   const sessionGroupData = sessionStorage.getItem('group');
   const sessionGroup = Number(sessionGroupData);
+  const sessionPageData = sessionStorage.getItem('sessionpPage');
+  const sessionPage = Number(sessionPageData);
+
   const [wordsData, setWordsData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [group, setGroup] = useState<number>(sessionGroup);
@@ -19,7 +22,7 @@ export default function useDictionaryData() {
   const [hardCard, setHardCard] = useState(['']);
   const [learnedCard, setLearnedCard] = useState(['']);
   const [easyCard, setEasyCard] = useState(['']);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(sessionPage);
   const user: null | UserSigninResp = useContext(UserContext);
   const [hardWordsData, setHardWordsData] = useState([]);
 
@@ -87,6 +90,7 @@ export default function useDictionaryData() {
     setGroup(gr);
     setCurrentPage(0);
   }
+  console.log(sessionStorage.getItem('sessionpPage'));
 
   const handleClick = (id: string) => {
     if (selectedCart === id) {
