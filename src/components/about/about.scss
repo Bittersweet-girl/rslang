@@ -1,15 +1,17 @@
 @import '../../sass-components/variables';
 @import '../../sass-components/mixins';
 .about{
-    padding: 20px 0;
+    padding: 60px 0;
         &-text {
             text-align: center;  
         }
-        &__title{
+        &__title {
+          margin: 0;
             font-size: 36px;
             line-height: 80px;
         }
-        &__text{
+        &__text {
+            margin: 0;
             font-size: 24px;
             line-height: 36px;
             color: $color-secondary;
@@ -20,20 +22,21 @@
         }
         &-item {
             @include card;
-            height: 400px;
+            height: 420px;
+            padding: 50px 30px 30px;
             position: relative;
             &__img{
                 border-radius: 50%;
             }
             &__hello{
                 position: absolute;
-                top: 10px;
-                left: 20px;
+                top: 30px;
+                left: 40px;
             }
             &__plant{
                 position: absolute;
-                top: 150px;
-                right: 40px;
+                top: 180px;
+                right: 60px;
             }
         }
 }

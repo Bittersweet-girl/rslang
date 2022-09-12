@@ -4,14 +4,14 @@
 
 .audio-game,
 .audio-game-play{
-    min-height: 500px;
-    // height: calc(100vh - 195px);
+    min-height: 750px;
+    height: calc(100vh - 170px);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     max-width: 600px;
-    margin: 20px auto;
+    margin: 0 auto;
     text-align: center;
 }
     .audio-game{
@@ -30,53 +30,161 @@
         line-height: 21px;
     }
     &-group{
-        margin: 10px 0;
+        margin: 30px 0;
     }
     &__btn{
         border: 1px solid $color-secondary;
         margin: 0 5px;
         width: 45px;
         color: $color-secondary;
-        
     }
-    &__btn_first:hover {
+
+    &__btn-first:hover,
+    &__btn-first_active {
         background-color: $color-yellow;
         border: 1px solid $color-yellow;
+        color: $color-bg;
+    }  
+
+    &__btn-first[disabled]{
+      @include disabledGameBtn;
     }
-    &__btn_second:hover{
+
+    &__btn-first_active[disabled] {
+      background-color: $color-yellow;
+      border: 1px solid $color-yellow;
+      color: $color-bg;
+        &:hover {
+        background-color: $color-yellow;
+        border: 1px solid $color-yellow;
+        color: $color-bg;
+        }
+    }
+
+    &__btn-second:hover,
+    &__btn-second_active {
         background-color: $color-orange;
         border: 1px solid $color-orange;
+        color: $color-bg;
     }
-    &__btn_third:hover{
+   
+    &__btn-second[disabled]{
+      @include disabledGameBtn;
+    }
+
+    &__btn-second_active[disabled] {
+      background-color: $color-orange;
+      border: 1px solid $color-orange;
+      color: $color-bg;
+        &:hover {
+        background-color: $color-orange;
+        border: 1px solid $color-orange;
+        color: $color-bg;
+        }
+    }
+
+    &__btn-third:hover,
+    &__btn-third_active {
         background-color: $color-green;
         border: 1px solid $color-green;
-        
+        color: $color-bg;        
     }
-    &__btn_four:hover{
+
+    &__btn-third[disabled]{
+      @include disabledGameBtn;
+    }
+
+    &__btn-third_active[disabled] {
+      background-color: $color-green;
+      border: 1px solid $color-green;
+      color: $color-bg;
+        &:hover {
+        background-color: $color-green;
+        border: 1px solid $color-green;
+        color: $color-bg;
+        }
+    }
+
+    &__btn-four:hover,
+    &__btn-four_active {
         background-color: $color-blue;
         border: 1px solid $color-blue;
+        color: $color-bg;
     }
-    &__btn_five:hover{
+
+    &__btn-four[disabled]{
+      @include disabledGameBtn;
+    }
+
+    &__btn-four_active[disabled] {
+      background-color: $color-blue;
+      border: 1px solid $color-blue;
+      color: $color-bg;
+        &:hover {
+        background-color: $color-blue;
+        border: 1px solid $color-blue;
+        color: $color-bg;
+        }
+    }
+
+    &__btn-five:hover,
+    &__btn-five_active {
         background-color: $color-pink;
         border: 1px solid $color-pink;
+        color: $color-bg;
     }
-    &__btn_six:hover{
+
+    &__btn-five[disabled]{
+      @include disabledGameBtn;
+    }
+
+    &__btn-five_active[disabled] {
+      background-color: $color-pink;
+      border: 1px solid $color-pink;
+      color: $color-bg;
+        &:hover {
+        background-color: $color-pink;
+        border: 1px solid $color-pink;
+        color: $color-bg;
+        }
+    }
+
+    &__btn-six:hover,
+    &__btn-six_active {
         background-color: $color-magenta;
         border: 1px solid $color-magenta;
+        color: $color-bg;
     }
+
+    &__btn-six[disabled]{
+      @include disabledGameBtn;
+    }
+
+    &__btn-six_active[disabled] {
+      background-color: $color-magenta;
+      border: 1px solid $color-magenta;
+      color: $color-bg;
+        &:hover {
+        background-color: $color-magenta;
+        border: 1px solid $color-magenta;
+        color: $color-bg;
+        }
+    }
+
     &__start{
         width: 100px;
         margin: 10px 0;
+        color: $color-bg;
         background-color: $color-green;
         &[disabled]{
             background-color: $color-secondary;
-            color: $color-primary;
+            // color: $color-primary;
             &:active {
                 transform: translateY(0);
             }
             &:hover{
                 background-color: $color-secondary;
-                color: $color-primary;
+                // color: $color-primary;
             }
         }
     }
@@ -92,7 +200,7 @@
         height: 60px;
         filter: invert(59%) sepia(7%) saturate(596%) hue-rotate(186deg) brightness(99%) contrast(89%);
         &:hover {
-            filter: invert(61%) sepia(90%) saturate(298%) hue-rotate(79deg) brightness(94%) contrast(93%);
+            filter: invert(38%) sepia(28%) saturate(919%) hue-rotate(79deg) brightness(105%) contrast(88%);
         }
     }
     &-options-block{
@@ -118,7 +226,8 @@
         }
     }
     &__btn{
-        width: 80px;
+        width: 100px;
+        background-color: $color-secondary-light;
         &:hover{
             background-color: $color-green;
         }
@@ -126,6 +235,7 @@
     &__image{
         width: 382px;
         height: 250px;
+        border-radius: 15px;
     }
 }
 .correct{
@@ -217,7 +327,7 @@
          width: 200px;
 
          &:hover {
-             background-color: $color-blue;
+             background-color: $color-green;
          }
      }
 

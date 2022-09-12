@@ -8,7 +8,7 @@ export default function StartScreen({
     <section className="start-screen">
       <div className="start-screen__container">
         <div className="start-screen__logo" />
-        <p className="start-screen__text">Очень важный навык - восприятия языка на слух. С помощью этой игры вы сможете запомнить еще больше новых слов. Выберете соотвествующий перевод слова, после того как услышите как оно звучит.</p>
+        <p className="start-screen__text">Учите английский язык быстро, а эта игра вам поможет запомнить еще больше слов. Выберите правильный перевод слова, только спешите, время идет быстро, так что и думать тоже нужно бысто. Вперед!</p>
         {!isGroupChangeDisabled && <h3 className="start-screen__title">Выберите раздел учебника для тренировки</h3>}
         {isGroupChangeDisabled && <h3 className="start-screen__title">Слова будут взяты из указанного раздела</h3>}
         <div className="start-screen-group">

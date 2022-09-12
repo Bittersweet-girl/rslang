@@ -32,11 +32,11 @@ export default function AudioGameResult({ state, setState }: AudioGameParam) {
       <h1>Молодец! Так держать!</h1>
       <div className="statistic-data scrollbar">
         <h2>
-          Результат
-          {' '}
+          Результаты игры:
+          {/* {' '}
 
           {' '}
-          баллов
+          баллов */}
         </h2>
         <div className="statistic-data__title">
           <p className="statistic-data__title-text">Ошибок</p>

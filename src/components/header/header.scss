@@ -22,7 +22,11 @@
         height: 45px;
         gap: 20px;
         &__button{
-            width: 100px;
+            // width: 100px;
+
+            max-width: 130px;
+            padding: 15px;
+
             &_dict:hover{
                 background-color: $color-orange;
             }

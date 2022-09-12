@@ -5,11 +5,11 @@
     max-width: 1900px;
     &-top{
         @include flex-columns;
-        padding: 40px 0 0;
+        padding: 60px 0 0;
         &__title{
             width: 400px;
-            font-size: 64px;
-            line-height: 80px;
+            font-size: 60px;
+            line-height: 70px;
         }
         &__text{
             padding: 30px 0;
@@ -23,13 +23,23 @@
         }
     }
     &-cards{
-        padding: 20px 0;
+        padding: 60px 0;
+        
         &-text{
             text-align: center;
         }
+        &__title {
+          margin: 0;
+          font-size: 36px;
+        }
+        &__text {
+          margin: 10px;
+          font-size: 24px;
+          color: $color-primary-light;
+        }
         &-cards{
             @include flex-columns;
-            padding: 40px 0;
+            padding: 60px 0 20px;
         }
         &-item{
             @include card;

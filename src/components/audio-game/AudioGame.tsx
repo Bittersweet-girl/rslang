@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import React from 'react';
-import { BTNS_BG } from '../../constants';
+// import { BTNS_BG } from '../../constants';
 
 export default function AudioGame({
   onStartGameClick, onGroupChange, group, isGroupChangeDisabled,
@@ -13,67 +13,49 @@ export default function AudioGame({
       <div className="audio-game-group">
         <button
           type="button"
-          className="audio-game__btn audio-game__btn_first btn"
-          onClick={() => {
-            onGroupChange(0);
-          }}
+          className={`btn audio-game__btn audio-game__btn-first ${group === 0 ? 'audio-game__btn-first_active' : ''}`}
+          onClick={() => onGroupChange(0)}
           disabled={isGroupChangeDisabled}
-          style={group === 0 ? BTNS_BG[1] : BTNS_BG[0]}
         >
           A1
         </button>
         <button
           type="button"
-          className="audio-game__btn audio-game__btn_second btn"
-          onClick={() => {
-            onGroupChange(1);
-          }}
+          className={`btn audio-game__btn audio-game__btn-second ${group === 1 ? 'audio-game__btn-second_active' : ''}`}
+          onClick={() => onGroupChange(1)}
           disabled={isGroupChangeDisabled}
-          style={group === 1 ? BTNS_BG[2] : BTNS_BG[0]}
         >
           A2
         </button>
         <button
           type="button"
-          className="audio-game__btn audio-game__btn_third btn"
-          onClick={() => {
-            onGroupChange(2);
-          }}
+          className={`btn audio-game__btn audio-game__btn-third ${group === 2 ? 'audio-game__btn-third_active' : ''}`}
+          onClick={() => onGroupChange(2)}
           disabled={isGroupChangeDisabled}
-          style={group === 2 ? BTNS_BG[3] : BTNS_BG[0]}
         >
           B1
         </button>
         <button
           type="button"
-          className="audio-game__btn audio-game__btn_four btn"
-          onClick={() => {
-            onGroupChange(3);
-          }}
+          className={`btn audio-game__btn audio-game__btn-four ${group === 3 ? 'audio-game__btn-four_active' : ''}`}
+          onClick={() => onGroupChange(3)}
           disabled={isGroupChangeDisabled}
-          style={group === 3 ? BTNS_BG[4] : BTNS_BG[0]}
         >
           B2
         </button>
         <button
           type="button"
-          className="audio-game__btn audio-game__btn_five btn"
-          onClick={() => {
-            onGroupChange(4);
-          }}
+          className={`btn audio-game__btn audio-game__btn-five ${group === 4 ? 'audio-game__btn-five_active' : ''}`}
+          onClick={() => onGroupChange(4)}
           disabled={isGroupChangeDisabled}
-          style={group === 4 ? BTNS_BG[5] : BTNS_BG[0]}
         >
           C1
         </button>
         <button
           type="button"
-          className="audio-game__btn audio-game__btn_six btn"
-          onClick={() => {
-            onGroupChange(5);
-          }}
+          className={`btn audio-game__btn audio-game__btn-six ${group === 5 ? 'audio-game__btn_active' : ''}`}
+          onClick={() => onGroupChange(5)}
           disabled={isGroupChangeDisabled}
-          style={group === 5 ? BTNS_BG[6] : BTNS_BG[0]}
         >
           C2
         </button>

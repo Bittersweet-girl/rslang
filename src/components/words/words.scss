@@ -72,9 +72,11 @@
     border: none;
   }
   &__play-img {
-    width: 52px;
-    height: 40px;
-    filter: invert(59%) sepia(7%) saturate(596%) hue-rotate(186deg) brightness(99%) contrast(89%);
+    width: 45px;
+    height: 45px;
+    // filter: invert(59%) sepia(7%) saturate(596%) hue-rotate(186deg) brightness(99%) contrast(89%);
+    filter: invert(33%) sepia(14%) saturate(301%) hue-rotate(186deg) brightness(88%) contrast(89%);
+    
     &:hover {
       filter: invert(59%) sepia(86%) saturate(1184%) hue-rotate(158deg) brightness(101%) contrast(102%);
     }
@@ -87,7 +89,7 @@
     margin-bottom: 5px;
     padding-top: 5px;
     font-size: 14px;
-    font-weight: 600;
+    // font-weight: 600;
     border-top: .3px solid $color-secondary;
     color: $color-primary;
     &_translate {
