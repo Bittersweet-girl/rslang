@@ -6,7 +6,7 @@ import { getCurrentUser } from './user';
 const EMPTY_GAME_STATISTIC = {
   correct: 0,
   wrong: 0,
-  correctRow: 0,
+  longestCorrectRow: 0,
   newWords: 0,
   learned: 0,
 };
@@ -47,7 +47,7 @@ export async function getTodayStatistic() {
 // getTodayStatistic().then((data) => console.log('getTodayStatistic', data));// -------log---------
 
 export async function saveStatistic({
-  game, correct, wrong, correctRow, newWords, learned,
+  game, correct, wrong, longestCorrectRow, newWords, learned,
 }: SaveStatisticParam) {
   const user = getCurrentUser();
   if (!user?.userId) {
@@ -66,7 +66,7 @@ export async function saveStatistic({
         [game]: {
           correct: todayGame.correct + correct,
           wrong: todayGame.wrong + wrong,
-          correctRow: Math.max(todayGame.correctRow, correctRow),
+          longestCorrectRow: Math.max(todayGame.longestCorrectRow, longestCorrectRow),
           newWords: todayGame.newWords + newWords,
           learned: todayGame.learned + learned,
         },

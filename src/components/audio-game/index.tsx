@@ -17,7 +17,7 @@ export default function AudioMain({ group, currentPage }: GameProps) {
     isCorrect: false,
     countCorrect: 0,
     countWrong: 0,
-    correctRow: 0,
+    longestCorrectRow: 0,
     index: 0,
     words: [],
     answers: [],

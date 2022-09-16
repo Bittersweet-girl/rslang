@@ -34,9 +34,12 @@ function isWordJustLearned(word: any) {
   if (!word.isCorrectAnswer || !word?.meta?.optional?.sprint) {
     return false;
   }
-  const dif = word.meta.difficulty;
-  const { correctRow } = word.meta.optional;
 
+  const dif = word.meta.difficulty;
+  // console.log('dif', dif);
+  const { correctRow } = word.meta.optional.sprint;
+  // console.log('word.meta.optional', word.meta.optional);
+  // console.log('correctRow', correctRow);
   if (dif === difficulties.HARD && correctRow === 4) {
     return true;
   }
@@ -62,12 +65,15 @@ export function saveSprintStatistic(state: GameState) {
   let newWords = 0;
   let learned = 0;
   const {
-    words, correctRow, countCorrect, countWrong,
+    words, longestCorrectRow, countCorrect, countWrong,
   } = state;
+  // console.log('from-saveSprintStatistic');
+
   const playedWords = words.filter(({ isCorrectAnswer }) => typeof isCorrectAnswer !== 'undefined');
   playedWords.forEach((word) => {
     const isNew = !word?.meta?.optional?.sprint;
     const isJustLearned = isWordJustLearned(word);
+
     let difficulty = word.meta?.difficulty || difficulties.EASY;
     const optional = word.meta?.optional || {};
     const sprint = optional.sprint || {
@@ -83,6 +89,9 @@ export function saveSprintStatistic(state: GameState) {
       difficulty = difficulties.LEARNED;
     }
 
+    // console.log('isJustLearned', isJustLearned);
+    // console.log('sprint.correctRow ', sprint.correctRow);
+
     if (word.isCorrectAnswer) {
       sprint.correctRow += 1;
       sprint.correct += 1;
@@ -92,6 +101,7 @@ export function saveSprintStatistic(state: GameState) {
       sprint.wrong += 1;
     }
 
+    // console.log('sprint', sprint);
     const wordData = {
       difficulty,
       optional: {
@@ -104,6 +114,6 @@ export function saveSprintStatistic(state: GameState) {
 
   // build words statistic
   saveStatistic({
-    game: 'sprint', wrong: countWrong, correct: countCorrect, correctRow, newWords, learned,
+    game: 'sprint', wrong: countWrong, correct: countCorrect, longestCorrectRow, newWords, learned,
   });
 }

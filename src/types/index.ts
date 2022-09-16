@@ -187,7 +187,7 @@ export interface GameWords {
 
 export interface GameState {
   countCorrect: number;
-  correctRow: number;
+  longestCorrectRow: number;
   total: number;
   countBonus: number;
   bonusRatio: number;
@@ -213,7 +213,7 @@ export interface SaveStatisticParam {
   game: string;
   correct: number;
   wrong: number;
-  correctRow: number;
+  longestCorrectRow: number;
   newWords: number;
   learned: number;
 }
@@ -225,7 +225,7 @@ export interface AudioGameState {
   isCorrect: boolean;
   countCorrect: number;
   countWrong: number;
-  correctRow: number;
+  longestCorrectRow: number;
   index: number;
   words: PreparedWords[],
   answers: string[],

@@ -90,7 +90,7 @@ export default function useDictionaryData() {
     setGroup(gr);
     setCurrentPage(0);
   }
-  console.log(sessionStorage.getItem('sessionpPage'));
+  // console.log(sessionStorage.getItem('sessionpPage'));
 
   const handleClick = (id: string) => {
     if (selectedCart === id) {

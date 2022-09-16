@@ -47,11 +47,11 @@ export default function AudioGamePlay({ state, setState }: AudioGameParam) {
     }
     if (state.isCorrect) {
       newState.countCorrect += 1;
-      newState.correctRow += 1;
+      newState.longestCorrectRow += 1;
       newState.words[index] = { ...currentWord, isCorrectAnswerAudio: true };
     } else {
       newState.countWrong += 1;
-      newState.correctRow = 0;
+      newState.longestCorrectRow = 0;
       newState.words[index] = { ...currentWord, isCorrectAnswerAudio: false };
     }
     setState(newState);

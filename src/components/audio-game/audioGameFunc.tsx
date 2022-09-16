@@ -44,7 +44,7 @@ function isWordJustLearned(word: any) {
     return false;
   }
   const dif = word.meta.difficulty;
-  const { correctRow } = word.meta.optional;
+  const { correctRow } = word.meta.optional.audio;
 
   if (dif === difficulties.HARD && correctRow === 4) {
     return true;
@@ -59,7 +59,7 @@ export function saveAudioStatistic(state: AudioGameState) {
   let newWords = 0;
   let learned = 0;
   const {
-    words, correctRow, countCorrect, countWrong,
+    words, longestCorrectRow, countCorrect, countWrong,
   } = state;
   const playedWords = words.filter(({ isCorrectAnswerAudio }) => typeof isCorrectAnswerAudio !== 'undefined');
   playedWords.forEach((word) => {
@@ -79,6 +79,9 @@ export function saveAudioStatistic(state: AudioGameState) {
       learned += 1;
       difficulty = difficulties.LEARNED;
     }
+
+    // console.log('isJustLearned', isJustLearned);
+    // console.log('sprint.correctRow ', audio.correctRow);
 
     if (word.isCorrectAnswerAudio) {
       audio.correctRow += 1;
@@ -101,6 +104,6 @@ export function saveAudioStatistic(state: AudioGameState) {
 
   // build words statistic
   saveStatistic({
-    game: 'audio', wrong: countWrong, correct: countCorrect, correctRow, newWords, learned,
+    game: 'audio', wrong: countWrong, correct: countCorrect, longestCorrectRow, newWords, learned,
   });
 }

@@ -8,10 +8,10 @@ export default function Statistic() {
   const user: null | UserSigninResp = useContext(UserContext);
   const [statistic, setStatistic] = useState({
     sprint: {
-      correct: 0, correctRow: 0, wrong: 0, newWords: 0,
+      correct: 0, longestCorrectRow: 0, wrong: 0, newWords: 0,
     },
     audio: {
-      correct: 0, correctRow: 0, wrong: 0, newWords: 0,
+      correct: 0, longestCorrectRow: 0, wrong: 0, newWords: 0,
     },
   });
   const [learned, setLearned] = useState({ words: [], count: 0 });
@@ -25,14 +25,14 @@ export default function Statistic() {
 
   const correctSprint = statistic.sprint.correct;
   const newSprint = statistic.sprint.newWords;
-  const correctRowSprint = statistic.sprint.correctRow;
+  const longestCorrectRowSprint = statistic.sprint.longestCorrectRow;
   const wrongSprint = statistic.sprint.wrong;
   const trySprintPercent = Math.round((correctSprint / (correctSprint + wrongSprint)) * 100);
   const sprintPercent = Object.is(NaN, trySprintPercent) ? 0 : trySprintPercent;
 
   const correctAudio = statistic.audio.correct;
   const newAudio = statistic.audio.newWords;
-  const correctRowAudio = statistic.audio.correctRow;
+  const longestCorrectRowAudio = statistic.audio.longestCorrectRow;
   const wrongAudio = statistic.audio.wrong;
   const tryAudioPercent = Math.round((correctAudio / (correctAudio + wrongAudio)) * 100);
   const audioPercent = Object.is(NaN, tryAudioPercent) ? 0 : tryAudioPercent;
@@ -107,7 +107,7 @@ export default function Statistic() {
               правильных ответов:
             </p>
             <span className="statistic__games__score">
-              {correctRowAudio ?? '0'}
+              {longestCorrectRowAudio ?? '0'}
             </span>
           </div>
         </div>
@@ -138,7 +138,7 @@ export default function Statistic() {
               правильных ответов:
             </p>
             <span className="statistic__games__score">
-              {correctRowSprint ?? '0'}
+              {longestCorrectRowSprint ?? '0'}
             </span>
           </div>
         </div>

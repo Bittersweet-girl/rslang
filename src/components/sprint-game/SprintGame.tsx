@@ -26,7 +26,7 @@ export default function SprintGame({
     const newState = { ...state, words: [...words] };
     newState.total += 1;
     newState.countCorrect += 1;
-    newState.correctRow += 1;
+    newState.longestCorrectRow += 1;
     newState.countBonus += 1;
     if (newState.countBonus > 3) {
       newState.countBonus = 1;
@@ -46,7 +46,7 @@ export default function SprintGame({
     wrongAudio();
     const newState = { ...state, words: [...words] };
     newState.countWrong += 1;
-    newState.correctRow = 0;
+    newState.longestCorrectRow = 0;
     newState.countBonus = 0;
     newState.bonusRatio = 1;
     if (newState.index === newState.words.length - 1) {

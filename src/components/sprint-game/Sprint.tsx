@@ -6,6 +6,7 @@ import { getGameWords } from '../../api/words';
 import StartScreen from './StartScreen';
 import prepareGameData, { saveSprintStatistic } from './helpers';
 import SprintResult from './SprintResult';
+// longestCorrectRow: 0
 
 const getRandomPageNumber = () => Math.max(3, Math.floor(Math.random() * 29));
 
@@ -14,7 +15,7 @@ export default function Sprint({ group, currentPage }: GameProps) {
 
   const [state, setState] = useState({
     countCorrect: 0,
-    correctRow: 0,
+    longestCorrectRow: 0,
     total: 0,
     countBonus: 0,
     bonusRatio: 1,
@@ -58,6 +59,7 @@ export default function Sprint({ group, currentPage }: GameProps) {
   // build and save statistic
   useEffect(() => {
     if (isGameOver) {
+      // console.log('saveSprintStatistic');
       saveSprintStatistic(state);
     }
   }, [isGameOver]);
