@@ -37,9 +37,10 @@
           font-size: 24px;
           color: $color-primary-light;
         }
-        &-cards{
+        &-cards {
             @include flex-columns;
             padding: 60px 0 20px;
+            gap: 20px;
         }
         &-item{
             @include card;

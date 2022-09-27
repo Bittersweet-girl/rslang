@@ -138,6 +138,13 @@ export default function Header(props: IHeaderProps) {
 
           </button>
         </nav>
+
+        <div className="burger">
+          <div className="burger__line" />
+          <div className="burger__line" />
+          <div className="burger__line" />
+        </div>
+
         {!user && (
           <button
             type="button"

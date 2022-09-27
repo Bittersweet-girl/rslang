@@ -6,9 +6,38 @@
     max-width: 1900px;
     padding-top: 20px;
     &-content{
-        @include flex-columns;
-        align-items: flex-end;
+      @include flex-columns;
+      align-items: flex-end;
+
+      .burger {
+        display: none;
+      }
+
+      // @media (max-width: 1080px) {
+
+      //     .burger {
+      //     display: flex;
+      //     flex-direction: column;
+      //     justify-content: center;
+      //     align-items: center;
+      //     width: 30px;
+      //     cursor: pointer;
+      //     user-select: none;
+      //     z-index: 10;
+      //     order: 2;
+      //     transition: all 0.3s ease-in-out;
+
+      //     &__line {
+      //       width: 100%;
+      //       height: 2px;
+      //       background: $color-primary-light;
+      //       margin: 4px 0;
+      //       z-index: 15;
+      //     }
+      //   }
+      // }  
     }
+    
     &__logo_btn{
         background-color: transparent;
         @include bgImage($url: url('../../../public/assets/svg/logo.svg'), $width: 253px, $height: 56px);
@@ -16,96 +45,97 @@
         cursor: pointer;
     }
     &-menu{
-        display: flex;
-        justify-content: space-between;
-        border-bottom: 1px solid $color-secondary;
-        height: 45px;
-        gap: 20px;
-        &__button{
-            // width: 100px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid $color-secondary;
+      height: 45px;
+      gap: 20px;    
 
-            max-width: 130px;
-            padding: 15px;
-
-            &_dict:hover{
-                background-color: $color-orange;
-            }
-            &_audio:hover{
-                background-color: $color-green;
-            }
-            &_sprint:hover{
-                background-color: $color-blue;
-            }
-            &_stat:hover{
-                background-color: $color-pink;
-            }
-            &_about:hover{
-                background-color: $color-magenta;
-            }
-        }
-        &-list{
-            position: relative;
-            &-content, 
-            &-content-dict{
-                display: none;
-                flex-direction: column;
-                border: 1px solid $color-secondary;
-                position: absolute;
-                z-index: 1;
-                top: 45px;
-                background-color: $color-bg;
-                width: 145px;
-            }
-            &__button_one{
-                border-left: 3px solid $color-yellow;
-            }
-            &__button_one:hover{
-                background-color: $color-yellow;
-            }
-            &__button_two{
-                border-left: 3px solid $color-orange;
-            }
-            &__button_two:hover{
-                background-color: $color-orange;
-            }
-            &__button_three{
-                border-left: 3px solid $color-green;
-            }
-            &__button_three:hover{
-                background-color: $color-green;
-            }
-            &__button_four{
-                border-left: 3px solid $color-blue;
-            }
-            &__button_four:hover{
-                background-color: $color-blue;
-            }
-            &__button_five{
-                border-left: 3px solid $color-pink;
-            }
-            &__button_five:hover{
-                background-color: $color-pink;
-            }
-            &__button_six{
-                border-left: 3px solid $color-magenta;
-            }
-            &__button_six:hover{
-                background-color: $color-magenta;
-            }
-            &__button_difficult{
-                border-left: 3px solid #263238;
-            }
-            &__button_difficult:hover{
-                background-color: #263238;
-            }
-        }
-        &-list:hover .header-menu-list-content {
-            display: flex;
-        }
-        &-list:hover .header-menu-list-content-dict {
-            display: none;
-        }
+      &__button{
+          // width: 100px;
+          max-width: 130px;
+          padding: 15px;
+          
+          &_dict:hover{
+              background-color: $color-orange;
+          }
+          &_audio:hover{
+              background-color: $color-green;
+          }
+          &_sprint:hover{
+              background-color: $color-blue;
+          }
+          &_stat:hover{
+              background-color: $color-pink;
+          }
+          &_about:hover{
+              background-color: $color-magenta;
+          }
+      }
+      &-list{
+          position: relative;
+          &-content, 
+          &-content-dict{
+              display: none;
+              flex-direction: column;
+              border: 1px solid $color-secondary;
+              position: absolute;
+              z-index: 1;
+              top: 45px;
+              background-color: $color-bg;
+              width: 145px;
+          }
+          &__button_one{
+              border-left: 3px solid $color-yellow;
+          }
+          &__button_one:hover{
+              background-color: $color-yellow;
+          }
+          &__button_two{
+              border-left: 3px solid $color-orange;
+          }
+          &__button_two:hover{
+              background-color: $color-orange;
+          }
+          &__button_three{
+              border-left: 3px solid $color-green;
+          }
+          &__button_three:hover{
+              background-color: $color-green;
+          }
+          &__button_four{
+              border-left: 3px solid $color-blue;
+          }
+          &__button_four:hover{
+              background-color: $color-blue;
+          }
+          &__button_five{
+              border-left: 3px solid $color-pink;
+          }
+          &__button_five:hover{
+              background-color: $color-pink;
+          }
+          &__button_six{
+              border-left: 3px solid $color-magenta;
+          }
+          &__button_six:hover{
+              background-color: $color-magenta;
+          }
+          &__button_difficult{
+              border-left: 3px solid #263238;
+          }
+          &__button_difficult:hover{
+              background-color: #263238;
+          }
+      }
+      &-list:hover .header-menu-list-content {
+          display: flex;
+      }
+      &-list:hover .header-menu-list-content-dict {
+          display: none;
+      }           
     }
+
     &__user{
         background-color: $color-red;
         color: $color-bg;
