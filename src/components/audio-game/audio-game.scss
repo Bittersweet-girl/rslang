@@ -1,0 +1,226 @@
+@import '../../sass-components/normalize';
+@import '../../sass-components/variables';
+@import '../../sass-components/mixins';
+
+.audio-game,
+.audio-game-play{
+    min-height: 500px;
+    // height: calc(100vh - 195px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+}
+    .audio-game{
+    &__logo{
+        margin: 0 auto;
+        @include bgImage($url: url('../../../public/assets/svg/audio-game.svg'), $width: 270px, $height: 168px);
+    }
+    &__text{
+        font-size: 14px;
+        line-height: 21px;
+        color: $color-secondary;
+        margin: 30px 0;
+    }
+    &__title{
+        font-size: 14px;
+        line-height: 21px;
+    }
+    &-group{
+        margin: 10px 0;
+    }
+    &__btn{
+        border: 1px solid $color-secondary;
+        margin: 0 5px;
+        width: 45px;
+        color: $color-secondary;
+        
+    }
+    &__btn_first:hover {
+        background-color: $color-yellow;
+        border: 1px solid $color-yellow;
+    }
+    &__btn_second:hover{
+        background-color: $color-orange;
+        border: 1px solid $color-orange;
+    }
+    &__btn_third:hover{
+        background-color: $color-green;
+        border: 1px solid $color-green;
+        
+    }
+    &__btn_four:hover{
+        background-color: $color-blue;
+        border: 1px solid $color-blue;
+    }
+    &__btn_five:hover{
+        background-color: $color-pink;
+        border: 1px solid $color-pink;
+    }
+    &__btn_six:hover{
+        background-color: $color-magenta;
+        border: 1px solid $color-magenta;
+    }
+    &__start{
+        width: 100px;
+        margin: 10px 0;
+        background-color: $color-green;
+        &[disabled]{
+            background-color: $color-secondary;
+            color: $color-primary;
+            &:active {
+                transform: translateY(0);
+            }
+            &:hover{
+                background-color: $color-secondary;
+                color: $color-primary;
+            }
+        }
+    }
+}
+.audio-game-play{
+    gap: 20px;
+    &__btn_audio {
+        background-color: transparent;
+        border: none;
+    }
+    &__play-img {
+        width: 82px;
+        height: 60px;
+        filter: invert(59%) sepia(7%) saturate(596%) hue-rotate(186deg) brightness(99%) contrast(89%);
+        &:hover {
+            filter: invert(61%) sepia(90%) saturate(298%) hue-rotate(79deg) brightness(94%) contrast(93%);
+        }
+    }
+    &-options-block{
+        padding: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 10px;
+    }
+    &__option{
+        padding: 0 20px ;
+        &_0:hover{
+            background-color: $color-orange;
+        }
+        &_1:hover{
+            background-color: $color-green;
+        }
+        &_2:hover{
+            background-color: $color-blue;
+        }
+        &_3:hover{
+            background-color: $color-magenta;
+        }
+    }
+    &__btn{
+        width: 80px;
+        &:hover{
+            background-color: $color-green;
+        }
+    }
+    &__image{
+        width: 382px;
+        height: 250px;
+    }
+}
+.correct{
+    border: $color-green 2px solid;
+}
+.wrong{
+    border: $color-red 2px solid;
+}
+ .statistic-data {
+     box-sizing: border-box;
+     display: flex;
+     flex-direction: column;
+     padding: 20px 60px;
+     width: 500px;
+     height: 500px;
+     border: solid 1px $color-secondary;
+     border-radius: 3px;
+     overflow-y: auto;
+
+     &__score {
+         font-size: 36px;
+         color: $color-blue;
+     }
+
+     h2 {
+         align-self: center;
+         margin-bottom: 40px;
+     }
+
+     &__title {
+         display: flex;
+         align-items: center;
+         gap: 20px;
+         margin: 10px 0;
+     }
+
+     &__title-text {
+         color: $color-primary-light;
+         font-size: 24px;
+         margin: 0;
+     }
+
+     &__wrong {
+         display: flex;
+         align-items: center;
+         box-sizing: border-box;
+         width: auto;
+         height: 30px;
+         padding: 0 20px;
+         background-color: $color-red;
+         color: white;
+         border-radius: 3px;
+     }
+
+     &__coorect {
+         display: flex;
+         align-items: center;
+         box-sizing: border-box;
+         width: auto;
+         height: 30px;
+         padding: 0 20px;
+         background-color: $color-green;
+         color: white;
+         border-radius: 3px;
+     }
+
+     &__line {
+         border-bottom: solid 1px $color-secondary;
+         margin: 20px 0;
+     }
+ }
+.audio-game-res{
+ &__buttons {
+     margin: 40px 0;
+     display: flex;
+     gap: 20px;
+    justify-content: center;
+     .btn-dictionary {
+         background-color: $color-secondary;
+         width: 200px;
+
+         &:hover {
+             background-color: $color-orange;
+         }
+     }
+
+     .btn-repeat {
+         background-color: $color-secondary;
+         width: 200px;
+
+         &:hover {
+             background-color: $color-blue;
+         }
+     }
+
+ }
+}
+ 
